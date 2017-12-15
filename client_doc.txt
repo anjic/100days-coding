@@ -1,0 +1,94 @@
+[root@localhost ~]# ls
+anaconda-ks.cfg  optimise-server
+[root@localhost ~]# service uwsgi status
+Redirecting to /bin/systemctl status  uwsgi.service
+● uwsgi.service - uWSGI Emperor service
+   Loaded: loaded (/etc/systemd/system/uwsgi.service; enabled; vendor preset: disabled)
+   Active: active (running) since Sat 2017-09-23 23:41:19 EDT; 1 day 2h ago
+  Process: 604 ExecStartPre=/bin/bash -c mkdir -p /run/uwsgi; chown root:nginx /run/uwsgi (code=exited, status=0/SUCCESS)
+ Main PID: 612 (uwsgi)
+
+service rocket status
+Redirecting to /bin/systemctl status  rocket.service
+● rocket.service - XIO Rocket Server
+   Loaded: loaded (/usr/lib/systemd/system/rocket.service; enabled; vendor preset: disabled)
+   Active: active (running) since Sat 2017-09-23 23:41:35 EDT; 1 day 2h ago
+ Main PID: 1331 (python)
+   CGroup: /system.slice/rocket.service
+           └─1331 /usr/bin/python /root/optimise-server/xio-rocket.py
+
+service nginx status
+Redirecting to /bin/systemctl status  nginx.service
+● nginx.service - The nginx HTTP and reverse proxy server
+   Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; vendor preset: disabled)
+   Active: active (running) since Sat 2017-09-23 23:41:35 EDT; 1 day 2h ago
+  Process: 1120 ExecStart=/usr/sbin/nginx (code=exited, status=0/SUCCESS)
+  Process: 896 ExecStartPre=/usr/sbin/nginx -t (code=exited, status=0/SUCCESS)
+  Process: 886 ExecStartPre=/u
+
+ service postgresql-9.6 status
+Redirecting to /bin/systemctl status  postgresql-9.6.service
+● postgresql-9.6.service - PostgreSQL 9.6 database server
+   Loaded: loaded (/usr/lib/systemd/system/postgresql-9.6.service; enabled; vendor preset: disabled)
+   Active: active (running) since Sat 2017-09-23 23:41:35 EDT; 1 day 2h ago
+  Process: 888 ExecStartPre=/usr/pgsql-9.6/bin/postgresql96-check-db-dir ${PGDATA} (code=exited, status=0/SUCCESS)
+ Main PID: 927 (postmaster)
+
+uwsgi --version
+2.0.15
+
+yum remove uwsgi
+
+uwsgi --version
+No such file or directory
+
+service uwsgi status
+Redirecting to /bin/systemctl status  uwsgi.service
+● uwsgi.service - uWSGI Emperor service
+   Loaded: loaded (/etc/systemd/system/uwsgi.service; disabled; vendor preset: disabled)
+   Active: inactive (dead)
+
+service uwsgi start
+Redirecting to /bin/systemctl start  uwsgi.service
+Job for uwsgi.service failed because the control process exited with error code. See "systemctl status uwsgi.service" and "journalctl -xe" for details.
+
+
+Getting "Failed to load resource: the server responded with a status of 502 (Bad Gateway)" in browser side
+
+vi /etc/nginx/nginx.conf
+server {
+
+    listen 443 ssl default_server;
+    listen [::]:443 ssl default_server;
+
+    ssl_certificate /etc/ssl/xiocerts/optimISE.xiotech.com.crt;
+    ssl_certificate_key /etc/ssl/xiocerts/optimISE.xiotech.com.key;
+    ssl_dhparam /etc/ssl/certs/dhparam.pem;
+
+    root /usr/share/nginx/html;
+
+    index index.html index.htm;
+
+    location /api {
+        include         uwsgi_params;
+        #uwsgi_pass      unix:/run/uwsgi/xio_ise.sock;
+        #uwsgi_pass    127.0.0.1:8000;
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+
+
+
+
+
+
+
+

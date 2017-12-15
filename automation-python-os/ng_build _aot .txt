@@ -1,0 +1,77 @@
+ng build --aot --prod --environment=prod
+
+@angular/compiler-cli@4.4.4 requires typescript@'>=2.1.0 <2.4.0' but 2.5.2 was found instead.
+Using this version can result in undefined behaviour and difficult to debug problems.
+
+Please run the following command to install a compatible version of TypeScript.
+
+    npm install typescript@'>=2.1.0 <2.4.0'
+
+To disable this warning run "ng set warnings.typescriptMismatch=false".
+
+Date: 2017-12-04T14:18:15.529Z                                                        
+Hash: 161e8131d89577376651
+Time: 123146ms
+chunk {0} styles.12e9d1cec17aa2c7eb0f.bundle.css (styles) 215 kB {3} [initial] [rendered]
+chunk {1} polyfills.3bc34265385d52184eab.bundle.js (polyfills) 86 bytes {3} [initial] [rendered]
+chunk {2} main.e402deade8b026b7d50e.bundle.js (main) 84 bytes [initial] [rendered]
+chunk {3} inline.b83ca8f78b94039a8c42.bundle.js (inline) 1.45 kB [entry] [rendered]
+
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/hardware.effects.ts (93,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/email.effects.ts (35,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+  Type '{}' is not assignable to type 'Action'.
+    Property 'type' is missing in type '{}'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/email.effects.ts (51,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/email.effects.ts (59,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/email.effects.ts (67,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/sangroup.effects.ts (36,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/sangroup.effects.ts (44,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/sangroup.effects.ts (52,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/sangroup.effects.ts (60,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/sangroup.effects.ts (68,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/sangroup.effects.ts (76,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/sangroup.effects.ts (84,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/sangroup.effects.ts (92,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/user.effects.ts (19,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/user.effects.ts (27,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/user.effects.ts (35,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/user.effects.ts (43,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/user.effects.ts (51,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/user.effects.ts (60,5): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/hardware.effects.ts (20,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/hardware.effects.ts (29,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/hardware.effects.ts (37,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/hardware.effects.ts (45,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/hardware.effects.ts (53,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/hardware.effects.ts (61,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/hardware.effects.ts (69,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/hardware.effects.ts (77,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/hardware.effects.ts (85,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/email.effects.ts (43,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/hardware.effects.ts (101,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/hosts.effects.ts (20,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/hosts.effects.ts (28,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/hosts.effects.ts (36,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/hosts.effects.ts (44,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/hosts.effects.ts (52,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/hosts.effects.ts (60,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/volume.effects.ts (20,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/volume.effects.ts (28,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/volume.effects.ts (36,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/volume.effects.ts (44,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/volume.effects.ts (52,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/volume.effects.ts (60,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/volume.effects.ts (68,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/server.effects.ts (33,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/server.effects.ts (41,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/server.effects.ts (50,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/server.effects.ts (59,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/server.effects.ts (67,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/server.effects.ts (75,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/server.effects.ts (83,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/server.effects.ts (107,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/server.effects.ts (116,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/server.effects.ts (125,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/effects/server.effects.ts (134,3): Type 'Observable<{}>' is not assignable to type 'Observable<Action>'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/service/ise-setting.service.ts (67,52): Type 'Headers' has no properties in common with type 'RequestOptionsArgs'.
+ERROR in /root/xio-projects/Source/webapp/xio-monitor-app/src/app/service/ise-setting.service.ts (97,44): Type 'Headers' has no properties in common with type 'RequestOptionsArgs'.
