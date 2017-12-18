@@ -1,8 +1,10 @@
 import requests 
-from requests.auth import HTTPBasicAuth
-#from excerise import xmltojson
+import xml.dom.minidom
 
-r = requests.get("http://10.20.238.4/storage/arrays/USE2600053GOI05C",auth=HTTPBasicAuth('administrator', 'administrator'))
+r = requests.get("http://10.20.238.4/storage/arrays/USE2600053GOI05C",auth=('administrator', 'administrator'))
 
-print (r.text)
-#print (r.json())
+xmlstring = r.text
+xml = xml.dom.minidom.parseString(xmlstring) # or xml.dom.minidom.parseString(xml_string)
+pretty_xml_as_string = xml.toprettyxml()
+print xml
+print pretty_xml_as_string
