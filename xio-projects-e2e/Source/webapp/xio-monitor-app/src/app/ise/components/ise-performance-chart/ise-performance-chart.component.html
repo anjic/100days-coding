@@ -1,0 +1,26 @@
+<div>
+	<div class="sub-heading pull-left">
+	    <h4>Performance</h4>
+	</div>
+	<span class="example-spacer"></span>      
+	<div class="pull-right main-btn">
+	    <app-refresh-button [screen_name] ='screen_name'
+	                        (onRefreshClick) ="refreshIsePerformance($event)" >
+	    </app-refresh-button>
+	</div>
+</div>
+<div style="clear:both"></div>
+<div class="row">
+	<div class="col-12">   
+		<md-tab-group md-stretch-tabs="always" class="ise-performance-tab"  
+		[(selectedIndex)]="selected_index"
+		(focusChange)="changeTab($event)" >
+	        <md-tab label="ISE"></md-tab>
+	        <md-tab label="VOLUME"></md-tab>
+	        <md-tab label="WWN Group"></md-tab>
+	    </md-tab-group>
+	</div>
+	<div  class="container-width">
+	   <router-outlet></router-outlet>
+	</div>
+</div>

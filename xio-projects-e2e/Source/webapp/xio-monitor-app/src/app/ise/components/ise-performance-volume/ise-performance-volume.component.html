@@ -1,0 +1,97 @@
+<div class="padding10">
+  <div class="row">
+    <div class="col-sm-8 text-right">
+      <p class="performselectbox"></p>
+    </div>
+    <div class="col-sm-3 form-slider-group">
+      <div class="row" *ngIf="volume_list">
+        <md-select id="mdVolumeSelect" placeholder="Select The Volume" type="text"
+          (change)="onVolumeChange($event)">
+          <md-option *ngFor="let v of volume_list; let i = index;" [value]="v.id">
+            {{v.name}}
+          </md-option>
+        </md-select>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div *ngIf="!isChart" class="col-xl-12">
+    <md-card class="row">
+      <md-card-header>
+        <h5>IOPs</h5>
+      </md-card-header>
+      <md-card-content>
+        <div class="col-sm-12 chart-container mx-auto text-center">
+          <div class="card card-325">
+            <div class="col-12 text-center" style="margin-top: 25px;" *ngIf="loading_stack.performance_vol_details">
+              <app-xio-loader [displayText]="loading_stack.performance_vol_details_text">
+              </app-xio-loader>
+            </div>
+            <div *ngIf="!loading_stack.performance_vol_details">
+              <nvd3 [options]="line_chart_options" [data]="iops_data">
+              </nvd3>
+            </div>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+    <div class="line mtb-15"></div>
+    <md-card class="row">
+      <md-card-header>
+        <h5>Latency (ms)</h5>
+      </md-card-header>
+      <md-card-content>
+        <div class="col-sm-12 chart-container mx-auto text-center">
+          <div class="card card-325">
+            <div class="col-12 text-center" style="margin-top: 25px;" *ngIf="loading_stack.performance_vol_details">
+              <app-xio-loader [displayText]="loading_stack.performance_vol_details_text">
+              </app-xio-loader>
+            </div>
+            <div *ngIf="!loading_stack.performance_vol_details">
+              <nvd3 [options]="latency_options" [data]="latency_data"></nvd3>
+            </div>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+    <div class="line mtb-15"></div>
+    <md-card class="row">
+      <md-card-header>
+        <h5>Data Rate (kb/s)</h5>
+      </md-card-header>
+      <md-card-content>
+        <div class="col-sm-12 chart-container mx-auto text-center">
+          <div class="card card-325">
+            <div class="col-12 text-center" style="margin-top: 25px;" *ngIf="loading_stack.performance_vol_details">
+              <app-xio-loader [displayText]="loading_stack.performance_vol_details_text">
+              </app-xio-loader>
+            </div>
+            <div *ngIf="!loading_stack.performance_vol_details">
+              <nvd3 [options]="data_rate_options" [data]="data_rate_data"></nvd3>
+            </div>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+    <div class="line mtb-15"></div>
+    <md-card class="row">
+      <md-card-header>
+        <h5>Queue Depth</h5>
+      </md-card-header>
+      <md-card-content>
+        <div class="col-sm-12 chart-container mx-auto text-center">
+          <div class="card card-325">
+            <div class="col-12 text-center" style="margin-top: 25px;" *ngIf="loading_stack.performance_vol_details">
+              <app-xio-loader [displayText]="loading_stack.performance_vol_details_text">
+              </app-xio-loader>
+            </div>
+            <div *ngIf="!loading_stack.performance_vol_details">
+              <nvd3 [options]="queue_depth_options" [data]="queue_depth_data"></nvd3>
+            </div>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>

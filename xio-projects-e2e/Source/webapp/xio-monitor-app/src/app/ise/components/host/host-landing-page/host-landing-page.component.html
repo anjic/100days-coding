@@ -1,0 +1,67 @@
+<div class="main-bar">
+    <div class="row">
+        <div class=" col-sm white main-heading">
+            <h3 class="mtb-0"> <md-icon>device_hub</md-icon> <span> 
+            {{host_name}}</span></h3>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+<div class="col-sm-12 mt-30">
+<md-card>
+        <div class="title-row">
+            <div>
+                <label for="">
+                    <strong>ISE Name:</strong>
+                </label>
+                <span *ngIf="ise_card_details">
+                    {{ise_card_details.name}}
+                </span>
+            </div>
+            <div>
+                <label for="">
+                    <strong>Serial No:</strong>
+                </label>
+                <span *ngIf="ise_card_details">
+                    {{ise_card_details.serial_no}}
+                </span>
+            </div>
+       <!--      <div>
+                <label for="">
+                    Host Name:
+                </label>
+                <span>
+                {{host_name}}
+                </span>
+            </div> -->
+        </div>
+    
+</md-card>
+</div>
+
+<div class="col-sm-12 mt-30 mb-30">
+<md-card>
+        <label class="header-wwn"><span class="wwwn-header"><strong>Current WWNs</strong></span>
+        <span class="pointer" routerLink="/ise/{{ise_id}}/host/edit/{{host_id}}">
+        <i class="material-icons wwwn-header" mdTooltip="Edit WWns" mdTooltipPosition="right">mode_edit</i>
+       </span></label>
+        <hr/>
+        <ul class="scroll-container">
+            <li *ngFor="let ep of endpoints">
+                {{ep.globalid}}
+            </li>
+        </ul>
+</md-card>
+</div>
+
+</div>
+<div class="row">
+<div class="col-sm-12">
+    <md-card class=" mb-30">
+    <h5>Volumes presented to this host</h5>
+         <xio-md-dataTable class="col-md-12" [gridOptions]="gridOptions"></xio-md-dataTable>
+    </md-card>
+    </div>
+</div>

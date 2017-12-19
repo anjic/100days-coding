@@ -1,0 +1,55 @@
+.opendatapac .mat-toolbar {
+  min-height: 30px;
+  padding: 2% 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.lblIdentify, .lblUpdating {
+  font-size: 0.8em;
+  font-weight: 300;
+}
+
+
+.colon span::after{
+  content:":";
+  float: right;
+}
+
+.bold > span {
+  font-weight: 500;
+}
+
+.pacCard {
+  margin: 1% auto;
+}
+
+span.ise_red {
+    color: red;
+}
+
+.datapacLoadingText {
+  margin-top: 25px;
+}
+
+.datapacLoader {
+  padding:0px;
+}
+
+.datapacIdentifyalign {
+  text-align: right
+}
+
+span.degree:after{
+  content :"\2103";
+}
+
+.mat-toolbar.toolbar_red {
+    background: red ;
+    color : black;
+}
+.mat-toolbar.toolbar_green {
+    background: #00a999;
+    color: white;
+
+}

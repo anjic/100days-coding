@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="sub-heading pull-left">
+        <h4>List of WWN Groups</h4>
+    </div>
+    <span class="example-spacer"></span>
+    <div class="pull-right main-btn">
+        <button md-raised-button class="toolbar-btn " id="add_host" name="add_host" routerLink="/ise/{{ise_id}}/host/add">Create WWN Group</button>
+    </div>
+</div>
+<div class="row">
+    <xio-md-dataTable class="col-md-12" [gridOptions]="gridOptions"></xio-md-dataTable>
+</div>
+ 

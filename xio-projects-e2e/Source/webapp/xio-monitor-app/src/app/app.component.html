@@ -1,0 +1,50 @@
+<md-toolbar [hidden]="!auth.is_login" color="primary">
+  <button md-icon-button (click)="sidenav.toggle()">
+    <md-icon class="md-24">menu</md-icon>
+  </button> <!-- {{title}} -->
+  <img class="app-logo" src="assets/images/xio-app-logo.svg">
+
+  <span class="example-spacer"></span>
+
+  <button md-icon-button [mdMenuTriggerFor]="menu">
+    <md-icon class="gray-color spin">settings</md-icon>
+  </button>
+  <md-menu #menu="mdMenu">
+    <button (click)="contactUs()" md-menu-item>
+      <md-icon>contact_mail</md-icon>
+      <span>Contact Us</span>
+    </button>
+    <button (click)="changePassword()" md-menu-item>
+      <md-icon>vpn_key</md-icon>
+      <span>Change Password</span>
+    </button>
+
+    <a class="menu-anchor" href="/assets/LICENSE.pdf" md-menu-item>
+      <md-icon>description</md-icon>
+      <span>License Information</span>
+    </a>
+
+    <button class="menu-style-none" md-menu-item>
+      <md-icon>loyalty</md-icon>
+      <span>Version: 3.1.2</span>
+    </button>
+
+    <button (click)="logout()" md-menu-item>
+      <md-icon>power_settings_new</md-icon>
+      <span>Log Out</span>
+    </button>
+  </md-menu>
+</md-toolbar>
+
+
+<div class="app-container" [ngClass]="{'pt-40': auth.is_login, 'pt-0': !auth.is_login}">
+
+  <md-sidenav-container class="sidenav-container" >
+    <md-sidenav [hidden]="!auth.is_login" #sidenav mode="side" opened="true" class="app-sidenav">
+      <xio-sidebar></xio-sidebar>
+    </md-sidenav>
+    <div class="app-content">
+      <router-outlet></router-outlet>
+    </div>
+  </md-sidenav-container>
+</div>

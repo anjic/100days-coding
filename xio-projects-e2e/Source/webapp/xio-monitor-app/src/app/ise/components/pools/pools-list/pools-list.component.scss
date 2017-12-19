@@ -1,0 +1,161 @@
+@keyframes blinker {
+    to {
+        opacity: 0;
+    }
+}
+
+.dp-label {
+    border: 1px dotted #bfbfbf;
+    font-size: 14px;
+    padding: 0 2px;
+    text-align: center;
+    border-top: 0;
+}
+
+.dp-front-box {
+    border: 3px solid #BFC0C2;
+    position: absolute;
+    width: 20px;
+    height: 55px;
+    right: 0;
+    top: 40%;
+}
+
+.drive-panel-left,
+.drive-panel-right {
+    padding: 5px;
+    border: 5px solid #BFC0C2;
+    background: #8e8d8d;
+    .col-2 {
+        padding: 0 5px;
+    }
+    .drive-box {
+        height: 25px;
+        background: linear-gradient(to right, #464646 0%, #312c2c 47%, #4a4a4a 100%);
+        margin: 5px 0;
+        border: 1px solid #545454;
+        color: #fff;
+        position: relative;
+        .led {
+            border: 0;
+            height: 7px;
+            width: 7px;
+            position: absolute;
+            right: 3px;
+            &.top {
+                top: 0;
+            }
+            &.middle {
+                top: 8px;
+            }
+            &.bottom {
+                bottom: 0;
+            }
+            &.red {
+                background: red;
+            }
+            &.green {
+                background: #58B947;
+            }
+            &.amber {
+                background: #FEC20F;
+            }
+            &.blue {
+                background: #0084C9;
+            }
+            &.grey {
+                background: #8c8c8c;
+            }
+            &.blinking {
+                animation: blinker .3s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+            }
+        }
+    }
+}
+
+.front,
+.back {
+    position: absolute;
+    top: 60%;
+    left: 48.4%;
+    transform: rotate(270deg);
+    font-size: 14px;
+    border: 3px solid #bfc0c2;
+    padding: 0 5px;
+}
+
+.front {
+    left: 94.3%;
+    top: 35%;
+}
+.back{
+    left:-3.5%;
+}
+.pool-detail {
+    margin: 5px 0;
+    padding: 7px 0;
+}
+
+.dpck-crd {
+    margin: 5px;
+    padding: 5px;
+    background: #1362ab;
+    color: white;
+}
+
+.expand-pool-btn {
+    margin-top: 13px;
+}
+
+.pool-info {
+    white-space: nowrap;
+}
+.pool-diagram .row .col-md-6{
+ padding-right: 0px;
+ padding-left: 0px;
+
+}
+.panel-leftside{
+padding-right:50px;
+
+}
+
+.panel-rightside{
+padding-left: 50px;
+
+}
+
+.pool-btn-margin {
+  margin: 1% auto;
+}
+
+.handle-bar-left{
+    position: absolute;
+    z-index: -1;
+    right: 0px;
+    top: 50px;
+    }
+
+
+.handle-bar-left img, .handle-bar-right img{
+    width: 75px;
+}
+
+md-card.pool-diagram.mat-card{
+    z-index:-1;
+}
+
+.handle-bar-right{
+    position: absolute;
+    z-index: -1;
+    left: 0px;
+    top: 50px;
+}
+
+.loader-align-drive{
+    margin-top: 25px;
+}
+
+.pool-list-loader{
+   margin-top: 75px; 
+}

@@ -1,0 +1,20 @@
+.main-nav {
+	padding:.75rem;	
+	margin-top:45px;
+	.col{
+		padding:0 .25rem;	
+		
+		.btn{
+		width: 100%;
+    	padding: .25rem .5rem;
+    	background	:#8E8F93;
+    	border-radius: 0;
+    	color: #fff;
+    	font-weight: 600;
+
+    	&.active{
+		 background:#14ADAB;	
+    	}
+	    }
+	}
+}

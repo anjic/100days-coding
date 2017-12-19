@@ -1,0 +1,65 @@
+<div class="col-12 text-center datapacLoadingText" *ngIf="loading_stack.hardinfo_details">
+  <app-xio-loader [displayText]="loading_stack.hardinfo_details_text">
+  </app-xio-loader>
+</div>
+<div class="col-12 opendatapac datapacLoader" *ngIf="!loading_stack.hardinfo_details">
+  <md-card>
+    <div class="row">
+      <div class="col-md-6 pacCard" *ngFor="let datapac of dataPacList; let i=index;">
+        <md-toolbar [ngClass]="toolBarClass(datapac.status._attr.string)">
+          <div class="col-md-6">
+            <h6>Open DataPac {{i+1}}</h6>
+          </div>
+          <div class="col-md-6 pull-right datapacIdentifyalign">
+            <label class="lblIdentify">Identify</label>
+            <md-slide-toggle class="slide-color" color="primary"
+                             [(ngModel)]="dataPac_identify[i]['value']"
+                             [disabled]="dataPac_identify[i]['loading']"
+                             (change)="identifyDataPac(i,datapac.id)">
+            </md-slide-toggle>
+            <span class="lblUpdating" [hidden]="!dataPac_identify[i]['loading']">Updating....</span>
+          </div>
+        </md-toolbar>
+        <div>
+          <md-card>
+            <div class="row">
+              <div class="col-md-6 colon bold">
+                <span>Status</span>
+              </div>
+              <div class="col-md-6">
+                <span [ngClass]="statusClass(datapac.status._attr.string)">
+                  {{datapac.status._attr.string}}
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 colon bold">
+                <span>Detailed Status</span>
+              </div>
+              <div class="col-md-6">
+                <span [ngClass]="statusClass(datapac.status.details.detail)">
+                  {{datapac.status.details.detail}}
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 colon bold">
+                <span>Temperature</span>
+              </div>
+              <div class="col-md-6">
+                <span class ="degree">
+                  {{datapac.temperature._attr.value}}
+                </span>
+                <span>
+                      (Low: {{datapac.temperature.low}},
+                       Critical:{{datapac.temperature.critical}},
+                       Warning: {{datapac.temperature.warning}})
+                </span>
+              </div>
+            </div>
+          </md-card>
+        </div>
+      </div>
+    </div>
+  </md-card>
+</div>

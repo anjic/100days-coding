@@ -1,0 +1,62 @@
+<div class="card">
+  <form novalidate autocomplete="off" [formGroup]="userchangepwdForm">
+    <div class="row page-title">
+      <div class="col-sm-12">
+        <h4>Change Password</h4>
+      </div>
+    </div>
+    <div class="row form-container">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <md-input-container class="example-full-width">
+            <div class="col-6">
+              <input mdInput class="form-control" type="password" id="CurrentPassword" formControlName="curr_password" placeholder="Current Password">
+            </div>
+            <md-hint align="end">
+              <div *ngIf="!userchangepwdForm['controls']['curr_password'].valid  && userchangepwdForm['controls']['curr_password'].touched" class="text-danger">
+                <span *ngIf="userchangepwdForm['controls']['curr_password'].errors.required">
+                    Current Password is required
+                </span>
+              </div>
+            </md-hint>
+          </md-input-container>
+        </div>
+        <div class="form-group">
+          <md-input-container class="example-full-width">
+            <div class="col-6">
+              <input mdInput class="form-control" type="password" id="new_password" formControlName="new_password" placeholder="New Password">
+            </div>
+            <md-hint align="end">
+              <div *ngIf="!userchangepwdForm['controls']['new_password'].valid  && userchangepwdForm['controls']['new_password'].touched" class="text-danger">
+                <span *ngIf="userchangepwdForm['controls']['new_password'].errors.required">
+                    New Password is required
+                </span>
+              </div>
+            </md-hint>
+          </md-input-container>
+        </div>
+        <div class="form-group">
+          <md-input-container class="example-full-width">
+            <div class="col-6">
+              <input mdInput class="form-control" type="password" id="confirm_password" formControlName="confirm_password" placeholder="Confirm Password">
+            </div>
+            <md-hint align="end">
+              <div *ngIf="!userchangepwdForm['controls']['confirm_password'].valid  && userchangepwdForm['controls']['confirm_password'].touched" class="text-danger">
+                <span *ngIf="userchangepwdForm['controls']['confirm_password'].errors.required">
+                    Confirm Password is required
+                </span>
+              </div>
+              <div *ngIf="userchangepwdForm.hasError('mismatchedPasswords')" class="text-danger text-right">
+                Password does not match
+              </div>
+            </md-hint>
+          </md-input-container>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <button md-raised-button color="warn" routerLink="/user/list">Cancel</button>
+        <button md-raised-button color="primary" (click)="onSubmit()" routerLink="/user/list">Update</button>
+      </div>
+    </div>
+  </form>
+</div>

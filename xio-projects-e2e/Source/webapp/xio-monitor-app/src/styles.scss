@@ -1,0 +1,459 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import './assets/fonts/roboto/roboto.scss';
+/* fallback */
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url(./assets/fonts/materialicons/v22/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
+}
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  margin: 0;
+  font-family: "Roboto";
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: "Roboto";
+}
+.snackbar {
+  color: hotpink;
+  top: 5px;
+}
+.pools_available_capacity {
+  color: #64bd63
+}
+.form-box {
+  border: 1px solid #ececec;
+  /*margin: 10px;*/
+  padding: 10px;
+}
+.ag-material .ag-header-cell-text {
+  padding: 0px;
+  text-transform: uppercase;
+}
+.pointer {
+  cursor: pointer;
+}
+g.nv-tick {
+  display: none;
+}
+.pool_red {
+  color: #ff3333;
+}
+.mb-30 {
+  margin-bottom: 30px;
+}
+.mt-30 {
+  margin-top: 30px;
+}
+.ag-font-style {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+@media only screen and (max-width: 425px) {
+  .col-sf {
+    width: 100%;
+  }
+}
+.my-radio.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #bdbdbd;
+}
+.my-radio.mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #bdbdbd;
+}
+.grey_out {
+  color: #bdbdbd;
+}
+.slide-color.mat-slide-toggle.mat-primary.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: rgba(0, 169, 153, 0.5) !important;
+  border: 1px solid white !important;
+}
+.mat-slide-toggle-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+  border: 2px solid white;
+}
+.slide-color.mat-slide-toggle.mat-primary.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: rgba(0, 0, 0, 0.38)
+}
+.mat-slide-toggle-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+  border: 2px solid white;
+}
+.mat-slide-toggle.mat-primary.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: rgba(4, 206, 187, 1);
+  border: 2px solid white;
+}
+.sub-tbls .table-header-row {
+  background: rgba(206, 206, 206, 0.44) !important;
+}
+.sub-tbls label.table-card {
+  color: #585858;
+}
+.xio-dataTable-RowMenu .mat-menu-ripple {
+  z-index: -999;
+}
+.hide {
+  visibility: hidden;
+}
+.sortBy .mat-input-container {
+  width: 100% !important;
+}
+.tbl-hdr .mat-card-title {
+  margin-bottom: 0px;
+}
+md-list.tbl-body.mat-list {
+  padding-top: 0px;
+  padding-bottom: 30px;
+}
+.table-card-odd hr {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.mat-sidenav-content {
+  overflow-y: auto;
+  padding-bottom:30px
+
+}
+
+.mat-sidenav{
+  padding-bottom:20px;
+}
+.app-container{
+  overflow: overlay;
+}
+
+.app-content {
+  overflow-x: initial !important;
+}
+.sortBy {
+  right: 5px;
+  top: 0;
+  cursor: pointer;
+}
+.table-header md-select.col-sm.mat-select.mat-primary {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+@media only screen and (max-width: 575px) {
+  .table-header {
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 575px) {
+  .table-header {
+    height: 45px;
+  }
+  .srch-sort {
+    float: right;
+  }
+}
+.asc-desc {
+  top: 6px;
+  position: absolute;
+  right: 0
+}
+.sort-by {
+  top: 20px;
+}
+.table-header-row {
+  background: #448A96;
+}
+.bm-15 {
+  bottom: 22px;
+}
+
+.tbl-body {
+  background: white;
+}
+.material-icons {
+  vertical-align: middle;
+
+}
+.space-30 {
+  display: block;
+  width: 30px;
+}
+.table-card {
+  color: white;
+}
+.table-card-bg {
+  padding: 0px;
+}
+.table-card-header {
+  background: #448A96;
+  color: white;
+}
+.card-more-btn {
+  text-decoration: none;
+  color: grey;
+  padding: 5px;
+  font-size: 80%
+}
+.sort-filter {
+  margin-top: 32px;
+  align-items: center;
+}
+.grey-color {
+  color: grey;
+}
+.tbl-cnt {
+  padding: 9px 0px;
+  margin-bottom: 0px;
+}
+.tbl-chckbx {
+  cursor: pointer;
+  padding: 8px 0px;
+}
+label.table-card {
+  padding-top: 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+}
+.mat-select-placeholder {
+  fonr-size: 20px;
+}
+.collapse.in {
+  display: block;
+}
+.table-card-even {
+  background: #fbfbfb;
+}
+.mb-30 {
+  margin-bottom: 30px;
+}
+.mt-30 {
+  margin-top: 32px;
+}
+.table-card-bg:hover {
+  background: rgba(183, 183, 183, 0.15);
+  border-bottom: 1px dotted rgba(128, 128, 128, 0.37);
+  margin-bottom: -1px;
+}
+.subGroupContainer {
+  margin: 0 auto;
+}
+.rotate-icon {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  moz-transition: rotate(180deg);
+  -o-transition: rotate(180deg);
+  transition: 300ms ease all;
+  -webkit-transition: 300ms ease all;
+}
+.td-row {
+  border-bottom: 1px solid grey;
+}
+.table-card-odd {
+  background: rgba(183, 183, 183, 0.05);
+  border-bottom: 1px dotted rgba(128, 128, 128, 0.37);
+  margin-bottom: -1px;
+}
+.wrd-wrp {
+  min-width: 100px;
+  word-wrap: break-word;
+}
+.sub-tbls .tbl-cnt {
+
+}
+
+
+.space-40{
+  display:block;
+  width:40px;
+}
+
+.sub-tbls .space-40{
+  display:none;
+}
+
+
+.fs12{
+  font-size:12px !important;
+}
+
+
+.tbl-chckbx md-icon.mat-icon.material-icons{
+  margin-top:25%;
+}
+
+.crudBtn{
+  position: absolute;
+  right: 20px;
+}
+md-icon.gray-color.mat-icon.material-icons {
+  color: #6b6b6b;
+  font-size: 20px;
+}
+md-icon.gray-color.mat-icon.material-icons:hover {
+  color: #00ac99;
+}
+
+p.tbl-h-cnt {
+  margin-bottom:0px;
+}
+
+.tbl-h-cnt label.mat-slide-toggle-label{
+  padding-top:15px;
+}
+
+.mat-card{
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,0.05), 0 2px 2px 0 rgba(0,0,0,.01), 0 1px 5px 0 rgba(0,0,0,.01) !important;
+}
+
+.card {
+
+  border:none;
+
+}
+
+
+.ellipsis{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.setting-dp .md2-datepicker-input .md2-datepicker-arrow{
+  display:none !important;
+}
+
+.setting-dp .md2-datepicker-button {
+  left: -9px;
+  color: black;
+
+}
+.setting-dp .md2-datepicker-trigger {
+  display: block;
+  padding: 18px 0 4px 46px;
+  white-space: nowrap;
+  border-bottom: 1px solid lightgray;
+  width: 120%;
+}
+
+.setting-dp .md2-datepicker-input{
+  margin-left: -17px;
+}
+.setting-dp .md2-datepicker-input{
+  border-bottom:0px;
+}
+
+
+md-icon.grey.mat-icon.material-icons {
+  color: rgba(33, 33, 33, 0.37);
+  margin-bottom: 1px;
+}
+a {
+  color: #175394;
+}
+.plr-10{
+  padding:0 10px 0 10px;
+  color:#bec1c1;
+}
+
+md2-accordion-tab.md2-accordion-tab-active>.md2-accordion-header{
+  border: none;
+  box-shadow: 0 0px 0 #47596b !important;
+}
+
+.acc-heading .md2-accordion-header:hover{
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+
+a.ise-list-titles span.ellipsis, a.host-list-titles span.ellipsis{
+  font-size: 90%;
+
+}
+
+a.highlight-accord.ise-list-titles span.ellipsis, a.highlight-accord.host-list-titles span.ellipsis{
+  color:white !important;
+}
+
+a.ise-list-titles.mat-list-item, a.host-list-titles.mat-list-item {
+  margin-left: 30px;
+}
+
+
+.mat-list .mat-list-item .mat-list-item-content, .mat-nav-list .mat-list-item .mat-list-item-content{
+  height:40px !important;
+  padding: 0 4px !important;
+}
+.material-icons{
+  margin-bottom:5px;
+}
+
+a.menu-anchor.mat-menu-item {
+  text-decoration: none;
+  color: #333;
+}
+
+button.menu-style-none.mat-menu-item {
+  cursor: text;
+}
+
+button.menu-style-none.mat-menu-item:hover {
+  background:none;
+
+}
+
+.spin{
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+  transition: transform .8s ease-in-out;
+
+}
+
+.spin:hover {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+.capacity-data{
+  transition-duration: .8s;
+
+}
+.capacity-data:hover {
+  background: rgba(0, 0, 0, 0.6);
+  transition-duration: .8s;
+}
+
+

@@ -1,0 +1,74 @@
+<div class="col-12 text-center powerLoadingText" *ngIf="loading_stack.powersupply_details">
+  <app-xio-loader [displayText]="loading_stack.powersupply_details_text">
+  </app-xio-loader>
+</div>
+<div class="col-12 powerSupply powerLoader" *ngIf="!loading_stack.powersupply_details">
+  <md-card>
+    <div class="row">
+      <div class="col-md-6 powerCard" *ngFor="let powersupply of powerSupplyList; let i=index;">
+        <md-toolbar [ngClass]="toolBarClass(powersupply.status._attr.string)">
+          <div class="col-6">
+            <h6>Power Supply {{i+1}}</h6>
+          </div>
+          <div class="col-6 pull-right powerIdentifyalign">
+            <label class="powerIdentify">Identify</label>
+            <md-slide-toggle class="slide-color" color="primary"
+                             [(ngModel)]="powerSupply_identify[i]['value']"
+                             [disabled]="powerSupply_identify[i]['loading']"
+                             (change)="identifyPowerSupply(i,powersupply.id)">
+            </md-slide-toggle>
+            <span class="powerUpdating" [hidden]="!powerSupply_identify[i]['loading']">
+              Updating....
+            </span>
+          </div>
+        </md-toolbar>
+        <div>
+          <md-card>
+            <div class="row">
+              <div class="col-6 colon bold">
+                <span>Status</span>
+              </div>
+              <div class="col-6">
+                <span [ngClass]="statusClass(powersupply.status._attr.string)">
+                  {{powersupply.status._attr.string}}
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 colon bold">
+                <span>Position</span>
+              </div>
+              <div class="col-6">
+                <span>{{powersupply.position}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 colon bold">
+                <span>Serial Number</span>
+              </div>
+              <div class="col-6">
+                <span>{{powersupply.serialnumber}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 colon bold">
+                <span>Model</span>
+              </div>
+              <div class="col-6">
+                <span>{{powersupply.model}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 colon bold">
+                <span>Part Number</span>
+              </div>
+              <div class="col-6">
+                <span>{{powersupply.partnumber}}</span>
+              </div>
+            </div>
+          </md-card>
+        </div>
+      </div>
+    </div>
+  </md-card>
+</div>

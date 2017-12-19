@@ -1,0 +1,656 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+/* For use in src/lib/core/theming/_palette.scss */
+
+
+/* For use in src/lib/core/theming/_palette.scss */
+
+
+/* For use in src/lib/core/theming/_palette.scss */
+
+$md-primary: ( 50: #ecf5f7, 100: #b7d9e0, 200: #90c4cf, 300: #5eaab9, 400: #4b9dad, 500: #00a999, 600: #397783, 700: #2f636d, 800: #265058, 900: #1d3c43, A100: #e0f5f9, A200: #89daea, A400: #45b3c8, A700: #449eb0, contrast: ( 50: #000000, 100: #000000, 200: #000000, 300: #000000, 400: #000000, 500: #ffffff, 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff, A100: #000000, A200: #000000, A400: #000000, A700: #000000, ));
+$md-accent: ( 50: #aec1d3, 100: #7c9bb8, 200: #597fa3, 300: #405b75, 400: #354b61, 500: #2a3c4d, 600: #1f2d39, 700: #141d25, 800: #0a0e12, 900: #000000, A100: #93bce3, A200: #418acf, A400: #2f567b, A700: #2f4961, contrast: ( 50: #000000, 100: #000000, 200: #ffffff, 300: #ffffff, 400: #ffffff, 500: #ffffff, 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff, A100: #000000, A200: #ffffff, A400: #ffffff, A700: #ffffff, ));
+$md-warn: ( 50: #ffffff, 100: #fddcd2, 200: #fab39c, 300: #f77e58, 400: #f5683b, 500: #f4511e, 600: #e8400b, 700: #cb380a, 800: #ae3008, 900: #912807, A100: #ffffff, A200: #ffc0ac, A400: #ff7246, A700: #fa6131, contrast: ( 50: #000000, 100: #000000, 200: #000000, 300: #000000, 400: #000000, 500: #ffffff, 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff, A100: #000000, A200: #000000, A400: #000000, A700: #000000, ));
+$xio-app-primary: mat-palette($md-primary);
+$xio-app-accent: mat-palette($md-accent);
+$xio-app-warn: mat-palette($md-warn);
+$xio-app-theme: mat-light-theme($xio-app-primary, $xio-app-accent, $xio-app-warn);
+@mixin angular-material-theme($theme) {
+  @include mat-core-theme($theme);
+  @include mat-autocomplete-theme($theme);
+  @include mat-button-theme($theme);
+  @include mat-button-toggle-theme($theme);
+  @include mat-card-theme($theme);
+  @include mat-checkbox-theme($theme);
+  @include mat-chips-theme($theme);
+  @include mat-dialog-theme($theme);
+  @include mat-grid-list-theme($theme);
+  @include mat-icon-theme($theme);
+  @include mat-input-theme($theme);
+  @include mat-list-theme($theme);
+  @include mat-menu-theme($theme);
+  @include mat-progress-bar-theme($theme);
+  @include mat-progress-spinner-theme($theme);
+  @include mat-radio-theme($theme);
+  @include mat-select-theme($theme);
+  @include mat-sidenav-theme($theme);
+  @include mat-slide-toggle-theme($theme);
+  @include mat-slider-theme($theme);
+  @include mat-tabs-theme($theme);
+  @include mat-toolbar-theme($theme);
+  @include mat-tooltip-theme($theme);
+}
+
+@include angular-material-theme($xio-app-theme);
+.main-bar {
+  /* background-image: url("/src/assets/images/xio-header.jpg"); */
+  /* background: linear-gradient(rgba(9, 84, 128, 0.5), rgba(15, 112, 169, 0.5)), url("/src/assets/images/xio-header.jpg"); */
+  background: url("assets/images/xio-header.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: white;
+  /* text-shadow: 1px 1px black; */
+}
+
+.white {
+  color: white;
+}
+
+.toolbar-btn {
+  /* background: #0f70a9; */
+  background: #448A96;
+  color: white;
+}
+
+.row {
+  margin: 0px;
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}
+
+.promo-count {
+  font-size: 30px;
+}
+
+.promo-icon {
+  margin: auto;
+}
+
+.card-promo1 {
+  background: rgba(255, 255, 255, 0.14);
+  color: white;
+  margin: 5px 2px;
+}
+
+.card-promo2 {
+  background: rgba(255, 255, 255, 0.14);
+  color: white;
+  margin: 5px 2px;
+}
+
+.card-promo3 {
+  background: rgba(255, 255, 255, 0.14);
+  color: white;
+  margin: 5px 2px;
+}
+
+.card-text {
+  text-align: Left;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.main-heading,
+.sub-heading {
+  padding: 20px;
+}
+
+.main-btn {
+  padding: 20px;
+  color: white;
+}
+
+.row {
+  padding: 0;
+}
+
+.promo-cards {
+  padding: 10px 0px;
+}
+
+.create-form {
+  margin: 0 auto;
+}
+
+.form-slider-group {
+  margin: 30px 0px 15px;
+}
+
+.form-btn-group {
+  margin: 2%;
+}
+
+.form-align-center {
+  margin: 0 auto;
+}
+
+.mat-input-placeholder,
+.mat-input-container {
+  width: 300px;
+}
+
+.mat-select-placeholder {
+  width: 285px;
+}
+
+.discover-form {
+  margin-top: 5px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.ag-material {
+  padding: 0px;
+}
+
+.mat-dialog-actions .dialog-btns {
+  margin: 0 10px 0 10px;
+}
+
+.mat-dialog-actions {
+  padding: 20px;
+  margin-bottom: 0;
+}
+
+.app-sidenav {
+  background: #404040;
+  overflow-x:inherit;
+}
+
+.app-sidenav .mat-list-item-content {
+  color:white;
+  font-weight: 400;
+  padding: 6px 0 0 0;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.app-sidenav .mat-list-item-content:hover{
+  color:white
+}
+
+.app-sidenav .mat-list-item {
+  /*border-bottom: 1px solid rgba(0, 0, 0, 0.12);*/
+}
+
+form {
+  margin: 30px 0 30px;
+}
+
+.md2-accordion-tab-body .md2-accordion-tab-content {
+  padding: 0px;
+}
+
+.mat-nav-list {
+  padding-top: 0px;
+}
+
+.ise-list-titles .mat-list-item-content {
+  /*color: #c0d72f;*/
+  font-weight: 400;
+}
+
+.host-list-titles .mat-list-item-content {
+  /*color: #50b7ff;*/
+}
+
+.md2-accordion-header {
+  color: white;
+}
+
+h2 {
+  display: block;
+  font-size: 1.5em;
+  -webkit-margin-before: 0.83em;
+  -webkit-margin-after: 0.83em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  font-weight: bold;
+}
+
+h3 {
+  display: block;
+  /* font-size: 1.17em; */
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  font-weight: bold;
+}
+
+h1 {
+  display: block;
+  font-size: 2em;
+  -webkit-margin-before: 0.67em;
+  -webkit-margin-after: 0.67em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  font-weight: bold;
+}
+
+.xio-sidebar-menu-icon {
+  position: absolute;
+  z-index: 111;
+  top: -50px;
+  left: 11px;
+}
+
+.example-scrolling-content {
+  padding-left: 10px;
+  padding-right: 10px;
+  min-height: 90vh;
+}
+
+.hw-info,
+.hw-status-card {
+  padding: 1rem 0;
+}
+
+.line {
+  border-bottom: 1px solid #e0e0e0;
+  margin: 2% auto;
+}
+
+.dotname {
+  height: 1.6rem;
+}
+
+.dot {
+  cursor: pointer;
+  display: inline-block;
+  width: 20px;
+  height: 12px;
+  border-radius: 25%;
+  margin: 2px 5px 0;
+}
+
+.green {
+  background: #8BC34A;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+}
+
+.red {
+  background: #ff5722;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.hw-status-card {
+  font-size: 12px;
+}
+
+.example-margin-bar {
+  margin: 0px 0px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.bar-keys1 {
+  float: left;
+  font-size: 0.75rem;
+  margin-top: 10px;
+  /* background: rgb(88, 190, 142); */
+  background: #be586a;
+  /* background: #c516be; */
+  padding: 5px;
+  color: white;
+}
+
+.bar-keys2 {
+  background: rgba(0, 0, 0, 0.68);
+  font-size: 0.75rem;
+  padding: 5px;
+  color: white;
+  float: right;
+  margin-top: 10px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+
+.ise-util {
+  margin: .75rem auto;
+  text-align: center;
+}
+
+.ise-utilization {
+  margin-top: 5px;
+}
+
+.ise-util-card {
+  min-height: 7rem;
+}
+
+.ise-host-card {
+  background: rgba(65, 138, 152, 0.72);
+}
+
+.ise-volume-card {
+  background: rgba(114, 124, 181, 0.75);
+}
+
+.ise-pool-card {
+  background: #40c2d5;
+}
+
+.ise-wwn-card {
+  background: #58be8e;
+}
+
+.card-icon {
+  color: rgba(255, 255, 255, 0.72);
+  float: right;
+  margin: 0;
+}
+
+.font-white {
+  color: white;
+}
+
+.icon-card-header {
+  margin: 0.25rem 0;
+  font-size: 2rem;
+}
+
+.icon-card-text {
+  margin: 0.25rem 0;
+  font-size: 1rem;
+}
+
+.color-card {
+  padding-left: 5px;
+  padding-right: 0px;
+  padding-bottom: 5px;
+}
+
+.capacity-data {
+
+  background: rgba(0 , 0, 0, 0.30);
+  margin-right: 3px;
+  padding: 5px;
+  margin: 10px 0;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: -2px;
+  box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.18);
+
+
+  .num {
+    /*min-height: 50px;
+    font-size: 32px;*/
+    min-height: 101px;
+    font-size: 66px;
+    font-weight: 300;
+  }
+}
+
+.capacity-data-1 {
+  background: rgba(182, 209, 232, 0.24);
+  margin-right: 3px;
+  padding: 2px;
+  margin-top: 10px;
+  color: black;
+}
+
+.mtb-15 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+.title-row {
+  text-align: left;
+}
+
+.ise-name{
+  min-height:38px;
+  font-size:24px;
+}
+
+.ise-serial{
+  min-height:24px;
+}
+
+
+.create-button {
+  float: right;
+}
+
+.storage-volume-cards {
+  margin: 0.5rem 0;
+}
+
+.storage-card {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.sidebar-style {
+  background: rgb(54, 64, 74);
+  min-width: 12%;
+}
+
+.sidebar-text {
+  color: white;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.ise-prgrs-bars {
+  margin-bottom: 15px;
+}
+
+.app-sidenav .md2-accordion-header {
+  color: #d8d8d8;
+  font-weight: 300;
+}
+
+.app-sidenav .md2-accordion-header:hover {
+  color: white;
+}
+
+/* .app-content {
+    margin: 5px;
+} */
+
+.sangroup-list {
+  /* padding-left: 36px; */
+  /*padding-left: 5px;*/
+}
+
+.ag-material .ag-header {
+  color: white;
+  background: #448A96;
+  border-bottom: none;
+  z-index: 1;
+}
+
+.side-bar-sub-titles .mat-list-item-content .mat-ripple {
+  /* height: 26px; */
+  font-size: 1rem;
+  color: #8d9094;
+}
+
+.ise-list-sidebar{
+
+}
+
+
+.sidebar-sub-ise,.sidebar-sub-host{
+
+  color: #889cb1;
+  font-weight: 500;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.38);
+  margin-bottom: 5px;
+  margin-left: 39px !important;
+  text-shadow: 0px 0px 0;
+}
+
+
+.mat-nav-list {
+  padding-top: 0px;
+  margin-top: 10px;
+}
+
+.mat-progress-bar-fill::after {
+  background-color: #CDDC39;
+}
+
+.mat-progress-bar-buffer {
+  background-color: #efefef;
+}
+
+.ise-card-divider {
+  width: 100%;
+}
+
+.ise-form {
+  margin-top: 30px;
+}
+
+:active,
+:focus {
+  outline: none;
+  -moz-outline-style: none;
+}
+
+.ise-performance-tab .mat-tab-labels {
+  background: rgb(243, 244, 247);
+}
+
+.ise-performance-tab .performance-tab-content {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.mtb-0 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.ag-cell .material-icons {
+  font-size: 18px;
+}
+
+.ise-isu h3 {
+  font-size: 1.17rem;
+}
+
+.table thead th {
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.dashboard-title h3 {
+  padding: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.ise-title h1 {
+  margin-bottom: 1px;
+}
+
+.dashboard-widgets {
+  margin-top: 10px;
+}
+
+.app-content .mat-tab-label-container {
+  background: rgba(148, 148, 148, 0.16);
+}
+
+.mat-tab-label:focus {
+  background-color: rgba(78, 78, 78, 0.09);
+  color: #565656;
+}
+
+.ise-util-card {
+  cursor: pointer;
+}
+
+.sidebar-loading {
+  color: #c9d42e;
+  padding-left:40px;
+}
+
+.mat-toolbar-layout .mat-toolbar-row {
+  height: 30px;
+}
+
+
+.mt-30 {
+  margin-top: 30px;
+}
+
+.title-ip {
+  font-size: 0.75rem;
+}
+
+.card-title h2 {
+  -webkit-margin-before: 0.3em;
+  -webkit-margin-after: 0.3em;
+}
+
+.mb-5px {
+  margin-bottom: 5px;
+}
+.mat-tab-label,.mat-tab-label .mat-ripple{
+
+  border-right: 1px solid #d2cbcb;
+
+}
+form{
+  margin:5px 0px 5px 0px;
+}
+
+md-input-container  label {
+  color: #666 !important;
+}
+md-select, .mat-select-placeholder, .mat-select-trigger {
+  color: #666 !important;
+}
+md-input-container .md-input-focused label {
+  color: blue !important;
+}
+
+.mat-slide-toggle.mat-primary.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar{
+  background-color: rgba(0, 0, 0, 0.38)
+}
+
+.mat-slide-toggle.mat-primary.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: rgba(4, 206, 187, 1);
+  border: 2px solid white;
+}

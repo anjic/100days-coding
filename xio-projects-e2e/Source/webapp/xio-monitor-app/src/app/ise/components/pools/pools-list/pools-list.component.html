@@ -1,0 +1,225 @@
+<div class="row">
+  <div class="sub-heading pull-left">
+    <h4>Pools</h4>
+  </div>
+</div>
+<div *ngIf="loading_stack.drive_list" class="col-12 text-center loader-align-drive">
+  <app-xio-loader [displayText]="loading_stack.drive_list_text">
+  </app-xio-loader>
+</div>
+<div class="col-md-12" *ngIf="!loading_stack.drive_list">
+  <md-card class="pool-diagram">
+    <div class="row" *ngIf="drive_track_list.left.length">
+      <div class="col-md-6">
+        <h4 class="text-center">Left</h4>
+        <div class="panel-leftside">
+          <div class="drive-panel-left">
+            <div class="row">
+              <div class="col-2" *ngFor="let drives of drive_track_list.left">
+                <div class="drive-box" *ngFor="let data of drives">
+                  <span>{{data.position}}</span>
+                  <span class="led top" [ngClass]="getLedClass(data, 'green')"></span>
+                  <span class="led middle" [ngClass]="getLedClass(data, 'amber')"></span>
+                  <span class="led bottom" [ngClass]="getLedClass(data, 'blue')"> </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row opendp-left">
+            <div class="col-4" *ngFor="let datapac of pools_datapac_label.left">
+              <div class="dp-label">
+                <div>
+                  {{datapac.label}}
+                </div>
+                <div>
+                  {{datapac.pool_label}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="handle-bar-left">
+          <img src="assets/images/isebg-left.png">
+        </div>
+      </div>
+      <div class="col-md-6 ">
+        <h4 class="text-center">Right</h4>
+        <div class="panel-rightside">
+          <div class="drive-panel-right">
+            <div class="row">
+              <div class="col-2" *ngFor="let drives of drive_track_list.right">
+                <div class="drive-box" *ngFor="let data of drives">
+                  <span>{{data.position}}</span>
+                  <span class="led top" [ngClass]="getLedClass(data, 'green')"></span>
+                  <span class="led middle" [ngClass]="getLedClass(data, 'amber')"></span>
+                  <span class="led bottom" [ngClass]="getLedClass(data, 'blue')"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row opendp-right">
+            <div class="col-4" *ngFor="let datapac of pools_datapac_label.right">
+              <div class="dp-label">
+                <div>
+                  {{datapac.label}}
+                </div>
+                <div>
+                  {{datapac.pool_label}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="handle-bar-right">
+          <img src="assets/images/isebg-right.png">
+        </div>
+      </div>
+    </div>
+  </md-card>
+</div>
+<div class="row" *ngIf="!loading_stack.drive_list">
+  <div class="col-12">
+    <div class="pull-right main-btn">
+      <button class="toolbar-btn" md-raised-button color="primary"
+              routerLink="/ise/{{ise_id}}/pools/add">
+        Create Pool
+      </button>
+    </div>
+  </div>
+</div>
+<div *ngIf="loading_stack.pool_list" class="col-12 text-center pool-list-loader">
+  <app-xio-loader [displayText]="loading_stack.pool_list_text">
+  </app-xio-loader>
+</div>
+<div class="row" *ngIf="!loading_stack.pool_list">
+  <div class="col-12" *ngIf="pools_list.length == 1">
+    <md-card>
+      <md2-accordion (open)="expandPool($event.originalEvent.currentTarget.parentElement)" [multiple]="multiple">
+        <md2-accordion-tab attr.globalId="{{pool.globalid}}"
+                           *ngFor="let pool of pools_list;
+                                   let i = index"
+                                   [header]="pool.name + ' [ Free: ' +pool.available._attr.total+' GB | Used: '+pool.used._attr.total+' GB | Status: '+pool.status._attr.string+ '('+pool.driveStatus+')]'" active="active">
+          <div class="row pool-detail">
+            <div class="col-md-5" *ngIf="(pool.id==1 && pool.DedupProvisioned)">
+              <div class="col-sm-12">
+                Deduplication Usage (used/provisioned)
+              </div>
+              <div class="col-sm-4 pool-info">
+                System Data: {{pool.DedupUsed.SystemData}}/{{pool.DedupProvisioned.SystemData}} GB
+              </div>
+              <div class="col-sm-4 pool-info">
+                User Data: {{pool.DedupUsed.UserData}}/{{pool.DedupProvisioned.UserData}} GB
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="col-sm-12">
+                Available Capacity: RAID-1 {{pool.available.byredundancy['raid-1']}} GB
+              </div>
+              <div class="col-sm-12">
+                Available Capacity: RAID-5 {{pool.available.byredundancy['raid-5']}} GB
+              </div>
+              <div class="col-sm-12">
+                ThinThreshold: {{pool.ThinThreshold}} %
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="col-sm-12" *ngFor="let pool_datapac of pools_datapac_list[i]">
+                Open DataPac {{pool_datapac.id}}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-10">
+              <button md-raised-button color="primary"
+                      disabled="{{!pool.isReady}}"
+                      class="pull-right btn xio-btn-primary"
+                      routerLink="/ise/{{ise_id}}/pools/expand/{{pool.globalid}}/{{pool.name}}">
+                Expand Pool
+              </button>
+            </div>
+            <div class="col-2">
+              <button md-raised-button color="warn"
+                      disabled="{{!pool.isReady}}"
+                      (click)="deletePool(pool)"
+                      class="pull-right btn pool-btn-margin xio-btn-danger">
+                Delete Pool
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <xio-md-dataTable class="col-md-12"
+                                [gridOptions]="pool.gridOptions"
+                                (toggleBtnClick)="drivesLed($event)">
+              </xio-md-dataTable>
+            </div>
+          </div>
+        </md2-accordion-tab>
+      </md2-accordion>
+    </md-card>
+  </div>
+  <div class="col-12" *ngIf="pools_list.length > 1">
+    <md-card>
+      <md2-accordion (open)="expandPool($event.originalEvent.currentTarget.parentElement)" [multiple]="multiple">
+        <md2-accordion-tab attr.globalId="{{pool.globalid}}"
+                           *ngFor="let pool of pools_list; let i = index" [header]="pool.name+ ' [ Free: ' +pool.available._attr.total+' GB | Used: '+pool.used._attr.total+' GB | Status: '+pool.status._attr.string+ '('+pool.driveStatus+ ')]'">
+          <div class="row pool-detail">
+            <div class="col-md-5" *ngIf="(pool.id==1 && pool.DedupProvisioned)">
+              <div class="col-sm-12">
+                Deduplication Usage (used/provisioned)
+              </div>
+              <div class="col-sm-4 pool-info">
+                System Data: {{pool.DedupUsed.SystemData}}/{{pool.DedupProvisioned.SystemData}} GB
+              </div>
+              <div class="col-sm-4 pool-info">
+                User Data: {{pool.DedupUsed.UserData}}/{{pool.DedupProvisioned.UserData}} GB
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="col-sm-12">
+                Available Capacity: RAID-1 {{pool.available.byredundancy['raid-1']}} GB
+              </div>
+              <div class="col-sm-12">
+                Available Capacity: RAID-5 {{pool.available.byredundancy['raid-5']}} GB
+              </div>
+              <div class="col-sm-12">
+                ThinThreshold: {{pool.ThinThreshold}} %
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="col-sm-12" *ngFor="let pool_datapac of pools_datapac_list[i]">
+                Open DataPac {{pool_datapac.id}}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-10">
+              <button md-raised-button color="primary"
+                      disabled="{{!pool.isReady}}"
+                      class="pull-right btn xio-btn-primary"
+                      routerLink="/ise/{{ise_id}}/pools/expand/{{pool.globalid}}/{{pool.name}}">
+                Expand Pool
+              </button>
+            </div>
+            <div class="col-2">
+              <button md-raised-button color="warn"
+                      disabled="{{!pool.isReady}}"
+                      (click)="deletePool(pool)"
+                      class="pull-right btn pool-btn-margin xio-btn-danger">
+                Delete Pool
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <xio-md-dataTable class="col-md-12"
+                                [gridOptions]="pool.gridOptions"
+                                (toggleBtnClick)="drivesLed($event)">
+              </xio-md-dataTable>
+            </div>
+          </div>
+        </md2-accordion-tab>
+      </md2-accordion>
+    </md-card>
+  </div>
+</div>

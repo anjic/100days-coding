@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>XIO</title>
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
+
+	<link rel="stylesheet" href="assets/css/style.css">	
+	<style>
+	.bg-white{
+		background-color: #fff;
+		padding: 10px 20px;
+		height: 400px;
+	}
+	.panel-title{
+		font-family: sans-serif;
+    	font-weight: bold;
+    	padding: 10px 20px;
+	}
+	.panel-label{
+		text-align: right;
+	}
+	.btn-blue{
+	    border-radius: 0px;
+	    margin: 4px;
+	    padding: 3px 20px;
+	    background-color: #14adab;	    
+	}
+	</style>
+</head>
+<body>
+	<div class="container-fluid fixed-top header-top">
+		<nav class="navbar navbar-toggleable-md ">
+			<div class="col">		
+				<a class="navbar-brand" href="#">
+					<img src="assets/images/logo.png" alt="">
+				</a>		
+			</div>
+			<div class="col"></div>
+			<div class="col">
+				<div class="pull-right btn-group btn-group-sm  header-icons">
+					
+					<div class="btn-group" role="group">
+					<button type="button" class="btn" dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i></button>
+
+					<!-- <button id="btnGroupDrop1" type="button" class="btn btn-secondary 
+					dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      					<i class="fa fa-bell"></i>
+    				</button> -->
+						<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+					      <a class="dropdown-item" href="#">Dropdown link</a>
+					      <a class="dropdown-item" href="#">Dropdown link</a>
+					    </div>
+					</div>
+
+
+					<button type="button" class="btn"><i class="fa fa-plus"></i></button>
+					<button type="button" class="btn"><i class="fa fa-refresh"></i></button>
+					
+					<div class="btn-group" role="group">
+					<button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      					<i class="fa fa-bell"></i>
+    				</button>
+						<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+					      <a class="dropdown-item" href="#">Dropdown link</a>
+					      <a class="dropdown-item" href="#">Dropdown link</a>
+					    </div>
+					</div>
+					<button type="button" class="btn"><i class="fa fa-gear"></i></button>
+				</div>
+
+			</div>
+
+		</nav>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-lg-2 side-bar">
+				<div class="sg-title">SAN GROUPS</div>
+				<div class="list-group-head">
+					SAN Group 01 
+					<span class="pull-right">
+						<i class="fa fa-chevron-down"></i> 
+					</span>
+				</div>
+				<ul class="list-group">
+					<li class="list-group-item active">ISE01</li>
+					<li class="list-group-item">ISE02</li>
+					<li class="list-group-item">ISE03</li>
+					<li class="list-group-item">ISE04</li>
+				</ul>
+				<div class="list-group-head">
+					SAN Group 02
+					<span class="pull-right">
+						<i class="fa fa-chevron-right"></i> 
+					</span>
+				</div>
+			</div>
+			<div class="col-sm-9 col-lg-10 offset-sm-3 offset-lg-2">
+					<div class="row main-nav">
+
+						<div class="col">
+							<a href="index.html">
+								<button class="btn active">ISE Dashboard</button>
+							</a>
+						</div>
+						<div class="col">
+							<a href="list-storage-volume.html">
+							<button class="btn">Storage Volume</button>
+							</a>
+						</div>
+						<div class="col">
+							<a href="index.html">
+								<button class="btn">Performance</button>
+							</a>
+						</div>
+						<div class="col">
+							<a href="index.html">
+								<button class="btn">Hosts</button>
+							</a>
+						</div>
+						<div class="col">
+							<a href="index.html">
+								<button class="btn">Advance Settings</button>
+							</a>									
+						</div>
+					</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="container bg-white">
+						<h3 class="panel-title">Expand Volume</h3>
+						<form>
+							<div class="col-6 pull-left">
+								<div class="form-group row">
+								  <label for="example-text-input" class="col-3 panel-label col-form-label">Name</label>
+								  <div class="col-8">
+								    <input class="form-control" type="text" value="Volume_01" id="example-text-input">
+								  </div>
+								</div>
+								<div class="form-group row">
+								  <label for="example-search-input" class="col-3 panel-label col-form-label">Current Size</label>
+								  <div class="col-8">
+								    <input class="form-control" type="search" value="9520 GB" id="example-search-input">
+								  </div>
+								</div>
+								<div class="form-group row">
+								  <label for="example-email-input" class="col-3 panel-label col-form-label">New Size</label>
+								  <div class="col-8">
+								    <input class="form-control" type="email" value="12000 GB" id="example-email-input">
+								  </div>
+								</div>
+								 <!-- <div class="form-group row">
+								  <label for="example-email-input" class="col-3 panel-label col-form-label">New Size</label>
+								  <div class="col-8">
+								    <input id="ex2" type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]"/>
+								  </div>
+								</div> -->
+								
+							</div>
+							
+							<div class="col-6 pull-right">
+								<div class="form-group row">
+								  <label for="example-email-input" class="col-3 panel-label col-form-label">Comment</label>
+								  <div class="col-8">
+								    <textarea class="form-control"></textarea>
+								  </div>
+								</div>
+							</div>
+
+							<div class="col-12 pull-left">
+								<button type="button" class="btn btn-info btn-blue btn-sm pull-right">Cancel</button>
+								<button type="button" class="btn btn-info btn-blue btn-sm pull-right">Expand</button>
+							</div>
+						</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

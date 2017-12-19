@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="sub-heading">
+    <h4 *ngIf="isAddForm">Create SAN Group</h4>
+    <h4 *ngIf="!isAddForm">Update SAN Group</h4>
+  </div>
+</div>
+<div *ngIf="loading_stack.sg_getdata">
+  <app-xio-loader [displayText]="loading_stack.sg_getdata_text">
+  </app-xio-loader>
+</div>
+<div class="col-12">
+  <md-card class="mb-30">
+    <div *ngIf="isAddForm || !loading_stack.sg_getdata">
+      <form novalidate [formGroup]="sangroupForm" autocomplete="off">
+        <div class="row">
+          <md-input-container>
+            <input mdInput placeholder="SAN Group Name" formControlName="sangroup_name">
+            <md-hint align="end">
+              <div *ngIf="!sangroupForm['controls']['sangroup_name'].valid && sangroupForm['controls']['sangroup_name'].touched" class="text-danger text-right">
+                <span *ngIf="sangroupForm['controls']['sangroup_name'].errors.pattern" class="text-danger text-right">
+                    Invalid SANGroupName
+                </span>
+                <span *ngIf="sangroupForm['controls']['sangroup_name'].errors.remote" class="text-danger text-right">
+                    SAN Group Name already exists
+                </span>
+              </div>
+            </md-hint>
+          </md-input-container>
+        </div>
+        <div class="row">
+          <md-input-container>
+            <input mdInput placeholder="SAN Group Comment" formControlName="comment">
+          </md-input-container>
+        </div>
+        <div class="pt-10">
+          <button md-raised-button class="col-sf button-left" type="button" color="warn" (click)="navigateTo($event, '/san-group')" [routerLinkActive]="['active']" md-list-item>
+            Cancel
+          </button>
+          <button md-raised-button class="col-sf button-left" type="submit" color="primary" (click)="onSubmit($event)" [disabled]="sangroupForm.invalid">
+            <span *ngIf="isAddForm">Create</span>
+            <span *ngIf="!isAddForm">Update</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </md-card>
+</div>

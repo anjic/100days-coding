@@ -1,0 +1,15 @@
+  <div class="row">
+    <div class="sub-heading pull-left">
+      <h4>List of Volumes</h4>
+    </div>
+    <span class="example-spacer"></span>
+    <div class="pull-right main-btn">
+      <button md-raised-button class="toolbar-btn" id="add_volume" name="add_volume" routerLink="/ise/{{ise_id}}/volume/create">
+        Create Volume
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <xio-md-dataTable class="col-md-12" [gridOptions]="gridOptions"></xio-md-dataTable>
+  </div>
+

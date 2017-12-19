@@ -1,0 +1,134 @@
+<div class="row" style="background: #fff;margin-top:20px;">
+    <div class="col">
+        <h4>Present / Unpresent</h4>
+    </div>
+</div>
+<div class="row" *ngIf="volume_data">
+    <div class="col-sm-4">
+        <div class="form-box">
+            <div>
+                <span>Volume Name<span>&nbsp; : &nbsp;</span></span>
+                <span>{{volume_data.name}}</span>
+            </div>
+            <div>
+                <span>Size<span>&nbsp; : &nbsp;</span></span>
+                <span>{{volume_data.size}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-5">
+        <div class="form-box">
+            <div>
+                <span>Storage Quality Of Service <span>&nbsp; : &nbsp;</span></span>
+                <span *ngIf="isqosmode==1">Enabled</span>
+                <span *ngIf="isqosmode==0">Disabled</span>
+            </div>
+            <div>
+                <span>Min Limit</span>
+                <span>{{volume_data.IOPSmin}}</span>
+                <span>&nbsp; | &nbsp;</span>
+                <span>Max Limit</span>
+                <span>{{volume_data.IOPSmax}}</span>
+                <span>&nbsp; | &nbsp;</span>
+                <span>Burst Limit</span>
+                <span>{{volume_data.IOPSburst}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-box">
+            <div>
+                <span>Thin Provisioning<span>&nbsp; : &nbsp;</span></span>
+                <span *ngIf="isAllocateEnable==1">Enabled</span>
+                <span *ngIf="isAllocateEnable==0">Disabled</span>
+            </div>
+            <div>
+                <span>RAID Level<span>&nbsp; : &nbsp;</span></span>
+                <span *ngIf="isRaid==1">RAID-1</span>
+                <span *ngIf="isRaid==5">RAID-5</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <form novalidate [formGroup]="allocationForm" autocomplete="off">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div formArrayName="host_list">
+                        <div class="row" style="background-color:#14adab ;color: #ffffff">
+                            <div class="col">
+                                HOST LIST
+                            </div>
+                            <div class="col">
+                                STATUS
+                            </div>
+                            <div class="col">
+                                LUN
+                            </div>
+                        </div>
+                        <div class="row" [formGroupName]="i" *ngFor="let w of allocationForm['controls'].host_list['controls'];
+					let i=index;">
+                            <label class="col" for="host-{{i}}">{{getHostLabel('host_list',i)}}
+                            </label>
+                            <div class="col">
+                                <md-slide-toggle id="host_list_switch-{{i}}" formControlName="host">
+                                </md-slide-toggle>
+                            </div>
+                            <div class="col">
+                                <div [hidden]="!w['controls']['host'].value">
+                                    <input style="width: 50px;" type="number" id="host_list_lun-{{i}}" formControlName="lun" />
+                                    <span class="text-danger" [hidden]="!w['controls']['lun'].invalid">
+									Invalid LUN Number
+								</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div formArrayName="allocate_host_list">
+                        <div class="row" style="background-color:#14adab ;color: #ffffff">
+                            <div class="col">
+                                PRESENT HOST LIST
+                            </div>
+                            <div class="col">
+                                ASSIGNED
+                            </div>
+                            <div class="col">
+                                LUN
+                            </div>
+                        </div>
+                        <div class="row" [formGroupName]="i" *ngFor="let w of allocationForm['controls'].allocate_host_list['controls']; let i=index;">
+                            <label class="col" for="allocate_host_list-{{i}}">
+                                {{getHostLabel('allocate_host_list',i)}}
+                            </label>
+                            <div class="col">
+                                <md-slide-toggle size="small" formControlName="host">
+                                </md-slide-toggle>
+                            </div>
+                            <div class="col">
+                                <div [hidden]="!w['controls']['host'].value">
+                                    <input style="width: 50px;" type="number" id="host_list_lun-{{i}}" formControlName="lun" />
+                                    <span class="text-danger" [hidden]="!w['controls']['lun'].invalid">
+									Invalid LUN Number
+								</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-btn-group">
+                        <button md-raised-button class="btn xio-btn-danger pull-right" color="warn" routerLink="/ise/{{ise_id}}/volume">
+                            Cancel
+                        </button>
+                        <button md-raised-button class="btn xio-btn-danger pull-right" color="primary" (click)="onUpdateSubmit()">
+                            Update
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

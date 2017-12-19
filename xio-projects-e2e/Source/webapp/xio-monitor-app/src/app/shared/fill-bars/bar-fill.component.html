@@ -1,0 +1,10 @@
+<div class="fill" tooltip="{{bar.data.value | number: '1.0-3'}} TB({{bar.width}}%) {{bar.data.label}}"
+    [ngStyle]="{'background': bar.fillColor, 'width': 'calc(' + bar.width + '% + ' + (!last || bar.width < 3 ? '14px' : '0px') + ')', 'left': bar.offset}">
+    <div style="width: 80px; position: absolute; left: calc(50% - 40px); text-align: center;" 
+        *ngIf="false" [ngStyle]="getStyle(bar.data.labelOffset, '60px')">
+        {{bar.data.value | number: '1.0-2'}} TB<br/>
+        {{bar.data.label}}
+    </div>
+    <div class="oval oval--left" [ngStyle]="{'background': bar.fillColor}"></div>
+    <div class="oval oval--right" [ngStyle]="{'background': bar.ovalFill}"></div>
+</div>

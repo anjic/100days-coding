@@ -1,0 +1,89 @@
+ <div class="row">
+  <div class="col-md-12">
+    <div class="sub-heading pull-left">
+      <h4>{{form_title}}</h4>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <form novalidate [formGroup]="emailForm" id="ngForm" autocomplete="off" class="userEmailSubForm col-5 pull-left">
+    <div class="row">
+      <div class="col-sm-12">
+        <md-input-container>
+          <input mdInput placeholder="User Name" formControlName="name">
+          <md-hint align="end">
+            <div *ngIf="!emailForm['controls']['name'].valid  && emailForm['controls']['name'].touched"
+                 class="text-danger">
+                          <span *ngIf="emailForm['controls']['name'].errors.required">
+                                User Name is required
+                            </span>
+            </div>
+          </md-hint>
+        </md-input-container>
+      </div>
+      <div class="col-sm-12">
+        <md-input-container>
+          <input mdInput placeholder="Email Address" formControlName="email">
+          <md-hint align="end">
+            <div *ngIf="!emailForm['controls']['email'].valid && emailForm['controls']['email'].touched"
+                 class="text-danger text-right">
+                            <span *ngIf="emailForm['controls']['email'].errors.required">
+                                Email is required
+                            </span>
+              <span *ngIf="emailForm['controls']['email'].errors.pattern">
+                                Invalid Email
+                            </span>
+            </div>
+          </md-hint>
+        </md-input-container>
+      </div>
+    </div>
+
+  </form>
+  <div class="row" class="severityEmailSubWrapper col-6 pull-left">
+    <div class="col-sm">
+      <label class="form-check-label">
+        <md-checkbox [(ngModel)]="alert_severity['critical']" color="primary">Critical
+        </md-checkbox>
+      </label>
+    </div>
+    <div class="col-sm">
+      <label class="form-check-label">
+        <md-checkbox [(ngModel)]="alert_severity['severe']" color="primary"> Severe</md-checkbox>
+      </label>
+    </div>
+    <div class="col-sm">
+      <label class="form-check-label">
+        <md-checkbox [(ngModel)]="alert_severity['error']" color="primary"> Error</md-checkbox>
+      </label>
+    </div>
+    <div class="col-sm">
+      <label class="form-check-label">
+        <md-checkbox [(ngModel)]="alert_severity['warning']" color="primary"> Warning</md-checkbox>
+      </label>
+    </div>
+    <div class="col-sm">
+      <label class="form-check-label">
+        <md-checkbox [(ngModel)]="alert_severity['informational']" color="primary"> Informational</md-checkbox>
+      </label>
+    </div>
+     <div class="col-sm">
+      <label class="form-check-label">
+        <md-checkbox [(ngModel)]="alert_severity['normal']" color="primary">Normal</md-checkbox>
+      </label>
+    </div>
+
+  </div>
+</div>
+
+<div class="col-12 form-btn-group">
+  <button md-raised-button color="warn" (click)="oncancel()">
+    Cancel
+  </button>
+  <button type="submit" *ngIf="!id" form="ngForm" md-raised-button color="primary" (click)="onsubmit()">
+    Add
+  </button>
+  <button type="submit" *ngIf="id" form="ngForm" md-raised-button color="primary" (click)="onsubmit()">
+    Update
+  </button>
+</div>

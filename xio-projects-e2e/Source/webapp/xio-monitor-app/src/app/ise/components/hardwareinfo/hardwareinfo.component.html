@@ -1,0 +1,23 @@
+<div class="row">
+  <h4 class="sub-heading pull-left">Hardware</h4>
+</div>
+<div class="app-content">
+  <md-card class="hardwaretab">
+    <md-tab-group md-stretch-tabs="always" (focusChange)="changeTab($event)" 
+    [(selectedIndex)]="selectedIndex">
+      <md-tab label="MRC">
+      </md-tab>
+      <md-tab label="Open DataPac">
+      </md-tab>
+      <md-tab label="Power Supply">
+      </md-tab>
+      <md-tab label="Network">
+      </md-tab>
+      <md-tab label="Fans">
+      </md-tab>
+    </md-tab-group>
+  </md-card>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>

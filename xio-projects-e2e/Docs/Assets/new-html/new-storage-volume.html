@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>XIO</title>
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+
+	<link rel="stylesheet" href="assets/css/style.css">	
+	<style>
+		*{
+			font-family: 'Roboto', sans-serif;
+		}
+
+		h1{
+			font-family: 'Roboto Condensed', sans-serif;
+			font-weight: 700;
+		}
+	</style>
+</head>
+<body>
+	<div class="container-fluid fixed-top header-top">
+		<nav class="navbar navbar-toggleable-md ">
+			<div class="col">		
+				<a class="navbar-brand" href="#">
+					<img src="assets/images/logo.png" alt="">
+				</a>		
+			</div>
+			<div class="col"></div>
+			<div class="col">
+				<div class="pull-right btn-group btn-group-sm  header-icons">
+					
+					<div class="btn-group" role="group">
+						<button type="button" class="btn" dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i></button>
+
+					<!-- <button id="btnGroupDrop1" type="button" class="btn btn-secondary 
+					dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      					<i class="fa fa-bell"></i>
+      				</button> -->
+      				<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+      					<a class="dropdown-item" href="#">Dropdown link</a>
+      					<a class="dropdown-item" href="#">Dropdown link</a>
+      				</div>
+      			</div>
+
+
+      			<button type="button" class="btn"><i class="fa fa-plus"></i></button>
+      			<button type="button" class="btn"><i class="fa fa-refresh"></i></button>
+
+      			<div class="btn-group" role="group">
+      				<button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      					<i class="fa fa-bell"></i>
+      				</button>
+      				<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+      					<a class="dropdown-item" href="#">Dropdown link</a>
+      					<a class="dropdown-item" href="#">Dropdown link</a>
+      				</div>
+      			</div>
+      			<button type="button" class="btn"><i class="fa fa-gear"></i></button>
+      		</div>
+
+      	</div>
+
+      </nav>
+  </div>
+  <div class="container-fluid">
+  	<div class="row">
+  		<div class="col-sm-3 col-lg-2 side-bar">
+  			<div class="sg-title">SAN GROUPS</div>
+
+
+				<div id="san_collections" aria-multiselectable="true">
+					<div data-toggle="collapse" data-target="#ise1" aria-controls="#ise1" aria-expanded="true" data-parent="#san_collections">
+						<div class="list-group-head" >
+							SAN Group 01 
+							<span class="pull-right">
+								<i class="fa fa-chevron-down"></i> 
+							</span>
+						</div>
+						<div class="collapse show" id="ise1">
+							<ul class="list-group">
+								<li class="list-group-item active">ISE01</li>
+								<li class="list-group-item">ISE02</li>
+								<li class="list-group-item">ISE03</li>
+								<li class="list-group-item">ISE04</li>
+							</ul>
+						</div>
+					</div>
+					<div  data-toggle="collapse" data-target="#ise2" aria-controls="#ise2" aria-expanded="false" data-parent="#san_collections" >
+					<div class="list-group-head">
+						SAN Group 02 
+						<span class="pull-right">
+							<i class="fa fa-chevron-right"></i> 
+						</span>
+					</div>
+					<div class="collapse" id="ise2">
+							<ul class="list-group">
+								<li class="list-group-item">ISE01</li>
+								<li class="list-group-item">ISE02</li>
+								<li class="list-group-item">ISE03</li>
+								<li class="list-group-item">ISE04</li>
+							</ul>
+					</div>
+					</div>					
+				</div>
+	
+				</div>
+			</div>
+			<div class="col-sm-9 col-lg-10 offset-sm-3 offset-lg-2">
+					<div class="row main-nav">
+
+						<div class="col">
+							<a href="index.html">
+								<button class="btn">ISE Dashboard</button>
+							</a>
+						</div>
+						<div class="col">
+							<a href="list-storage-volume.html">
+							<button class="btn active">Storage Volume</button>
+							</a>
+						</div>
+						<div class="col">
+							<a href="index.html">
+								<button class="btn">Performance</button>
+							</a>
+						</div>
+						<div class="col">
+							<a href="index.html">
+								<button class="btn">Hosts</button>
+							</a>
+						</div>
+						<div class="col">
+							<a href="index.html">
+								<button class="btn">Advance Settings</button>
+							</a>									
+						</div>
+					</div>
+				<div class="row">
+					<div class="col-4">
+						<div class="xio-info-card"></div>
+					</div>
+					<div class="col-8">
+						<div class="xio-info-card"></div>						
+					</div>
+				</div>
+
+				<div class="row page-title">
+					<div class="col-sm-12">
+						<h1>Create Volume</h1>
+					</div>
+				</div>
+				<div class="row form-container">
+				<div class="col-sm-7">
+					<div class="form-group row">
+						<label class="col-2 col-form-label">Name</label>
+						<div class="col-10">
+							<input class="form-control" type="text" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-2 col-form-label">Size</label>
+						<div class="col-10">
+							<input class="form-control" type="text" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-6">
+							<input class="form-control" type="checkbox" />
+							<label class=" col-form-label">RAID 1</label>
+						</div>
+						<div class="col-6">
+							<input class="form-control" type="checkbox" />
+						    <label class="col-form-label">RAID 5</label>
+						</div>
+					</div> 	
+					<div class="form-group row">
+						<label class="col-2 col-form-label">Thin Provisioning</label>
+						<div class="col-10">
+							<input class="form-control" type="text" />
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-sm-5">
+
+					<div class="form-group row">
+						<label class="col-10 col-form-label">Storage Quality of Service</label>
+						<div class="col-2">
+							<input class="form-control" type="checkbox" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-4 col-form-label">Max Limit</label>
+						<div class="col-8">
+							<input class="form-control" type="text" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-4 col-form-label">Min Limit</label>
+						<div class="col-8">
+							<input class="form-control" type="text" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-4 col-form-label">Create Like Volumes</label>
+						<div class="col-8">
+							<input class="form-control" type="checkbox" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-4 col-form-label">No Like Volumes</label>
+						<div class="col-8">
+							<input class="form-control" type="number" />
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<button class="btn xio-btn pull-right">
+						Cancel
+					</button>
+					<button class="btn xio-btn pull-right">
+						Next
+					</button>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="node_modules/tether/dist/js/tether.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

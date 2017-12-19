@@ -1,0 +1,223 @@
+<div class="main-bar">
+  <div class="row">
+    <div class=" col-sm white main-heading">
+      <h3>
+        <i class="material-icons">developer_board</i> ISE Management</h3>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div *ngIf="!discovery_detail">
+      <div class="col-12 ">
+        <md-card class="mt-30">
+          <form novalidate [formGroup]="findForm" autocomplete="off" (ngSubmit)="onDiscover()">
+            <div class="row">
+              <md-input-container class="example-full-width">
+                <input mdInput placeholder="IP" class="form-control" formControlName="primary_ip">
+                <md-hint align="end">
+                  <div *ngIf="!findForm['controls']['primary_ip'].valid && findForm['controls']['primary_ip'].touched" class="text-danger text-right">
+                    <span *ngIf="findForm['controls']['primary_ip'].errors.required" class="text-danger text-right">
+                      IP or DNS name is required
+                    </span>
+                  </div>
+                  <div *ngIf="findForm.hasError('regexIP')" class="text-danger text-right">
+                    Invalid ISE IP or DNS name
+                  </div>
+                </md-hint>
+              </md-input-container>
+            </div>
+            <div class="row">
+              <md-input-container class="example-full-width">
+                <input mdInput placeholder="Username" class="form-control" formControlName="user_name">
+                <md-hint align="end" *ngIf="!findForm['controls']['user_name'].valid && findForm['controls']['user_name'].touched">
+                  Username is required
+                </md-hint>
+              </md-input-container>
+            </div>
+            <div class="row">
+              <md-input-container class="example-full-width">
+                <input mdInput placeholder="Password" class="form-control" type="password" formControlName="user_password">
+                <md-hint align="end" *ngIf="!findForm['controls']['user_password'].valid && findForm['controls']['user_password'].touched">
+                  Password is required
+                </md-hint>
+              </md-input-container>
+            </div>
+            <div class="col-12">
+              <button md-raised-button color="warn" type="button" class=" button-left col-sf" (click)="goToIseList()">Cancel</button>
+              <button md-raised-button color="primary" type="submit" class=" button-left col-sf" [disabled]="findForm.invalid">Submit
+              </button>
+            </div>
+          </form>
+        </md-card>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="discovery_detail">
+  <md-card class="mt-30 discovery-form-set">
+    <div class="">
+      <form novalidate [formGroup]="discoveryForm" autocomplete="off" (ngSubmit)="onSubmitData()">
+        <div class="row" *ngIf="discovery_detail">
+          <div class="col-sm">
+            <div class="col-12 mb-30">
+              <h6>ISE Details</h6>
+            </div>
+            <div class="row">
+              <label class="col-6  colon">Serial Number</label>
+              <span class="col-6">{{discovery_detail.globalid}}</span>
+            </div>
+            <div class="row">
+              <label class="col-6 colon">Name</label>
+              <span class="col-6">{{discovery_detail.name}}</span>
+            </div>
+            <div class="row">
+              <label class="col-6 colon">Vendor</label>
+              <span class="col-6">{{discovery_detail.vendor}}</span>
+            </div>
+            <div class="row">
+              <div class="col-sm-12" *ngFor="let item of discovery_detail.controllers.controllers; let i = index;">
+                <div>
+                  <strong>MRC {{i+1}}</strong>
+                </div>
+                <div class="row">
+                  <label class="col-6 colon">MAC Address</label>
+                  <span class="col-6">
+                    {{discovery_detail.controllers.controllers[i].macaddress}}
+                  </span>
+                </div>
+                <div class="row">
+                  <label class="col-6 colon">IP Address</label>
+                  <span class="col-6">{{discovery_detail.controllers.controllers[i].ipaddress}}</span>
+                </div>
+                <div class="row">
+                  <label class="col-6 colon">fwversion</label>
+                  <span class="col-6">{{discovery_detail.controllers.controllers[i].fwversion}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 mt-30">
+              <button color="warn" type="button" md-raised-button routerLink="/ise">Cancel</button>
+              <button color="primary" type="submit" md-raised-button [disabled]="!discoveryForm['controls']['contactphone'].valid || !discoveryForm['controls']['contactname'].valid || !discoveryForm['controls']['contactemail'].valid">Save</button>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="centr">
+              <div class="col-12 mb-30">
+                <h6>Customer Details</h6>
+              </div>
+              <div class="col-12">
+                <md-input-container>
+                  <input mdInput type="text" id="name" formControlName="contactname" placeholder="Name" />
+                  <md-hint align="end">
+                    <div *ngIf="!discoveryForm['controls']['contactname'].valid && discoveryForm['controls']['contactname'].touched" class="text-danger text-right">
+                      <span *ngIf="discoveryForm['controls']['contactname'].errors.pattern" class="text-danger text-right">
+                        Invalid Contact name
+                      </span>
+                      <span *ngIf="discoveryForm['controls']['contactname'].errors.maxlength">
+                        Contact Name cannot be more than 60 characters long
+                      </span>
+                    </div>
+                  </md-hint>
+                </md-input-container>
+              </div>
+              <div class="col-12">
+                <md-input-container>
+                  <input mdInput type="text" id="address" formControlName="address" placeholder="Address" />
+                  <md-hint align="end">
+                    <div *ngIf="!discoveryForm['controls']['address'].valid && discoveryForm['controls']['address'].touched" class="text-danger text-right">
+                      <span *ngIf="discoveryForm['controls']['address'].errors.maxlength">
+                        Address cannot be more than 60 characters long
+                      </span>
+                    </div>
+                  </md-hint>
+                </md-input-container>
+              </div>
+              <div class="col-12">
+                <md-input-container>
+                  <input mdInput type="text" id="location" formControlName="location" placeholder="Location" />
+                  <md-hint align="end">
+                    <div *ngIf="!discoveryForm['controls']['location'].valid && discoveryForm['controls']['location'].touched" class="text-danger text-right">
+                      <span *ngIf="discoveryForm['controls']['location'].errors.maxlength">
+                        Location cannot be more than 32 characters long
+                      </span>
+                    </div>
+                  </md-hint>
+                </md-input-container>
+              </div>
+              <div class="col-12">
+                <md-input-container>
+                  <input mdInput type="email" id="email" formControlName="contactemail" placeholder="Email" />
+                  <md-hint align="end">
+                    <div *ngIf="!discoveryForm['controls']['contactemail'].valid && discoveryForm['controls']['contactemail'].touched" class="text-danger text-right">
+                      <span *ngIf="discoveryForm['controls']['contactemail'].errors.pattern">
+                        Invalid Email
+                      </span>
+                    </div>
+                  </md-hint>
+                </md-input-container>
+              </div>
+              <div class="col-12">
+                <md-input-container>
+                  <input mdInput type="text" id="phone" formControlName="contactphone" placeholder="Phone" />
+                  <md-hint align="end">
+                    <div *ngIf="!discoveryForm['controls']['contactphone'].valid && discoveryForm['controls']['contactphone'].touched" class="text-danger text-right">
+                      <span *ngIf="discoveryForm['controls']['contactphone'].errors.maxlength">
+                        Must be 16 Characters or Less
+                      </span>
+                    </div>
+                  </md-hint>
+                </md-input-container>
+                <div class="row">
+                  <md-checkbox color="primary" id="prefered_ise" name="prefered_ise" formControlName="prefered_ise">
+                  </md-checkbox>
+                  <label style="margin-left: 2%;">
+                    <Strong>Preferred ISE</Strong>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="col-12 text-center" style="margin-top: 25px;" *ngIf="!sangroup_loaded">
+              <app-xio-loader [displayText]="'San-Group Loading'">
+              </app-xio-loader>
+            </div>
+            <div *ngIf="sangroup_loaded && !sangroup_list.length">
+              <h6 class="mb-30">Create SAN Group</h6>
+              <div class="row">
+                <md-input-container>
+                  <input mdInput placeholder="SAN Group Name" formControlName="sangroup_name">
+                  <md-hint align="end">
+                    <div *ngIf="!discoveryForm.controls['sangroup_name'].valid && discoveryForm.controls['sangroup_name'].touched" class="text-danger text-right">
+                      <span *ngIf="discoveryForm.controls['sangroup_name'].errors.pattern" class="text-danger text-right">
+                        Invalid SANGroupName
+                      </span>
+                      <span *ngIf="discoveryForm.controls['sangroup_name'].errors.remote" class="text-danger text-right">
+                        SAN Group Name already exists
+                      </span>
+                    </div>
+                  </md-hint>
+                </md-input-container>
+              </div>
+              <div class="row">
+                <md-input-container>
+                  <input mdInput placeholder="SAN Group Comment" formControlName="comment">
+                </md-input-container>
+              </div>
+            </div>
+            <div [formGroup]="discoveryForm" *ngIf="sangroup_loaded && sangroup_list.length > 0 ">
+              <h6 class="mb-30">Add to SAN Group(s)</h6>
+              <div formArrayName="sg">
+                <div class="form-group" *ngFor="let sn of sangroup_list">
+                  <md-checkbox value="{{sn.sangroup_id}}" (change)="sanCheckBoxChange($event)">{{sn.sangroup_name}}
+                  </md-checkbox>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </md-card>
+</div>

@@ -1,0 +1,77 @@
+<div class="main-bar">
+  <div class="row">
+    <div class=" col-sm white main-heading">
+      <h3><i class="mtb-0 material-icons">developer_board</i> ISE Management</h3>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <md-card class="mt-30">
+      <form novalidate autocomplete="off" [formGroup]="ISEchangepwdForm">
+        <div class="row page-title mt-30">
+          <div class="col-sm-12">
+            <h5>Change the ISE <span class="userName">{{username}}</span> account Password</h5>
+          </div>
+        </div>
+        <div class="row form-container">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <md-input-container class="example-full-width">
+                <div class="col-6">
+                  <input mdInput class="form-control" type="password" id="CurrentPassword" formControlName="curr_password" placeholder="Current Password">
+                </div>
+                <md-hint align="end">
+                  <div>
+                    <span *ngIf="ISEchangepwdForm.get('curr_password').hasError('required') && ISEchangepwdForm.get('curr_password').touched" class="text-danger text-right">
+								      Current Password is required
+					          </span>
+                    <span *ngIf="ISEchangepwdForm.get('curr_password').hasError('invalidPassword')" class="text-danger text-right">
+								      Invalid Password
+					          </span>
+                  </div>
+                </md-hint>
+              </md-input-container>
+            </div>
+            <div class="form-group">
+              <md-input-container class="example-full-width">
+                <div class="col-6">
+                  <input mdInput class="form-control" type="password" id="new_password" formControlName="new_password" placeholder="New Password">
+                </div>
+                <md-hint align="end">
+                  <div *ngIf="ISEchangepwdForm.get('new_password').hasError('required') && ISEchangepwdForm.get('new_password').touched" class="text-danger text-right">
+                    New Password is required
+                  </div>
+                </md-hint>
+              </md-input-container>
+            </div>
+            <div class="form-group">
+              <md-input-container class="example-full-width">
+                <div class="col-6">
+                  <input mdInput class="form-control" type="password" id="confirm_password" formControlName="confirm_password" placeholder="Confirm Password">
+                </div>
+                <md-hint align="end">
+                  <div>
+                    <span *ngIf="ISEchangepwdForm.get('confirm_password').hasError('required') && ISEchangepwdForm.get('confirm_password').touched" class="text-danger text-right">
+						          Confirm Password is required
+					          </span>
+                    <span *ngIf="ISEchangepwdForm.hasError('mismatchedPasswords')" class="text-danger text-right">
+						          Password does not match
+					          </span>
+                  </div>
+                </md-hint>
+              </md-input-container>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <button md-raised-button class="button-left col-sf" color="warn" routerLink="/ise">Cancel</button>
+            <button md-raised-button class="button-left col-sf" color="primary" (click)="onSubmit()" [disabled]="ISEchangepwdForm.invalid">Update</button>
+          </div>
+          <div class="col-sm-12 note text-danger">
+            Note: After changing the password, please update the new password in ISE Edit.
+          </div>
+        </div>
+      </form>
+    </md-card>
+  </div>
+</div>

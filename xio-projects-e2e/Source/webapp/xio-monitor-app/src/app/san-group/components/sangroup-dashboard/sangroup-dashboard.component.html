@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-12 text-center dashboardSan" *ngIf="loading_stack.sangroup_details">
+    <app-xio-loader [displayText]="loading_stack.sangroup_details_text">
+    </app-xio-loader>
+  </div>
+  <div class="col-12" *ngIf="!loading_stack.sangroup_details">
+    <div class="row ise-title ">
+      <div class="col-sm sub-heading">
+        <h4>{{san_name}}</h4>
+        <p> {{ise_list}} ISE available under this SAN Group </p>
+      </div>
+      <div class="pull-right main-btn sub-heading">
+        <button class="toolbar-btn" md-raised-button color="primary" (click)="navigateTo($event)" [routerLinkActive]="['active']" md-list-item> Add / Remove ISE
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12" *ngIf="sangroup_ise_list.length > 0">
+        <md-card>
+          <div class="row">
+            <div class="col-xl-4 col-sm-12" *ngFor="let ise of sangroup_ise_list">
+              <app-ise-info-card [ise]="ise" (removeISE)="updateSgISELink(ise.id)">
+              </app-ise-info-card>
+            </div>
+          </div>
+        </md-card>
+      </div>
+      <div *ngIf="sangroup_ise_list.length == 0" class="ise-no-data-found-to-display">
+        <label>No ISE(s) added to SAN group for display</label>
+      </div>
+    </div>
+  </div>
+</div>

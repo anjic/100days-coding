@@ -1,0 +1,20 @@
+<div class="fill-wrapper">
+    <div *ngIf="container.bars.length && container.storageSize > 0">
+        <h2 class="container-label">{{container['storageType']}}</h2>
+        <div class="fill-container" style="min-width: 45px;" [ngStyle]="{'background': color, 'width': 'calc(' + container['width'] + '% - ' + ((container['width'] / 100) * 120) + 'px)'}">
+            <app-bar-fill [bar]="bar" [last]="$last" *ngFor="let bar of fillBars; let $last = last"></app-bar-fill>
+            <div class="oval oval--right" [ngStyle]="{'background': ovalFill}"></div>
+            <div style="position: absolute; right: -10px; text-align: center;" [ngStyle]="getStyle(first ? 'bottom': 'top', '42px')">
+                {{container['storageSize'] | number: "1.0-2"}} TB<br/>
+                {{container['capacityLabel']}}
+            </div>
+        </div>
+    </div>
+    <h2 *ngIf="first" class="container-label"></h2>
+    <div class="scale" *ngIf="first" style="width: calc(100% - 120px);">
+        <div class="scale-container" *ngFor="let scaleContainer of scaleContainers; let $last = last; let $index = index"
+            [ngStyle]="{'width': ($last ? '1px': 'calc(' + scaleContainer + '% - 2px)')}">
+            <span class="scale-label">{{scaleContainerSize * $index}} TB</span>
+        </div>
+    </div>
+</div>

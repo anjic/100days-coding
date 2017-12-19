@@ -1,0 +1,128 @@
+<div class="col-xs-12">
+  <div class="sub-heading">
+    <h4> SMTP Email Configuration</h4>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <form novalidate [formGroup]="smtpForm">
+        <div class="col-12">
+          <md-input-container>
+            <input mdInput type="text" placeholder="SMTP Server" formControlName="email_host">
+            <md-hint align="end">
+              <div *ngIf="!smtpForm['controls']['email_host'].valid && smtpForm['controls']['email_port'].touched"
+                   class="text-danger text-right">
+                  <span *ngIf="smtpForm['controls']['email_host'].errors.required">
+                    IP or HostName is required
+                  </span>
+              </div>
+            </md-hint>
+          </md-input-container>
+        </div>
+        <div class="col-12">
+          <md-input-container>
+            <input mdInput type="text" placeholder="SMTP Port" formControlName="email_port">
+            <md-hint align="end">
+              <div *ngIf="!smtpForm['controls']['email_port'].valid && smtpForm['controls']['email_port'].touched"
+                    class="text-danger text-right">
+                    <span *ngIf="smtpForm['controls']['email_port'].errors.required">
+                       SMPT Port is required
+                    </span>
+                    <span *ngIf="smtpForm['controls']['email_port'].errors.maxlength">
+                      SMPT Port cannot be more than 5 Numbers long
+                    </span>
+                    <span *ngIf="smtpForm['controls']['email_port'].errors.pattern">
+                       Invalid SMPT Port 
+                    </span>
+              </div>
+            </md-hint>
+          </md-input-container>
+        </div>
+        <div class="col-12">
+          <md-checkbox formControlName="enable_authentication" (change)="portChange()">Enable Authentication
+          </md-checkbox>
+        </div>
+        <div class="col-12">
+          <md-checkbox formControlName="use_ssl_tl">Use SSL/TL</md-checkbox>
+        </div>
+        <div class="col-12">
+          <md-input-container>
+            <input mdInput type="text" placeholder=" From Email Address" formControlName="from_mail">
+            <md-hint align="end">
+              <div *ngIf="!smtpForm['controls']['from_mail'].valid && smtpForm['controls']['from_mail'].touched"
+                   class="text-danger text-right">
+                    <span *ngIf="smtpForm['controls']['from_mail'].errors.required">
+                       Email is required
+                    </span>
+                    <span *ngIf="smtpForm['controls']['from_mail'].errors.pattern">
+                       Invalid Email
+                    </span>
+              </div>
+            </md-hint>
+          </md-input-container>
+        </div>
+        <div class="col-12" *ngIf="getFormElementVal('enable_authentication')">
+          <md-input-container>
+            <input mdInput type="text" placeholder="Username" formControlName="email_host_user">
+          </md-input-container>
+        </div>
+        <div class="col-12" *ngIf="getFormElementVal('enable_authentication')">
+          <md-input-container>
+            <input mdInput type="password" placeholder="Password" formControlName="email_host_password">
+          </md-input-container>
+        </div>
+        <div class="col-12">
+          <button md-raised-button color="primary" (click)="onSubmit()" [disabled]="smtpForm.invalid">
+            {{btnLabel}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="sub-heading">
+    <h4> SMTP Test Email Configuration</h4>
+  </div>
+  <div class="row">
+    <div class="col-12 ">
+      <form novalidate [formGroup]="testEmailForm">
+        <md-input-container>
+          <input mdInput type="text" placeholder="To Email" formControlName="test_email">
+          <md-hint align="end">
+            <div *ngIf="!testEmailForm['controls']['test_email'].valid && testEmailForm['controls']['test_email'].touched"
+                 class="text-danger text-right">
+                  <span *ngIf="testEmailForm['controls']['test_email'].errors.required">
+                    To Email is required
+                  </span>
+            </div>
+          </md-hint>
+        </md-input-container>
+        <button md-raised-button color="primary" (click)="onTestMail()" [disabled]="testEmailForm.invalid">Test Email</button>
+      </form>
+    </div>
+  </div>
+  <div class="seperator-line mtb-15"></div>
+  <!--  <h5>Select the severity levels for receiving alerts</h5>
+     <p>(<i>Note: Messages of the Severity level(s) chosen only will be sent to all recipients</i>)</p>
+    <hr> -->
+  <div class="row">
+    <div class="col-sm-12">
+      <div *ngIf="is_email_list">
+        <div class="pull-left">
+          <h4> User Notification</h4>
+        </div>
+        <button class="pull-right" md-raised-button color="primary" (click)="doEdit=false; toogleEmailList();">Add User
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="seperator-line mtb-15"></div>
+  <!-- <div class="seperator-line mt-15"></div> -->
+  <div class="" *ngIf="is_email_list">
+    <div class="row">
+      <xio-md-dataTable class="col-md-12" [gridOptions]="gridOptions"></xio-md-dataTable>
+    </div>
+  </div>
+  <div class="col-sm-12" *ngIf="!is_email_list">
+    <app-email-form [isAddForm]="!doEdit" [userInfo]="userInfo" (showEmailList)="toogleEmailList(r)"></app-email-form>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<section *ngIf="!isSubGroup">
+  <div class="row table-header">
+    <div class="col-sm-12 sortBy srch-sort">
+      <div class="col-sm-4 bm-15 pull-right">
+        <md-input-container floatPlaceholder="auto">
+          <input mdInput [(ngModel)]="modelName" type="text"
+                 placeholder="Search" (change)="onFilterByChange($event)">
+        </md-input-container>
+      </div>
+      <div class="col-sm-4 tp-15 pull-right">
+        <md-select class="col-sm" placeholder="Sort by" type="text" (change)="onSortByChange($event)">
+          <md-option *ngFor="let col of gridOptions.columnDefs" [value]="col.field">
+            {{col.headerName}}
+          </md-option>
+        </md-select>
+      </div>
+    </div>
+  </div>
+  <md-card-content class="tbl-hdr">
+    <div class="table-header-row">
+      <xio-md-rowContainer [gridOptions]="gridOptions"
+                           [data]="gridOptions.columnDefs" [headerRow]="true"></xio-md-rowContainer>
+    </div>
+    <md-list class="tbl-body">
+    <div *ngIf="gridOptions.rowData.length > 0">
+      <xio-md-rowContainer *ngFor="let rowObject of gridOptions.rowData" [gridOptions]="gridOptions"
+                           [rowObject]="rowObject" [isSubGroup]="isSubGroup"
+                           [data]="parseData(rowObject, gridOptions)"
+                           (toggleUpdated) = masterToggleLed($event)>
+                             
+      </xio-md-rowContainer>
+    </div>
+    <div class="msg" *ngIf="gridOptions.rowData.length == 0">
+       <span >{{gridOptions.message}}</span>
+    </div> 
+  
+    </md-list>
+  </md-card-content>
+</section>
+<section *ngIf="isSubGroup">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="table-header-row" >
+        <xio-md-rowContainer [gridOptions]="gridOptions"
+                             [data]="gridOptions.columnDefs" [headerRow]="true"></xio-md-rowContainer>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-12">
+      <md-list  class="mat-list tbl-body">
+        <xio-md-rowContainer *ngFor="let rowObject of getNestedData(gridOptions.parentField, subGroupData)"
+                             [gridOptions]="gridOptions" [rowObject]="rowObject"
+                             [isSubGroup]="isSubGroup" [data]="parseData(rowObject, gridOptions)"
+                             (toggleUpdated) = masterToggleLed($event)></xio-md-rowContainer>
+      </md-list>
+    </div>
+  </div>
+
+</section>
