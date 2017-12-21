@@ -1,0 +1,69 @@
+.avail_sub{
+  overflow:auto;
+  max-height: 250px;
+}
+
+.button-align{
+  padding-left: 29px;
+}
+.host-avail-head{height:40px; background:#fff; border-bottom:1px solid #efefef;}
+.static-header{
+
+
+  position:fixed;
+  z-index: 111;
+  padding: 5px 15px 5px;
+
+
+}
+.static-content{
+  margin-top:10px;
+}
+
+
+.li{
+  float: left;
+  padding-right: 11px;
+
+}
+.wwnul{
+
+  width:100%;
+  float: right;
+
+}
+
+.form-box .row .col-sm-6{
+
+  padding-right:0px;
+  padding-left:0px;
+}
+
+.form-box {
+  border: 1px solid #C9C9CA;
+  margin: 10px 0;
+  padding:5px 2px;
+}
+.mat-input-placeholder,
+.mat-input-container {
+  width: 100%;
+}
+
+.button-left{margin-right:1%;}
+
+button{margin:5px 0px;}
+
+
+
+.vol-sub-header{
+  position: fixed;
+  width: 100%;
+  background: #e8e7e7;
+  z-index: 20;
+  font-size: 14px;
+  height: 25px;
+}
+
+.vol-padd{
+  padding:0px;
+}

@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>OptimISE</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+  <style>
+    .logo{
+      z-index: 111;
+      width:100px;
+      height: 100px;
+      position: absolute;
+      left: 16.6%;
+      top: 16.6%;
+    }
+
+    .logo-2{
+      margin-top: 175px;
+    }
+
+
+    /*-------------------------------------------
+        $ Loaders
+    -------------------------------------------*/
+
+    .loader {
+      position: relative;
+      top: 50%;
+      left: 50%;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-top: 15%;
+      margin-left: -67px;
+
+
+    }
+    .loader,
+    .loader:before,
+    .loader:after {
+      animation: 1.5s infinite ease-in-out;
+      z-index: -1;
+
+    }
+    .loader:before,
+    .loader:after {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    /* Loader 2 */
+
+    .loader-2:before,
+    .loader-2:after {
+      content: '';
+    }
+    .loader-2:before {
+      border: 3px solid #c0d72f;
+      top: -3px;
+      left: -3px;
+      opacity: 0;
+      animation-name: loader2-1;
+    }
+
+    @keyframes loader2-1 {
+      0% { transform: scale(0.9); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0; }
+      100% { transform: scale(1.3); opacity: 0; }
+    }
+
+    .loader-2:after {
+      background-color: #0067b0;
+      animation-name: loader2-2;
+    }
+
+    @keyframes loader2-2 {
+      0% { transform: scale(1); }
+      50% { transform: scale(0.7); }
+      100% { transform: scale(1); }
+    }
+
+
+  </style>
+</head>
+
+<body>
+<app-root>
+  <div class="loader loader-2">
+    <div class="loader2-2">
+      <img class="logo" src="./assets/images/f.png"/>
+    </div>
+    <img class="logo-2" src="./assets/images/xio-app-logo.svg"/>
+  </div>
+</app-root>
+</body>
+
+</html>

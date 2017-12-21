@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-12 sub-heading">
+    <h4 *ngIf="!pool_id"> Create Pool </h4>
+    <h4 *ngIf="pool_id">Expand Pool - {{poolName}}</h4>
+    <app-xio-loader *ngIf="loading_stack.media_list" [displayText]="loading_stack.media_list_text">
+    </app-xio-loader>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <md-card class="mb-30">
+      <form [formGroup]="poolform" *ngIf="!loading_stack.media_list">
+        <div formArrayName="media" class="row" *ngIf="poolform['controls'].media['controls'].length">
+          <div class="col-sm-12">
+            <div *ngFor="let w of poolform['controls'].assigned_media['controls'];let i=index;">
+              <label>{{getPoolLabel(i, 'assigned_media', 'label')}}[Status: {{getPoolLabel(i,'assigned_media','dp_status')}}]</label>
+            </div>
+            <div [formGroupName]="i" *ngFor="let w of poolform['controls'].media['controls'];let i=index;">
+              <label>{{getPoolLabel(i,'media','label')}}[Status: {{getPoolLabel(i,'media','dp_status')}} Health: {{getPoolLabel(i,'media','dp_redundancyhealth')}}]</label>
+              <md-slide-toggle class="col-sm-1" color="primary" formControlName="dp">
+              </md-slide-toggle>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 text-danger" *ngIf="!poolform['controls'].media['controls'].length">
+          <p>No DataPac found</p>
+        </div>
+        <button md-raised-button color="warn" (click)="navigateTo($event)" [routerLinkActive]="['active']" md-list-item>
+          Cancel
+        </button>
+        <button md-raised-button color="primary" (click)="onSubmit()" [disabled]="!poolform['controls'].media['controls'].length">
+          <span *ngIf="pool_id">Expand Pool</span>
+          <span *ngIf="!pool_id">Create Pool</span>
+        </button>
+      </form>
+    </md-card>
+  </div>
+</div>

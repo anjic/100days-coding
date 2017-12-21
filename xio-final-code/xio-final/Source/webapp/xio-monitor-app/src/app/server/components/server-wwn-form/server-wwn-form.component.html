@@ -1,0 +1,108 @@
+<div class="col-12">
+  <md-card class="mb-30">
+    <div>
+      <form novalidate [formGroup]="serverWwnForm" autocomplete="off">
+        <div class="row">
+          <md-input-container>
+            <input mdInput placeholder="WWN Group Name" formControlName="server_name">
+            <md-hint align="end">
+              <div *ngIf="!serverWwnForm['controls']['server_name'].valid && serverWwnForm['controls']['server_name'].touched" class="text-danger text-right">
+                <span *ngIf="serverWwnForm['controls']['server_name'].errors.pattern" class="text-danger text-right">
+                      Invalid WWNGroup Name
+                </span>
+                <span *ngIf="serverWwnForm['controls']['server_name'].errors.remote" class="text-danger text-right" style="text-align: right">
+                      WWNGroup Name already exists
+                </span>
+                <span *ngIf="serverWwnForm['controls']['server_name'].errors.required">
+                      WWNGroup Name is required
+                </span>
+              </div>
+            </md-hint>
+          </md-input-container>
+        </div>
+        <div class="row">
+          <md-select placeholder="Select ISE(s)" (change)="onISESelectChange($event)" formControlName="selectedIses" multiple>
+            <md-option *ngFor="let w of ise_list" value="{{w.id}}">
+              {{w.ise_name}}
+            </md-option>
+          </md-select>
+        </div>
+        <div class="box-align">
+          <div class="box-border-align">
+            <div class="box-bg">
+              <label class="label-align">Available WWN's</label>
+            </div>
+            <div class="overlap-box">
+              <div class="row">
+                <div class="col-6">
+                  <label class="overlap-label"> Overlapped WWN(s):</label>
+                </div>
+                <div class="col-6 pull-right" style="width:100%;text-align: right;">
+                  <md-input-container floatPlaceholder="auto">
+                    <input mdInput type="text" placeholder="Search">
+                  </md-input-container>
+                </div>
+              </div>
+              <div class="form-box avail_sub">
+                <span *ngFor="let overlapped_wwn of overlapped_wwns_list;let i = index;">
+                   <md-checkbox class="row col-12" value ="{{overlapped_wwn.wwn}}"
+                   (change)="wwnCheckBoxChange(overlapped_wwn,$event)">
+                   {{overlapped_wwn.wwn}}
+                   </md-checkbox>
+                </span>
+                <div *ngIf="overlapped_wwns_list.length == 0" class="overlap-data">
+                  <span>No data found to display</span>
+                </div>
+              </div>
+            </div>
+            <div class="non-overlap-box">
+              <div class="row">
+                <div class="col-6">
+                  <label class="non-overlap-label">Non Overlapped WWN(s):</label>
+                </div>
+                <div class="col-6 pull-right" style="width:100%;text-align: right;">
+                  <md-input-container floatPlaceholder="auto">
+                    <input mdInput type="text" placeholder="Search">
+                  </md-input-container>
+                </div>
+              </div>
+              <div>
+                <div class="form-box avail_sub">
+                  <div *ngIf="non_overlapped_wwns_list.length > 0">
+                    <span *ngFor="let non_overlapped of non_overlapped_wwns_list;let i = index;">
+                      <md-checkbox class="row col-12"
+                         value ="{{non_overlapped.wwn}}"
+                         (change)="wwnCheckBoxChange(non_overlapped,$event)"
+                         [disabled]="non_overlapped_wwns_list.length > 0">
+                         {{non_overlapped.ise_name}}-{{non_overlapped.wwn}}
+                      </md-checkbox>
+                    </span>
+                  </div>
+                  <div *ngIf="non_overlapped_wwns_list.length == 0" class="non-overlap-data">
+                    <span>No data found to display</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <md-input-container>
+            <textarea mdInput placeholder="Comment" formControlName="comment">
+            </textarea>
+          </md-input-container>
+        </div>
+        <div class="btn-align">
+          <button md-raised-button class="col-sf button-left" color="warn" routerLink="/server/{{server_id}}/edit">
+            Cancel
+          </button>
+          <button md-raised-button class="col-sf button-left" color="primary"
+                  (click)="createWWNGroup($event)"
+                  [disabled]="serverWwnForm.invalid">
+            Create WWN Group
+          </button>
+        </div>
+      </form>
+    </div>
+  </md-card>
+</div>

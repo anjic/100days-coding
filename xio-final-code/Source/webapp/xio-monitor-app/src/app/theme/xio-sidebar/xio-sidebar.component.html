@@ -1,0 +1,58 @@
+<md-nav-list id="menu-list-items">
+  <div *ngFor="let routeObj of modulesRoutes;let i=index">
+    <a (click)="navigateTo($event, routeObj['route'] );" id="userId-{{i}}" [class.highlight]="routeObj.highLight" md-list-item>
+      <i class="material-icons">{{routeObj.icon}}</i>&nbsp;{{routeObj.label}}
+    </a>
+  </div>
+</md-nav-list>
+<div class="row" *ngIf="loadingSan">
+  <div class="col-md-12 sidebar-loading">
+    <app-xio-loader [displayText]="'loading..'"></app-xio-loader>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12" style="padding-left:0px;padding-right:0px;">
+    <md2-accordion [multiple]="multiple" class="sangroup-list">
+   <!--  <md2-accordion class="sangroup-list"> -->
+      <div style="width:100%" *ngIf="menu_content.length > 0">
+        <md2-accordion-tab *ngFor="let item of menu_content;let i = index" (click)="openAccord($event,item)" class="acc-heading">
+          <!-- Accordion Header-->
+          <md2-accordion-header>
+            <div [class.highlight-header]="item.highLight" class="pd-san">
+              <span class="ellipsis"><md-icon>storage</md-icon> {{item.sangroup_name}}</span>
+            </div>
+          </md2-accordion-header>
+          <div [class.selected-accord-section]="item.highLight">
+            <a md-list-item class="side-bar-sub-titles">
+              <p class="sidebar-sub-ise">
+                <md-icon>developer_board</md-icon>ISE</p>
+            </a>
+            <md-nav-list class="ise-list-sidebar">
+              <div>
+                <a *ngFor="let ise_item of item['ise']" (click)="navigateToISEDashBoard($event,item['ise'],ise_item,item)" md-list-item class="ise-list-titles" title="{{ise_item.ise_name}}" [class.highlight-accord]="ise_item.highLight">
+                          <span class="ellipsis">
+                            {{ise_item.ise_name}}
+                          </span>
+                </a>
+              </div>
+            </md-nav-list>
+            <div md-list-item>
+              <p class="sidebar-sub-host">
+                <md-icon>domain</md-icon>Server</p>
+            </div>
+            <md-nav-list class="ise-list-sidebar">
+              <div>
+                <a 
+               (click)="goToServerGroup($event,host_item,host_item.server_id,item['hosts'], host_item,item)" *ngFor="let host_item of item['hosts']" md-list-item class="host-list-titles" [class.highlight-accord]="host_item.highLight">
+                    <span class="ellipsis">
+                    {{host_item.server_name}}
+                    </span>
+                  </a>
+              </div>
+             </md-nav-list>
+          </div>
+        </md2-accordion-tab>
+      </div>
+    </md2-accordion>
+  </div>
+</div>

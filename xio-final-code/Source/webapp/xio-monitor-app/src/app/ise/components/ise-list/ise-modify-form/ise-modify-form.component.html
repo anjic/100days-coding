@@ -1,0 +1,77 @@
+<div class="main-bar">
+  <div class="row">
+    <div class=" col-sm white main-heading">
+      <h3><i class="mtb-0 material-icons">developer_board</i> ISE Management</h3>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-12 text-center ise-loader" *ngIf="loading_stack.ise_details">
+      <app-xio-loader [displayText]="loading_stack.ise_details_text">
+      </app-xio-loader>
+    </div>
+    <md-card class="mt-30" *ngIf="ise_details">
+      <form novalidate autocomplete="off" [formGroup]="IseModifyForm">
+        <div class="row page-title mt-30">
+          <h5 class="update-ip">Update New IPAddress</h5>
+        </div>
+        <div class="row form-container">
+          <div class="row">
+            <div class="col-sm-12">
+              <label class="col-5 colon">
+                <h6>ISE Name:</h6>
+              </label>
+              <span class="col-7">
+              {{ise_details.ise_name}}
+            </span>
+            </div>
+            <div class="col-sm-12">
+              <label class="col-5 colon">
+                <h6>Serial Number:</h6>
+              </label>
+              <span class="col-7">
+                {{ise_details.ise_serialno}}
+              </span>
+            </div>
+            <div class="col-sm-12">
+              <label class="col-5 colon">
+                <h6>MRC1 IP:</h6>
+              </label>
+              <span class="col-7">
+                {{ise_details.ip_primary}}
+              </span>
+            </div>
+            <div class="col-sm-12">
+              <label class="col-5 colon">
+                <h6>MRC2 IP:</h6>
+              </label>
+              <span class="col-7">
+          {{ise_details.ip_secondary}}
+        </span>
+            </div>
+            <div class="col-sm-12 new-ip">
+              <md-input-container class="example-full-width">
+                <input mdInput placeholder="New IP" class="form-control" formControlName="modify_ip">
+                <md-hint align="end">
+                  <div *ngIf="!IseModifyForm['controls']['modify_ip'].valid && IseModifyForm['controls']['modify_ip'].touched" class="text-danger text-right">
+                    <span *ngIf="IseModifyForm['controls']['modify_ip'].errors.required" class="text-danger text-right">
+                        IP or DNS name is required
+                    </span>
+                  </div>
+                  <div *ngIf="IseModifyForm.hasError('regexIP')" class="text-danger text-right">
+                    Invalid ISE IP or DNS name
+                  </div>
+                </md-hint>
+              </md-input-container>
+            </div>
+            <div class="col-sm-12">
+              <button md-raised-button class="button-left col-sf" color="warn" routerLink="/ise">Cancel</button>
+              <button md-raised-button class="button-left col-sf" color="primary" (click)="onSubmit()" [disabled]="IseModifyForm.invalid">Update</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </md-card>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+.side-bar{
+	background:#3A3F53;
+	position: fixed;
+	top:50px;
+	left:0;
+	bottom:0;
+	padding	:0;
+	color: #fff;
+
+	.sg-title{
+		padding:10px 15px;
+		font-weight: 600;
+	}
+
+	.list-group-head{
+		background	:#14ADAB;
+		padding	:.25rem .5rem;
+	}
+	.list-group-item{
+		color: #fff;
+		background:none;
+		padding	:.25rem 1.5rem ;
+		border-bottom: 1px solid #838486;
+		border-radius: 0;
+		&.active{
+			background	:#458CCA;
+		}
+	}
+
+
+}

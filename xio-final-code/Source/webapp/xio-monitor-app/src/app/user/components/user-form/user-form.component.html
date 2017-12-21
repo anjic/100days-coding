@@ -1,0 +1,104 @@
+<div class="sub-heading">
+  <h4 *ngIf="isAddForm">Add New User</h4>
+  <h4 *ngIf="!isAddForm">Update New User</h4>
+</div>
+<div class="col-12">
+  <md-card class="mb-30">
+    <div>
+      <form novalidate [formGroup]="userForm" autocomplete="off" class="">
+        <div class="row">
+          <div class="col-md-12">
+            <md-input-container>
+              <input mdInput placeholder="Username" formControlName="username" disabled/>
+              <md-hint align="end">
+                <div *ngIf="!userForm['controls']['username'].valid  && userForm['controls']['username'].touched" class="text-danger">
+                  <span *ngIf="userForm['controls']['username'].errors.required">
+                    Username is required
+                  </span>
+                  <span *ngIf="userForm['controls']['username'].errors.minlength">
+                    Username must be minimum 4 characters
+                  </span>
+                  <span *ngIf="userForm['controls']['username'].errors.maxlength">
+                    Username cannot be more than 24 characters long
+                  </span>
+                  <span *ngIf="userForm['controls']['username'].errors.remote">
+                    Username already exists
+                  </span>
+                  <span *ngIf="userForm['controls']['username'].errors.pattern">
+                    Invalid Username
+                  </span>
+                </div>
+              </md-hint>
+            </md-input-container>
+          </div>
+          <div class="col-md-12">
+            <md-input-container>
+              <input mdInput placeholder="First Name" type="text" formControlName="first_name" />
+            </md-input-container>
+          </div>
+          <div class="col-md-12">
+            <md-input-container>
+              <input mdInput placeholder="Last Name" type="text" formControlName="last_name" />
+            </md-input-container>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <md-input-container>
+            <input mdInput placeholder="Email" type="email" formControlName="email" />
+            <md-hint align="end">
+              <div *ngIf="!userForm['controls']['email'].valid && userForm['controls']['email'].touched" class="text-danger text-right">
+                <span *ngIf="userForm['controls']['email'].errors.required">
+                  Email is required
+                </span>
+                <span *ngIf="userForm['controls']['email'].errors.pattern">
+                  Invalid email
+                </span>
+              </div>
+            </md-hint>
+          </md-input-container>
+        </div>
+        <div class="col-12" *ngIf="isAddForm">
+          <md-input-container>
+            <input mdInput placeholder="Password" type="Password" formControlName="password" />
+            <md-hint align="end">
+              <div *ngIf="!userForm['controls']['password'].valid && userForm['controls']['password'].touched" class="text-danger text-right">
+                <span *ngIf="userForm['controls']['password'].errors.required">
+                  Password is required
+                </span>
+                <span *ngIf="userForm['controls']['password'].errors.minlength">
+                  Password must be minimum 5 Characters
+                </span>
+                <span *ngIf="userForm['controls']['password'].errors.maxlength">
+                  Password cannot be more than 15 characters
+                </span>
+              </div>
+            </md-hint>
+          </md-input-container>
+        </div>
+        <div class="col-12" *ngIf="isAddForm">
+          <md-input-container>
+            <input mdInput placeholder="Confirm Password" type="Password" formControlName="confirmpassword" />
+            <md-hint align="end">
+              <div *ngIf="userForm.hasError('mismatchedPasswords')" class="text-danger text-right">
+                Password doesn't match
+              </div>
+            </md-hint>
+          </md-input-container>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <button md-raised-button class="toolbar-btn button-left col-sf" color="warn" routerLink="/user">
+              Cancel
+            </button>
+            <button md-raised-button class="toolbar-btn button-left col-sf" color="primary" *ngIf="isAddForm" (click)="onSubmit()" [disabled]="userForm.invalid">
+              Create
+            </button>
+            <button md-raised-button class="toolbar-btn col-sf" color="primary" *ngIf="!isAddForm" (click)="onUpdateSubmit()" [disabled]="this.userForm['controls']['email'].invalid">
+              Update
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </md-card>
+</div>

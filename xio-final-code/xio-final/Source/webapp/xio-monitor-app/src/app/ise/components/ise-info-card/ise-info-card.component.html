@@ -1,0 +1,45 @@
+<a (click)="onClick(ise.id)" class="pull-left clickable width-100">
+  <md-card [ngClass]="getStatus(status)">
+    <div *ngIf="ise">
+      <div class="row">
+        <div class="col-xl-12 ise-title-san">
+          <p class=" text-center ellipsis">{{ise.ise_name}}</p>
+        </div>
+      </div>
+      <md-divider class="ise-card-divider"></md-divider>
+
+      <div class="row text-center ip-san">
+        <div class="col-xl-12">
+          <div>
+            MRC1 IP : {{ise.ip_primary}}
+          </div>
+          <div>
+            MRC2 IP : {{ise.ip_secondary}}
+          </div>
+        </div>
+      </div>
+      <md-divider class="ise-card-divider"></md-divider>
+
+      <div class="row san-details">
+        <div class="col-sm-4">
+          <span>{{ise.pools}}</span>
+          <br><span> Pool(s)</span>
+        </div>
+        <div class="col-sm-4">
+          <span>{{ise.volumes}}</span>
+          <br><span> Volume(s)</span>
+        </div>
+        <div class="col-sm-4">
+          <span>{{ise.hosts}}</span>
+          <br><span>WWN Group(s)</span>
+        </div>
+      </div>
+    </div>
+    <md-divider class="ise-card-divider"></md-divider>
+    <div class="row">
+      <div class="col-sm addedon">
+        <span>Added on</span> {{ise.time_stamp | date:'MMM d, yyyy HH:mm:ss'}}
+      </div>
+    </div>
+  </md-card>
+</a>

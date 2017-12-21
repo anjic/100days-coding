@@ -1,0 +1,51 @@
+<div class="col-12">
+  <div class="mb-30"></div>
+  <md-card class="mb-30">
+    <div class="row">
+      <div class="col-3 mb-30">
+        <h4>Managed ISEs</h4>
+      </div>
+      <div class="col-3 mb-30" *ngIf="!no_ise_found">
+        <h4>Managed</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center managedISE" *ngIf="loading_stack.ise_details">
+        <app-xio-loader [displayText]="loading_stack.ise_details_text">
+        </app-xio-loader>
+      </div>
+      <div *ngIf="!loading_stack.ise_details" class="col-md-12">
+        <div [formGroup]="sg_ise_link_form">
+          <div formArrayName="ise">
+            <div class="form-group" [formGroupName]="i" *ngFor="let w of sg_ise_link_form['controls'].ise['controls'];let i=index;">
+              <div class="row">
+                <label class="col-md-3">
+                  {{getISELabel('ise',i)}}
+                </label>
+                <div class="col-md-3">
+                  <md-slide-toggle color="primary" formControlName="ise">
+                  </md-slide-toggle>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="no_ise_found">
+        <div class="col-12">
+          <p class="text-info">No ISE Found</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button md-raised-button class="col-sf button-left" color="warn" (click)="navigateTo($event)" [routerLinkActive]="['active']" md-list-item>
+          Cancel
+        </button>
+        <button [disabled]="no_ise_found" md-raised-button class="col-sf button-left" color="primary" (click)="updateSgISELink()">
+          Update
+        </button>
+      </div>
+    </div>
+  </md-card>
+</div>

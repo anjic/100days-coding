@@ -1,0 +1,57 @@
+<div *ngIf="is_sub_list">
+    
+    <div class="row">
+    <div class="col-sm-12">
+    <div class="pull-left mt-30">
+      <h4>Subscriptions</h4>
+    </div>
+    <div class="pull-right main-btn">
+      <button md-raised-button class="toolbar-btn " id="add_subscription" name="add_subscription"
+              (click)="toogleSubList()">
+        Add Subscription
+      </button>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-sm-12">    
+    <p class="addSubNote text-danger">Note : Subscriptions to X-IO's proactive monitoring service (Activewatch) are enabled by default. If proxy servers are needed in your environment, please edit the three default subscriptions to configure the appropriate proxy servers. Customers who don't want to use this proactive monitoring service can disable Activewatch by deleting all three default subscriptions.</p>
+    </div>
+    </div>
+    
+   
+      <div class="row">
+     
+                          <xio-md-dataTable class="col-md-12"  [gridOptions]="sub_gridOptions"></xio-md-dataTable>
+        <!--<md-tab-group md-stretch-tabs="always" (selectChange)="tabOpen($event)" class="subscription_tab">-->
+        <!--<md-tab label="Alert">-->
+        <!--<div class="col-12 text-center" style="margin-top: 25px;" *ngIf="!is_sub_list_loaded">-->
+        <!--<app-xio-loader [displayText]="loading_stack.subscription_details_text">-->
+        <!--</app-xio-loader>-->
+        <!--</div>-->
+        <!--<div class="col-12" style="padding:0;">-->
+        <!--<div *ngIf="is_sub_list_loaded">-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</md-tab>-->
+        <!--<md-tab label="General Update">-->
+        <!--<div class="col-12"  style="padding:0;">-->
+        <!--<div *ngIf="is_sub_list_loaded">-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</md-tab>-->
+        <!--<md-tab label="Telemetry">-->
+        <!--<div class="col-12"  style="padding:0;">-->
+        <!--</div>-->
+        <!--</md-tab>-->
+        <!--</md-tab-group>-->
+      </div>
+    <!--</div>-->
+  </div>
+
+<div class="row">
+<div class="col-sm-12" *ngIf="!is_sub_list">
+  <app-subscription-form (showSubList)="toogleSubList()"></app-subscription-form>
+</div>
+</div>
+

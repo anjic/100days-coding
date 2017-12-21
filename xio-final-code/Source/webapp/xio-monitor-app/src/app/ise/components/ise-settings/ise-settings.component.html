@@ -1,0 +1,176 @@
+<div class="row">
+  <div class="sub-heading pull-left">
+    <h4>Settings</h4>
+  </div>
+  <div class="col-12">
+    <md-card>
+      <md2-accordion [multiple]="multiple">
+        <md2-accordion-tab header=Operations active="active">
+          <div class="card-block">
+            <div class="row" >
+              <div class="col-sm mtb-15">
+                <button md-raised-button color="primary" [disabled]="!status" (click)="openDialog('initialize')">Initialize</button>
+                <div *ngIf="loading_stack.ise_initialize">
+                      <app-xio-loader [displayText]="loading_stack.ise_initialize_text">
+                      </app-xio-loader>
+                </div>  
+              </div>
+              <div class="col-sm mtb-15">
+                <button md-raised-button color="primary" [disabled]="status" (click)="openDialog('shutdown')" disabled>Shutdown</button>
+              </div>
+              <div class="col-sm mtb-15">
+                <button md-raised-button color="primary" [disabled]="status" (click)="openDialog('restart')">Restart</button>
+              </div>
+              <div class="col-sm mtb-15">
+                <label>Identify</label>
+                <md-slide-toggle color="primary" [checked]="identifyToggleStatus" [disabled]="status" (change)="enableLed($event)">
+                </md-slide-toggle>
+              </div>
+            </div>
+          </div>
+        </md2-accordion-tab>
+      </md2-accordion>
+      <md2-accordion [multiple]="multiple">
+        <md2-accordion-tab header='Encryption'>
+          <app-ise-encryption></app-ise-encryption>
+        </md2-accordion-tab>
+      </md2-accordion>
+      <md2-accordion [multiple]="multiple">
+        <md2-accordion-tab header='Notifications (ISE Level)'>
+          <app-subscription-list></app-subscription-list>
+        </md2-accordion-tab>
+      </md2-accordion>
+      <md2-accordion [multiple]="multiple">
+        <md2-accordion-tab header='Email Notifications'>
+          <app-email-list></app-email-list>
+        </md2-accordion-tab>
+      </md2-accordion>
+      <md2-accordion [multiple]="multiple">
+        <md2-accordion-tab header='SNMP'>
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <form novalidate [formGroup]="snmpForm">
+
+                      <div class="mt-30">
+                        <h4> SNMP Contact Information</h4>
+                      </div>
+
+                    <div class="col-12">
+                      <md-input-container>
+                        <input mdInput type="text" id="community" placeholder="Community" formControlName="community">
+                      </md-input-container>
+                    </div>
+                    <div class="col-12">
+                      <md-input-container>
+                        <input mdInput type="text" id="contact" placeholder="Contact" formControlName="contact">
+                      </md-input-container>
+                    </div>
+                    <div class="col-12">
+                      <md-input-container>
+                        <input mdInput type="text" id="Organization" placeholder="Organization" formControlName="organization">
+                      </md-input-container>
+                    </div>
+                    <div class="col-12">
+                      <md-input-container>
+                        <input mdInput type="text" id="description" placeholder="Description" formControlName="description">
+                      </md-input-container>
+                    </div>
+                    <div class="col-12">
+                      <md-input-container>
+                        <textarea mdInput type="text" id="oldname" placeholder="Oid Name" formControlName="oidname">
+                        </textarea>
+                      </md-input-container>
+                    </div>
+                    <div class="col-12">
+                      <md-input-container>
+                        <textarea mdInput type="text" id="oldnumber" placeholder="Oid Number" formControlName="oidnumber"></textarea>
+                      </md-input-container>
+                    </div>
+                 
+                  </form>
+                </div>
+                <div class="col-lg-6">
+                  <div class="mt-30">
+                    <h4>Event Subscriptions</h4>
+                  </div>
+                  <p>Select events that you would like to forward to your SNMP client application </p>
+                  <div class="form-group">
+                    <label>Available Subscriptions (<i>you can select multiple subscriptions</i>)</label>
+                    <div class="col-12 text-center" style="margin-top: 25px;" *ngIf="loading_stack.available_details">
+                      <app-xio-loader [displayText]="loading_stack.available_details_text">
+                      </app-xio-loader>
+                    </div>
+                    <div *ngIf="!loading_stack.available_details" class="form-box avail_sub">
+                      <span *ngIf = "snmp_list">
+                         <md-checkbox class="row col-12" *ngFor="let snmp of snmp_list['available']" [(ngModel)]="snmp.value">
+                          {{snmp._attr.string}}
+                        </md-checkbox>
+                      </span>
+                      <span *ngIf = "snmp_list">
+                        <md-checkbox class="row col-12" *ngFor="let snmp of snmp_list['selected']" [(ngModel)]="snmp.value">
+                          {{snmp._attr.string}}
+                        </md-checkbox>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                  <div class="col-12">
+                    <button md-raised-button color="primary" (click)="onSnmpUpdateSubmit()">
+                      Save
+                    </button>
+                    <button md-raised-button color="primary" (click)="mibfiledownload()"> Download MIB File </button>
+                    <!--  <button md-raised-button  color="primary"(click)="onSnmpSubmit">
+                                    Submit
+                                    </button> -->
+                  </div>
+
+              </div>
+              <div class="col-xs-12">
+                <hr>
+              </div>
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="row">
+                    <h4>SNMP Trap Destination Setup</h4>
+                  </div>
+                  <p>Enter new Address or edit/delete existing</p>
+                  <div class="col-12">
+
+
+                        <md-input-container>
+                          <input mdInput type="text" placeholder=" Enter New Address" [(ngModel)]="client">
+                        </md-input-container>
+
+
+                        <button md-raised-button color="primary" class="btn xio-btn-primary" (click)="addClient()"> Add </button>
+
+
+                  </div>
+                  <div class="col-12 form-box" *ngIf="clients.length">
+                    <div *ngFor="let c of clients;let i=index;">
+                      <span>
+                                            <label>
+                                            {{c}}
+                                            </label>
+                                        </span>
+                      <span (click)="removeClient(i)" class="pull-right pointer">
+                                            <i  mdTooltip="delete" mdTooltipPosition="right" class="material-icons">delete</i>
+                                        </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+        </md2-accordion-tab>
+      </md2-accordion>
+      <md2-accordion [multiple]="multiple">
+        <md2-accordion-tab header='Time Settings'>
+          <div class="row mtb-15" >
+            <app-time-zone></app-time-zone>
+          </div>
+        </md2-accordion-tab>
+      </md2-accordion>
+    </md-card>
+  </div>
+</div>

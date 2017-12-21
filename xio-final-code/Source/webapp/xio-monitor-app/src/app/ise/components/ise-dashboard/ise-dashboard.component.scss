@@ -1,0 +1,138 @@
+.legend {
+    padding-top: 5px;
+}
+
+.legend span {
+    border: 1px solid #ccc;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin: 0 2px;
+    vertical-align: middle;
+}
+
+.capacities-header {
+    min-height: 100px;
+}
+
+.free-capacity-label {
+    float: right;
+    font-size: 1.2rem;
+}
+
+.data-reduction-label {
+    float: right;
+}
+
+.capacities-view-link {
+    font-weight: normal;
+    text-decoration: underline;
+    font-size: 1rem;
+}
+
+.data-view-container {
+    flex: 1; 
+    max-width: 425px; 
+    min-width: 275px; 
+    margin: 0 5px; 
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.data-view-label-container {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    clear: both;
+}
+
+.data-view-bar-label {
+    display: inline-block; 
+    font-weight: bold; 
+    width: 135px;
+    text-align: left;
+}
+
+.data-view-bar-data {
+    float: right;
+}
+
+@media (max-width: 1024px) {
+    .free-capacity-label, .data-reduction-label {
+        clear: both;
+        float: left;
+    }
+    .data-reduction-label {
+        margin-top: 5px;
+        font-size: 1.2rem;
+    }
+    .capacities-header {
+        min-height: 130px;
+    }
+}
+
+/* your colors */
+
+.color-swatch {
+    height: 15px;
+    width: 15px;
+    display: inline-block;
+}
+
+.legend .total {
+    background-color: #E0E1E2;
+}
+
+.legend .used {
+    background-color: #00AD9A;
+}
+
+.legend .current {
+    background-color: #00AD9A;
+}
+
+.legend .available {
+    background-color: #E0E1E2;
+
+}
+
+.legend .host_used {
+    background-color: #00AD9A;
+
+}
+
+.legend .allocated {
+    background-color: #DCE11F;
+
+}
+
+[tooltip]:not([tooltip-persistent]):before {
+    pointer-events: none;
+}
+
+.stripe-2 {
+    color: blue;
+    background: repeating-linear-gradient( 45deg, transparent, transparent 5px, #ccc 5px, #ccc 10px), linear-gradient( to bottom, #a1c5e6, #a1c5e6)
+}
+
+.chart-box {
+
+    background: #E0E1E2;
+    height: 7px;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.ise-isu {
+  margin-bottom: 2%;
+}
+
+.chart-dashboard {
+
+    margin-bottom: 30px;
+
+}
+
+
+
+

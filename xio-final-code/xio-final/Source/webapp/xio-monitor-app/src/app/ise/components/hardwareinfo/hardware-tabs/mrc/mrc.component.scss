@@ -1,0 +1,97 @@
+.hardwareinfo-mrc-sub-header-label-container{
+  margin-top: 15px;
+  margin-left: 3px;
+}
+
+.fcPortSelect {
+  margin: 0 2%;
+  width:150px;
+}
+
+.colon span::after{
+  content:":";
+  float: right;
+}
+
+.bold > span {
+  font-weight: 500;
+}
+
+.mrc .mat-toolbar {
+  min-height: 30px;
+  padding: 2% 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.lblIdentify, .lblUpdating {
+  font-size: 0.8em;
+  font-weight: 300;
+}
+
+span.ise_red {
+    color: red;
+}
+
+.pointer .material-icons{ 
+  font-size: 90%;
+  color:#00ac99;
+}
+
+.top-fcport {
+  width:100%;
+  padding-top:10px;
+}
+
+.left-fcport {  
+  padding-left:10px;
+}
+
+.fcport-align1 {
+  width:52%;
+  float:left;
+}
+
+.fcport-align2 {
+    width:42%;
+    float:left;
+}
+
+.fcport-clear{
+  clear:both;
+}
+
+.mrcloadingtext {
+  margin-top: 25px;
+}
+
+.mrcloader {
+  padding:0px;
+}
+
+.fcportheader {
+  padding-top:5px
+}
+
+.fcporttext{
+  padding:0 5px;
+  vertical-align: bottom;
+}
+
+.mrcIdentify {
+  text-align: right;
+}
+
+span.degree:after{
+  content :"\2103";
+}
+
+.mat-toolbar.toolbar_red {
+    background: red ;
+    color : white;
+}
+.mat-toolbar.toolbar_green {
+    background: #00a999;
+    color: white;
+}
+

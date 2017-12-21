@@ -1,0 +1,58 @@
+.fandatapac .mat-toolbar {
+  min-height: 30px;
+  padding: 2% 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.fansIdentify, .fansUpdating {
+  font-size: 0.8em;
+  font-weight: 300;
+}
+
+
+.colon span::after{
+  content:":";
+  float: right;
+}
+
+.bold > span {
+  font-weight: 500;
+}
+
+.fanCard {
+  margin: 1% auto;
+}
+
+.available_msg {
+  padding-left:  40%;
+  padding-top :  15%;
+  width : 100%;
+  height : 400px;
+}
+
+span.ise_red {
+    color: red;
+}
+
+.fanLoadingtext {
+  margin-top: 25px;
+}
+
+.fanLoader {
+  padding:0px;
+}
+
+.fanIdentifyalign {
+  text-align: right;
+}
+
+.mat-toolbar.toolbar_red {
+    background: red ;
+    color : white;
+}
+.mat-toolbar.toolbar_green {
+    background: #00a999;
+    color: white;
+
+}

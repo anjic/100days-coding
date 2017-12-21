@@ -1,0 +1,457 @@
+<div class="row">
+   <div class="col-12 sub-heading">
+      <h4>{{volume_details.form_title}}</h4>
+   </div>
+</div>
+<div class="row create-volume-form">
+   <div class="col-sm-12">
+      <md-card class="mb-30">
+         <form novalidate [formGroup]="storagevolumeForm" autocomplete="off">
+            <div *ngIf="volume_details.wizard_step == 1">
+               <div class="row">
+                  <div class="col-12 col-xl-6">
+                     <div class="row">
+                        <md-input-container>
+                           <input mdInput placeholder="Name" formControlName="name">
+                           <md-hint align="end">
+                              <div *ngIf="!storagevolumeForm['controls']['name'].valid  && storagevolumeForm['controls']['name'].touched" class="text-danger">
+                                 <span *ngIf="storagevolumeForm['controls']['name'].errors.required">
+                                 Volume Name is required
+                                 </span>
+                                 <span *ngIf="storagevolumeForm['controls']['name'].errors.pattern" class="text-danger text-right">
+                                 Invalid Volume Name
+                                 </span>
+                                 <span *ngIf="storagevolumeForm['controls']['name'].errors.maxlength" class="text-danger text-right">
+                                 Volume Name cannot be more than 256 characters long
+                                 </span>
+                              </div>
+                           </md-hint>
+                        </md-input-container>
+                     </div>
+                     <div class="row">
+                        <md-input-container>
+                           <input mdInput type="number" placeholder="Size of the volume in GB" min="1" max="8191" formControlName="size" />
+                           <md-hint align="end">
+                              <div *ngIf="!storagevolumeForm['controls']['size'].valid  && storagevolumeForm['controls']['size'].touched" class="text-danger">
+                                 <span *ngIf="storagevolumeForm['controls']['size'].errors.required">
+                                 Volume size is required
+                                 </span>
+                                 <span *ngIf="storagevolumeForm['controls']['size'].errors.pattern" class="text-danger text-right">
+                                 Volume size should be in the range of 1-8191
+                                 </span>
+                              </div>
+                              <div *ngIf="volume_details.size_change && !volume_details.isAddForm">
+                                 <span class="text-warning help-block" [hidden]=" !storagevolumeForm['controls']['size'].dirty">
+                                 Volume has host presentations. Use operating system Best Practices when changing volume sizes
+                                 </span>
+                              </div>
+                           </md-hint>
+                        </md-input-container>
+                     </div>
+                     <div class="row">
+                        <div [ngClass]="{'my-class': !volume_details.isAddForm }">
+                           <label> Dedupe</label><span>&nbsp;</span>
+                           <md-slide-toggle color="primary" formControlName="dedup" (change)="dedupChange()">
+                           </md-slide-toggle>
+                           <span class="pools_available_capacity" *ngIf="getFormElementVal('dedup')">ON</span>
+                           <span class="text-danger" *ngIf="!getFormElementVal('dedup')">OFF</span>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div *ngIf="!getFormElementVal('dedup')">
+                           <div class="row">
+                              <md-radio-group formControlName="redundancy">
+                                 <md-radio-button *ngIf="volume_details.isAddForm" value="1" [checked]="storagevolumeForm['controls']['redundancy'].value==1"> RAID-1
+                                 </md-radio-button>
+                                 <md-radio-button class="my-radio" *ngIf="!volume_details.isAddForm" value="1" [checked]="storagevolumeForm['controls']['redundancy'].value==1" disabled> RAID-1
+                                 </md-radio-button>
+                                 <md-radio-button *ngIf="volume_details.isAddForm" value="5" [checked]="storagevolumeForm['controls']['redundancy'].value==5">RAID-5
+                                 </md-radio-button>
+                                 <md-radio-button class="my-radio" *ngIf="!volume_details.isAddForm" value="5" [checked]="storagevolumeForm['controls']['redundancy'].value==5" disabled> RAID-5
+                                 </md-radio-button>
+                              </md-radio-group>
+                           </div>
+                           <div class="row">
+                              <div class="row">
+                                 <label>Thin Provisioning</label>
+                                 <span>&nbsp;</span>
+                                 <div *ngIf="!volume_details.isAddForm">
+                                    <md-slide-toggle color="primary" formControlName="alloctype" *ngIf="volume_details.isAllocateEnable==0" [checked]="true">
+                                    </md-slide-toggle>
+                                    <md-slide-toggle color="primary" formControlName="alloctype" *ngIf="volume_details.isAllocateEnable==1" [disabled]="true">
+                                    </md-slide-toggle>
+                                    <span class="pools_available_capacity" *ngIf="getFormElementVal('alloctype')">ON</span>
+                                    <span class="text-danger" *ngIf="!getFormElementVal('alloctype')">OFF</span>
+                                 </div>
+                                 <div *ngIf="volume_details.isAddForm">
+                                    <md-slide-toggle color="primary" formControlName="alloctype">
+                                    </md-slide-toggle>
+                                    <span class="pools_available_capacity" *ngIf="getFormElementVal('alloctype')">ON</span>
+                                    <span class="text-danger" *ngIf="!getFormElementVal('alloctype')">OFF</span>
+                                 </div>
+                              </div>
+                           </div>
+                           <span>&nbsp; &nbsp;  &nbsp;</span>
+                        </div>
+                        <div *ngIf="volume_details.loading_stack.pool_data">
+                           <app-xio-loader [displayText]="volume_details.loading_stack.pool_data_text">
+                           </app-xio-loader>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div form-slider-group *ngIf="!volume_details.loading_stack.pool_data">
+                           <div *ngIf="pools_list">
+                              <div>
+                                 <label>Storage Pool</label>
+                              </div>
+                              <div class="col-9" *ngIf="volume_details.isAddForm">
+                                 <md-radio-group placeholder="Storage pool" id="pool" formControlName="pool">
+                                    <md-radio-button *ngFor="let w of pools_list;
+                                    let i=index;" [value]="w.id">
+                                    <span>{{w.name}}</span>
+                                    <span class="pools_available_capacity pool-capacity-data">
+                                    [Available Capacity: RAID-1: {{w.available.byredundancy['raid-1']}} GB RAID-5: {{w.available.byredundancy['raid-5']}} GB]
+                                    </span>
+                                    </md-radio-button>
+                                 </md-radio-group>
+                              </div>
+                              <div class="col-9" *ngIf="!volume_details.isAddForm">
+                                 <md-radio-group placeholder="Storage pool" id="pool" formControlName="pool" disabled>
+                                    <md-radio-button class="my-radio" *ngFor="let w of pools_list;
+                                    let i=index;" [value]="w.id" disabled>
+                                    <span>{{w.name}}</span>
+                                    <span class="pools_available_capacity grey_out">
+                                    [Available Capacity: RAID-1: {{w.available.byredundancy['raid-1']}} GB RAID-5: {{w.available.byredundancy['raid-5']}} GB]
+                                    </span>
+                                    </md-radio-button>
+                                 </md-radio-group>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <md-input-container class="full-width">
+                           <textarea mdInput md-autosize placeholder="Comment" formControlName="comment">
+                           </textarea>
+                           <md-hint align="end">
+                              <div *ngIf="!storagevolumeForm['controls']['comment'].valid && storagevolumeForm['controls']['comment'].touched" class="text-danger text-right">
+                                 <span *ngIf="storagevolumeForm['controls']['comment'].errors.maxlength" class="text-danger text-right">
+                                 Comment cannot be more than 60 characters long
+                                 </span>
+                              </div>
+                           </md-hint>
+                        </md-input-container>
+                     </div>
+                     <!-- </div> -->
+                  </div>
+                  <div class="col-12 col-xl-6">
+                     <!-- Storage Quality of Service heading -->
+                     <div class="row">
+                        <label>Storage Quality of Service</label>
+                        <span>&nbsp;</span>
+                        <md-slide-toggle color="primary" formControlName="quality_service" (change)="watchDisabled()">
+                        </md-slide-toggle>
+                        <span class="pools_available_capacity" *ngIf="getFormElementVal('quality_service')">ON</span>
+                        <span class="text-danger" *ngIf="!getFormElementVal('quality_service')">OFF</span>
+                     </div>
+                     <!--Storage Quality of Service form inputs  -->
+                     <div *ngIf="getFormElementVal('quality_service')">
+                        <div class="row">
+                           <md-input-container>
+                              <input mdInput type="number" placeholder="IOPS min" min="1" max="50000" formControlName="IOPSmin">
+                              <md-hint align="end">
+                                 <div *ngIf="!storagevolumeForm['controls']['IOPSmin'].valid && storagevolumeForm['controls']['IOPSmin'].touched" class="text-danger text-right">
+                                    <span *ngIf="storagevolumeForm['controls']['IOPSmin'].hasError('validatepattern')" class="text-danger text-right">
+                                    Min IOPS Value should be in the range of 1-50000
+                                    </span>
+                                    <span *ngIf="storagevolumeForm['controls']['IOPSmax'].hasError('validateMax')  && !storagevolumeForm['controls']['IOPSmax'].dirty" class="text-danger text-right">
+                                    Min IOPS Value should be lesser than Max IOPS Value
+                                    </span>
+                                 </div>
+                              </md-hint>
+                           </md-input-container>
+                        </div>
+                        <div class="row">
+                           <md-input-container>
+                              <input mdInput type="number" placeholder="IOPS max" min="10" max="500000" formControlName="IOPSmax">
+                              <md-hint align="end">
+                                 <div *ngIf="!storagevolumeForm['controls']['IOPSmax'].valid && storagevolumeForm['controls']['IOPSmax'].touched" class="text-danger text-right">
+                                    <span *ngIf="storagevolumeForm['controls']['IOPSmax'].hasError('validatepattern')" class="text-danger text-right">
+                                    Max IOPS Value should be in the range of 10-500000
+                                    </span>
+                                    <span *ngIf="storagevolumeForm['controls']['IOPSmax'].hasError('validateMax') " class="text-danger text-right">
+                                    Max IOPS Value should be greater than Min IOPS Value
+                                    </span>
+                                    <span *ngIf="storagevolumeForm['controls']['IOPSmax'].hasError('validateBurst') && !storagevolumeForm['controls']['IOPSburst'].dirty" class="text-danger text-right">
+                                    Max IOPS  Value should be lesser than or equal to Burst IOPS Value
+                                    </span>
+                                 </div>
+                              </md-hint>
+                           </md-input-container>
+                        </div>
+                        <div class="row">
+                           <md-input-container>
+                              <input mdInput type="number" placeholder="IOPS burst" min="10" max="500000" formControlName="IOPSburst">
+                              <md-hint align="end">
+                                 <div *ngIf="!storagevolumeForm['controls']['IOPSburst'].valid && storagevolumeForm['controls']['IOPSburst'].touched" class="text-danger text-right">
+                                    <span *ngIf="storagevolumeForm['controls']['IOPSburst'].hasError('validatepattern')" class="text-danger text-right">
+                                    Burst IOPS  Value should be in the range of 10-500000
+                                    </span>
+                                 </div>
+                                 <div *ngIf="storagevolumeForm.hasError('validateMax') " class="text-danger text-right">
+                                    Max IOPS Value should be greater than Min IOPS Value
+                                 </div>
+                                 <div *ngIf="storagevolumeForm.hasError('validateBurst') " class="text-danger text-right">
+                                    Burst IOPS Value should be greater than or equal to Max IOPS Value
+                                 </div>
+                              </md-hint>
+                           </md-input-container>
+                        </div>
+                     </div>
+                     <!-- create like volumes -->
+                     <div [ngClass]="{'my-class': volume_details.isAddForm}">
+                        <div *ngIf="volume_details.isAddForm">
+                           <label>Create Multiple Volumes</label>
+                           <md-slide-toggle color="primary" formControlName="create_like_volumes" (change)="likevolume()">
+                           </md-slide-toggle>
+                           <span class="pools_available_capacity" *ngIf="getFormElementVal('create_like_volumes')">ON</span>
+                           <span class="text-danger" *ngIf="!getFormElementVal('create_like_volumes')">OFF</span>
+                        </div>
+                     </div>
+                     <!-- create like volumes form input -->
+                     <div *ngIf="getFormElementVal('create_like_volumes')">
+                        <div class="row">
+                           <md-input-container>
+                              <input mdInput type="number" placeholder="Number of Additional Volumes" formControlName="no_like_volumes">
+                              <md-hint align="end">
+                                 <div *ngIf="volume_exceeding_count_msg && storagevolumeForm['controls']['no_like_volumes'].touched" class="text-danger text-right">
+                                    <span *ngIf="volume_exceeding_count_msg.volume_count_exceed_status">
+                                    Max {{volume_exceeding_count_msg.volume_count}} volumes can be created
+                                    </span>
+                                 </div>
+                              </md-hint>
+                           </md-input-container>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- buttons -->
+               <div class="row">
+                  <div class="col-12 mt-30">
+                     <button md-raised-button class="toolbar-btn col-sf button-left" color="warn" routerLink="/ise/{{ise_id}}/volume" *ngIf="!isHost && !isSangroup">
+                     Cancel
+                     </button>
+                     <button md-raised-button class="toolbar-btn col-sf button-left" color="primary" *ngIf="isHost" (click)="onSubmit()" [disabled]="storagevolumeForm.invalid">
+                     Create Volume
+                     </button>
+                     <button md-raised-button class="toolbar-btn col-sf button-left" color="primary" *ngIf="!isHost" (click)="chageWizard(2)" [disabled]="storagevolumeForm.invalid">
+                     Next
+                     </button>
+                     <button md-raised-button class="toolbar-btn col-sf button-left" color="primary" *ngIf="!volume_details.isAddForm" (click)="onUpdateSubmit()" [disabled]="storagevolumeForm.invalid">
+                     Update
+                     </button>
+                  </div>
+               </div>
+            </div>
+            <div *ngIf="volume_details.wizard_step==2">
+               <div class="row volume-info">
+                  <div class="col-sm">
+                     <div class="form-box">
+                        <div style="overflow: hidden; text-overflow: ellipsis;">
+                           <span>Volume Name<span>&nbsp; : &nbsp;</span></span>
+                           <span>{{storagevolumeForm['controls']['name'].value}}</span>
+                        </div>
+                        <div>
+                           <span>Size<span>&nbsp; : &nbsp;</span></span>
+                           <span>{{storagevolumeForm['controls']['size'].value}}</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm">
+                     <div class="form-box">
+                        <div>
+                           <span style="text-align: center;">Storage Quality Of Service<span>&nbsp; : &nbsp;</span></span>
+                           <span *ngIf="storagevolumeForm['controls']['quality_service'].value">Enabled</span>
+                           <span *ngIf="!storagevolumeForm['controls']['quality_service'].value">Disabled</span>
+                        </div>
+                        <div>
+                           <span>Min Limit</span>
+                           <span>{{storagevolumeForm['controls']['IOPSmin'].value}}</span>
+                           <span>&nbsp; | &nbsp;</span>
+                           <span>Max Limit</span>
+                           <span>{{storagevolumeForm['controls']['IOPSmax'].value}}</span>
+                           <span>&nbsp; | &nbsp;</span>
+                           <span>Burst Limit</span>
+                           <span>{{storagevolumeForm['controls']['IOPSburst'].value}}</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm">
+                     <div class="form-box">
+                        <div>
+                           <span>Thin Provisioning<span>&nbsp; : &nbsp;</span>
+                           </span>
+                           <span *ngIf="isallocatype()">Enabled</span>
+                           <span *ngIf="!isallocatype()">Disabled</span>
+                        </div>
+                        <div>
+                           <span>RAID Level<span>&nbsp; : &nbsp;</span></span>
+                           <span *ngIf="isDedup()==1">RAID-1</span>
+                           <span *ngIf="isDedup()==5">RAID-5</span>
+                           <!-- <span> RAID-{{getFormElementVal('redundancy')}}</span> -->
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row mb-30" *ngIf="volume_details.isAddForm">
+                  <span class="col-2"> Assign WWN Group</span>
+                  <span class="col-1">
+                     <md-slide-toggle color="primary" formControlName="assign_host" (change)="changeSelectHost()">
+                     </md-slide-toggle>
+                  </span>
+                  <span class="col-1 pools_available_capacity" *ngIf="getFormElementVal('assign_host')">ON</span>
+                  <span class="col-1 text-danger" *ngIf="!getFormElementVal('assign_host')">OFF</span>
+               </div>
+               <div formArrayName="host_list" *ngIf="!volume_details.isAddForm">
+                  <div class="row" style="background-color:#14adab ;color: #ffffff">
+                     <div class="col">
+                       WWN Groups
+                     </div>
+                     <div class="col">
+                        ASSIGNED
+                     </div>
+                     <div class="col">
+                        LUN
+                     </div>
+                  </div>
+                  <div *ngIf="loading_stack.host_list">
+                     <app-xio-loader [displayText]="loading_stack.host_list_text">
+                     </app-xio-loader>
+                  </div>
+                  <br/>
+                  <div class="row" [formGroupName]="i" *ngFor="let w of   storagevolumeForm['controls'].host_list['controls']; let i=index;">
+                  <label class="col" for="host-{{i}}">{{getHostLabel('host_list',i)}}</label>
+                  <div class="col">
+                     <md-slide-toggle id="host_list_switch-{{i}}" formControlName="host">
+                     </md-slide-toggle>
+                  </div>
+                  <div class="col">
+                     <div [hidden]="!w['controls']['host'].value">
+                        <input style="width: 70px;" type="number" id="host_list_lun-{{i}}" formControlName="lun" />
+                        <span class="text-danger" *ngIf="w['controls']['lun']
+                           ['errors'] && w['controls']['lun']['errors']['duplicateLUN'] && !w['controls']['lun']['errors']['duplicateLUN']['valid']">
+                        LUN Number should be unique
+                        </span>
+                        <span class="text-danger" *ngIf="w['controls']['lun']
+                           ['errors'] && w['controls']['lun']['errors']['invalidLUN'] && !w['controls']['lun']['errors']['invalidLUN']['valid']">
+                        Invalid LUN Number
+                        </span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div *ngIf="!volume_details.isAddForm" formArrayName="allocate_host_list">
+               <div class="row" style="background-color:#14adab ;color: #ffffff">
+                  <div class="col">
+                     PRESENT WWN Groups
+                  </div>
+                  <div class="col">
+                     ASSIGNED
+                  </div>
+                  <div class="col">
+                     LUN
+                  </div>
+               </div>
+               <br/>
+               <div class="row" [formGroupName]="i" *ngFor="let w of storagevolumeForm['controls'].allocate_host_list['controls']; let i=index;">
+               <label class="col" for="allocate_host_list-{{i}}">
+               {{getHostLabel('allocate_host_list',i)}}
+               </label>
+               <div class="col">
+                  <md-slide-toggle size="small" formControlName="host">
+                  </md-slide-toggle>
+               </div>
+               <div class="col">
+                  <div [hidden]="!w['controls']['host'].value">
+                     <input style="width: 70px;" type="number" id="host_list_lun-{{i}}" formControlName="lun" />
+                     <span class="text-danger" *ngIf="w['controls']['lun']
+                        ['errors'] && w['controls']['lun']['errors']['duplicateLUN'] && !w['controls']['lun']['errors']['duplicateLUN']['valid']">
+                     LUN Number should be unique
+                     </span>
+                     <span class="text-danger" *ngIf="w['controls']['lun']
+                        ['errors'] && w['controls']['lun']['errors']['invalidLUN'] && !w['controls']['lun']['errors']['invalidLUN']['valid']">
+                     Invalid LUN Number
+                     </span>
+                  </div>
+               </div>
+            </div>
+      </div>
+      <div *ngIf="!volume_details.isSelectHost && volume_details.isVolume">
+         <md-tab-group [(selectedIndex)]="volume_details.selectedIndex" md-stretch-tabs="always">
+            <md-tab label="WWN Groups List" id="host_list">
+               <div *ngIf="!storagevolumeForm['controls'].host_list['controls'].length && !loading_stack.host_list">
+                  <h5>WWN Group yet to be created</h5>
+               </div>
+               <div formArrayName="host_list">
+                  <div class="row" style="background-color:#14adab ;color: #ffffff">
+                  <div class="col">
+                  WWN Groups
+                  </div>
+                  <div class="col">
+                  ASSIGNED
+                  </div>
+                  <div class="col">
+                  LUN NUMBER
+                  </div>
+               </div>
+               <div *ngIf="loading_stack.host_list && storagevolumeForm['controls'].host_list['controls'].length === 0">
+                  <app-xio-loader [displayText]="loading_stack.host_list_text">
+                  </app-xio-loader>
+               </div>
+               <div class="row" [formGroupName]="i" *ngFor="let w of   storagevolumeForm['controls'].host_list['controls']; let i=index;">
+                  <label class="col" for="host-{{i}}">{{getHostLabel('host_list',i)}}</label>
+               <div class="col">
+                  <md-slide-toggle id="host_list_switch-{{i}}" formControlName="host">
+                  </md-slide-toggle>
+               </div>
+               <div class="col">
+                  <div [hidden]="!w['controls']['host'].value">
+                     <input style="width: 70px;" type="number" id="host_list_lun-{{i}}" formControlName="lun" />
+                     <span class="text-danger" *ngIf="w['controls']['lun']
+                        ['errors'] && w['controls']['lun']['errors']['duplicateLUN'] && !w['controls']['lun']['errors']['duplicateLUN']['valid']">
+                     LUN Number should be unique
+                     </span>
+                     <span class="text-danger" *ngIf="w['controls']['lun']
+                        ['errors'] && w['controls']['lun']['errors']['invalidLUN'] && !w['controls']['lun']['errors']['invalidLUN']['valid']">
+                     Invalid LUN Number
+                     </span>
+                  </div>
+               </div>
+               </div>
+               </div>
+            </md-tab>
+            <md-tab label="Create WWN Group" id="create_host">
+            <host-form [isVolume]="volume_details.isVolume" (isCreated)="isHostCreated($event)">
+            </host-form>
+            </md-tab>
+         </md-tab-group>
+      </div>
+      <div class="row mt-30">
+      <button md-raised-button class="toolbar-btn button-left col-sf" color="warn" routerLink="/ise/{{ise_id}}/volume" *ngIf="!isHost && !isSangroup">
+      Cancel
+      </button>
+      <button md-raised-button class="toolbar-btn button-left col-sf" color="primary" (click)="chageWizard(1)">
+      Back
+      </button>
+      <button md-raised-button class="toolbar-btn button-left col-sf" *ngIf="volume_details.isAddForm" color="primary" (click)="onSubmit()" [disabled]="storagevolumeForm.invalid">
+      Create Volume
+      </button>
+      <button md-raised-button class="toolbar-btn button-left col-sf" *ngIf="!volume_details.isAddForm" color="primary" (click)="onUpdateSubmit()" [disabled]="storagevolumeForm.invalid">
+      Update
+      </button>
+      </div>
+      </div>
+      </form>
+   </md-card>
+   </div>
+</div>

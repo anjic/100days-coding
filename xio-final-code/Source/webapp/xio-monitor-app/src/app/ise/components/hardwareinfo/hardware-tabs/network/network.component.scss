@@ -1,0 +1,61 @@
+.network .mat-toolbar {
+  min-height: 30px;
+  padding: 2% 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.colon span::after{
+  content:":";
+  float: right;
+}
+
+.bold > span {
+  font-weight: 500;
+}
+
+.networkLbl, .dnsSettingsLbl{
+  font-weight: 400;
+  margin: 2%;
+}
+
+.dnsSettings {
+  margin-top: 2%;
+}
+.network-align{
+  padding-left: 13px;
+  margin-top:30px;
+}
+.network1-align{
+   padding-left: 13px;
+}
+.dns-align{
+  padding-left: 22px;
+}
+.dns-top-align{
+  margin-top:30px;
+  padding-left: 22px;
+}
+.network-btn{
+ width:100%
+}
+.net-btn1{
+ float:left;
+ width:10%
+}
+
+.net-btn2{
+ float:left;
+ width:90%;
+ padding-left:15px;
+}
+.net-full{
+ clear:both
+}
+
+.networkloadingtext {
+  margin-top: 25px;
+}
+
+.networkloader {
+  padding:0px;
+}

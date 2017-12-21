@@ -1,0 +1,53 @@
+<div class="col-12">
+  <md-card class="mb-30">
+    <div>
+      <form novalidate [formGroup]="serverForm" autocomplete="off">
+        <div class="row">
+          <md-input-container>
+            <input mdInput placeholder="Server Name" formControlName="server_name">
+            <md-hint align="end">
+              <div *ngIf="!serverForm['controls']['server_name'].valid && serverForm['controls']['server_name'].touched" class="text-danger text-right">
+                <span *ngIf="serverForm['controls']['server_name'].errors.pattern" class="text-danger text-right">
+                                Invalid ServerName
+                            </span>
+                <span *ngIf="serverForm['controls']['server_name'].errors.remote" class="text-danger text-right">
+                                ServerName already exists
+                </span>
+              </div>
+            </md-hint>
+          </md-input-container>
+        </div>
+        <label>Add SAN Group(s)</label>
+        <div class="san-align" formArrayName="sangroup">
+          <div *ngIf="sangroup_loaded.sg && sangroup_list.length !=0">
+            <app-xio-loader [displayText]="sangroup_loaded.sg_text">
+            </app-xio-loader>
+          </div>
+          <div *ngIf="!sangroup_loaded.sg">
+            <div class="form-group check-align" *ngFor="let sn of sangroup_list">
+              <md-checkbox value="{{sn.sangroup_id}}" (change)="sanCheckBoxChange($event)">{{sn.sangroup_name}}
+              </md-checkbox>
+            </div>
+          </div>
+          <div *ngIf="sangroup_list.length == 0">
+            <span>No SAN Group(s) Avalaible</span>
+          </div>
+        </div>
+        <div class="row">
+          <md-input-container>
+            <textarea mdInput placeholder="Comment" formControlName="comment">
+            </textarea>
+          </md-input-container>
+        </div>
+        <div class="pt-10">
+          <button md-raised-button class="col-sf button-left" color="warn" (click)="navigateTo($event, '/server/list')" [routerLinkActive]="['active']">
+            Cancel
+          </button>
+          <button md-raised-button class="col-sf button-left" color="primary" [disabled]="serverForm.invalid" (click)="onSubmit()">
+            Create Server
+          </button>
+        </div>
+      </form>
+    </div>
+  </md-card>
+</div>

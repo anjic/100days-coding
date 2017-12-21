@@ -1,0 +1,48 @@
+<div class="main-bar">
+    <div class="row">
+        <div class=" col-sm white main-heading">
+            <h3><i class="mtb-0 material-icons">developer_board</i> ISE Management</h3>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+	<div class="col-sm-6">
+		<div class="form-box" [formGroup]="linkForm">
+			<h4 class="mt-30 mb-30">Add / Remove from SAN Group(s)</h4>
+			<div  formArrayName="current_sg">
+				<div class="form-group" [formGroupName]="i"
+				*ngFor="let w of linkForm['controls'].current_sg['controls'];
+				let i=index;">
+				<label for="sg-{{i}}">
+					{{getSGLabel('current_sg',i)}}
+				</label>
+				<md-slide-toggle color="primary" class="pull-right"  formControlName="sg">
+				</md-slide-toggle>
+			</div>
+        </div>
+
+
+		<div  formArrayName="available_sg">
+			<div class="form-group" [formGroupName]="i" *ngFor="let w of linkForm['controls'].available_sg['controls'];
+			let i=index;">
+			<label for="sg-{{i}}">
+				{{getSGLabel('available_sg',i)}}
+			</label>
+			<md-slide-toggle color="primary" class="pull-right" formControlName="sg">
+			</md-slide-toggle>
+			</div>
+		</div>
+
+		  <div *ngIf="!linkForm['controls'].available_sg['controls'].length && !linkForm['controls'].current_sg['controls'].length" class="form-group">
+            <label class="text-danger">
+              No San Groups available
+            </label>
+          </div>
+		<div class="row mt-30" >
+        <button color="warn" md-raised-button class="button-left col-sf" routerLink="/ise">Cancel</button>
+        <button md-raised-button class="toolbar-btn button-left col-sf"(click)="UpdateISESangroupLink()"[disabled]="!linkForm['controls'].available_sg['controls'].length && !linkForm['controls'].current_sg['controls'].length" color="primary">Update</button>
+		</div>
+	</div>
+</div>
+</div>

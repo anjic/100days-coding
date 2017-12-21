@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="sub-heading pull-left">
+    <h4>List of SAN Groups</h4>
+  </div>
+  <span class="example-spacer"></span>
+  <div class="pull-right main-btn">
+    <button class="toolbar-btn" md-raised-button (click)="navigateTo($event, '/san-group/create')" [routerLinkActive]="['active']">
+      Create SAN Group
+    </button>
+  </div>
+</div>
+<div class="row" *ngIf="gridOptions.rowData">
+  <xio-md-dataTable class="col-md-12" [gridOptions]="gridOptions"></xio-md-dataTable>
+</div>

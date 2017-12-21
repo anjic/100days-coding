@@ -1,0 +1,25 @@
+<div class="main-bar">
+  <div class="row">
+    <div class=" col-sm white main-heading">
+      <h3 class="mtb-0"><md-icon>developer_board</md-icon> <span> ISE Management </span></h3>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="sub-heading pull-left">
+    <h4>Managed ISE</h4>
+  </div>
+  <span class="example-spacer"></span>
+  <div class="pull-right main-btn">
+    <button md-raised-button class="toolbar-btn " id="add_ise" name="add_ise" routerLink="/ise/discover">
+      Add ISE</button>
+  </div>
+</div>
+<div class="row">
+  <xio-md-dataTable class="col-md-12" [gridOptions]="gridOptions"></xio-md-dataTable>
+</div>
+<div class="row" *ngIf="!gridOptions.rowData">
+  <div>
+    <span>No ISE Defined</span>
+  </div>
+<div>

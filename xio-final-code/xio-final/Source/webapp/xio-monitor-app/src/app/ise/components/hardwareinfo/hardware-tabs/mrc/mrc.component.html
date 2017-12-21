@@ -1,0 +1,260 @@
+<div class="col-12 text-center mrcloadingtext"*ngIf="loading_stack.hardinfo_details">
+  <app-xio-loader [displayText]="loading_stack.hardinfo_details_text">
+  </app-xio-loader>
+</div>
+<div class="col-12 mrcloader" *ngIf="!loading_stack.hardinfo_details">
+  <md-card>
+    <div class="row">
+      <div class="col-12 hardwareinfo-mrc-sub-header-label-container">
+        <h6>Global MRC Speed Settings</h6>
+      </div>
+    </div>
+    <div class="row fcportheader">
+      <div class="col-4">
+        <span class="fcporttext">
+            FC Port Speed
+        </span>
+        <md-select class="fcPortSelect" [(ngModel)]="fcPortSpeed" >
+          <md-option [value]="'auto'">auto</md-option>
+          <md-option [value]="'2'">2</md-option>
+          <md-option [value]="'4'">4</md-option>
+          <md-option [value]="'8'">8</md-option>
+        </md-select>
+      </div>
+      <div class="col-3">
+        <span>
+          <button md-raised-button color="primary"
+                  (click)="onSave()"
+                  [disabled]="fcPort['loading']">Update</button>
+        </span>
+        <span [hidden]="!fcPort['loading']">Updating....</span>
+      </div>
+    </div>
+    <span>&nbsp;&nbsp;&nbsp;</span>
+    <div class="row ">
+      <div class="col-sm-6 col-md-6 mrc" *ngFor="let mrc of controllersList; let i=index;">
+        <div class="row">
+          <md-toolbar [ngClass]="toolBarClass(mrc.status._attr.string)">
+            <div class="col-6">
+              <h5>MRC {{i+1}}  </h5></div>
+            <div class="col-6 pull-right mrcIdentify">
+              <label class="lblIdentify">Identify</label>
+              <md-slide-toggle class="slide-color" color="primary"
+                               [(ngModel)]="controllers_identify[i]['value']"
+                               [disabled]="controllers_identify[i]['loading']"
+                               (change)="identifyMRC(i,mrc.id)">
+              </md-slide-toggle>
+              <span class="lblUpdating" [hidden]="!controllers_identify[i]['loading']">
+                Updating....
+              </span>
+            </div>
+          </md-toolbar>
+        </div>
+        <md-card>
+          <md-tab-group md-stretch-tabs="always">
+            <md-tab label="Properties">
+              <md-card>
+                <div class="row">
+                  <div class="col-6 colon">
+                    <span>Status</span>
+                  </div>
+                  <div class="col-6">
+                    <span [ngClass]="statusClass(mrc.status._attr.string)">
+                      {{mrc.status._attr.string}}
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6 colon">
+                    <span>
+                      Detailed Status
+                    </span>
+                  </div>
+                  <div class="col-6">
+                    <span>
+                      {{mrc.status.details.detail}}
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6 colon">
+                    <span>Position</span>
+                  </div>
+                  <div class="col-6">
+                    <span>
+                      {{mrc.position}}
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6 colon">
+                    <span>
+                      Serial Number
+                    </span>
+                  </div>
+                  <div class="col-6">
+                    <span>
+                      {{mrc.serialnumber}}
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6 colon">
+                    <span>
+                      Part Number
+                    </span>
+                  </div>
+                  <div class="col-6">
+                    <span>
+                      {{mrc.partnumber}}
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6 colon">
+                    <span>
+                      Hardware Version
+                    </span>
+                  </div>
+                  <div class="col-6">
+                    <span>
+                      {{mrc.hwversion}}
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6 colon">
+                    <span>
+                      Firmware Version
+                    </span>
+                  </div>
+                  <div class="col-6">
+                    <span>
+                      {{mrc.fwversion}}
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6 colon">
+                    <span>
+                      Temperature
+                    </span>
+                  </div>
+                  <div class="col-6">
+                    <span class ="degree">
+                      {{mrc.temperature._attr.value}}
+                    </span>
+                    <span>
+                      (Low: {{mrc.temperature.low}},
+                       Critical:{{mrc.temperature.critical}},
+                       Warning: {{mrc.temperature.warning}})
+                    </span>
+                  </div>
+                </div>
+              </md-card>
+            </md-tab>
+            <md-tab label="FC Ports Information">
+              <md-card>
+                <div class="row">
+                  <div class="col-sm-12" *ngFor="let fcPort of mrc.fcports.fcports; let i=index;">
+                    <div class="row">
+                      <div class="col-12">
+                        <strong>FC Port {{fcPort.id}}</strong>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-6 colon">
+                        Status
+                      </div>
+                      <span class="col-6" [ngClass]="statusClass(fcPort.status._attr.string)">
+                      {{fcPort.status._attr.string}}
+                    </span>
+                    </div>
+                    <div class="row">
+                      <div class="col-6 colon">
+                        WWN
+                      </div>
+                      <span class="col-6">{{fcPort.wwn}}</span>
+                    </div>
+                    <div class="row" *ngIf="!fcPort.editFlag">
+                      <div class="col-6 colon">
+                        Speed
+                      </div>
+                      <div>
+                        <span class="col-6" *ngIf="fcportspeed == 'auto'">Auto-{{fcPort.speed}} Gb/s</span>
+                        <span class="col-6" *ngIf="fcportspeed != 'auto'">{{fcPort.speed}} Gb/s</span>
+                        <span class="pointer" (click)="toggle(fcPort)">
+                        <i class="material-icons" mdTooltip="Edit" mdTooltipPosition="right">mode_edit</i>
+                      </span>
+                      </div>
+                    </div>
+                    <div class="row" *ngIf="fcPort.editFlag">
+                      <div class="col-6">
+                        Speed
+                      </div>
+                      <div class="col-6">
+                        <span>
+                        <md-select [(ngModel)]="fcPort.speed" class="fcPortSelect" >
+                          <md-option [value]="2">2</md-option>
+                          <md-option [value]="4">4</md-option>
+                          <md-option [value]="8">8</md-option>
+                        </md-select>
+                      </span>
+                      </div>
+                      <div class="top-fcport">
+                        <div class="fcport-align1">
+                          &nbsp;&nbsp;
+                        </div>
+                        <div class="fcport-align2">
+                          <button md-raised-button color="primary"
+                                  (click)="onUpdate(fcPort)">
+                            Update
+                          </button>
+                        </div>
+                        <div class="fcport-clear">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </md-card>
+            </md-tab>
+            <md-tab label="SFP Information">
+              <md-card>
+                <div class="row">
+                  <div class="col-sm-12" *ngFor="let sfp of mrc.sfps.sfps; let i=index;">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <strong>SFP {{sfp.id}}</strong>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-6 colon">Status</div>
+                      <span class="col-6" [ngClass]="statusClass(sfp.status._attr.string)">
+                      {{sfp.status._attr.string}}
+                      </span>
+                    </div>
+                    <div class="row">
+                      <div class="col-6 colon">Serial Number</div>
+                        <span class="col-6">
+                         {{sfp.serialnumber}}
+                        </span>
+                      </div>
+                      <div class="row">
+                        <div class="col-6 colon">Part Number</div>
+                        <span class="col-6">{{sfp.partnumber}}</span>
+                      </div>
+                      <div class="row">
+                        <div class="col-6 colon">Mfg.Date</div>
+                        <span class="col-6"></span>
+                      </div>
+                  </div>
+                </div>
+              </md-card>
+            </md-tab>
+          </md-tab-group>
+        </md-card>
+      </div>
+    </div>
+  </md-card>
+</div>

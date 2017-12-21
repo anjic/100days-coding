@@ -1,0 +1,169 @@
+.status {
+  color: white;
+  background: rgba(222, 76, 76, 0.49);
+  padding: 3px;
+  border-radius: 3px;
+
+}
+
+.main-bar-warning {
+  background-size: cover;
+  color: black;
+  background: linear-gradient(rgba(246, 200, 41, 0.75), rgba(246, 200, 41, 0.75)),
+  url("/assets/images/grey-header.jpg");
+  color:  rgba(0, 0, 0, .87);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.main-bar-operational {
+  background-size: cover;
+  color: white;
+  background: url("/assets/images/xio-header.jpg");
+  color:  rgba(0, 0, 0, .87);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+.main-bar-critical {
+
+  background-size: cover;
+  color: white;
+  background: linear-gradient(rgba(255, 0, 0, 0.75), rgba(255, 0, 0, 0.75)),
+  url("/assets/images/grey-header.jpg");
+  color:  rgba(0, 0, 0, .87);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+.mb-30 {
+  margin-bottom: 12px;
+}
+
+//Led CSS Changes
+.led-blue {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: #848484;
+  box-shadow: inset 0px 1px 0px 0px rgba(0, 0, 0, 0.5), 0px 0px 1px 1px rgba(76, 73, 73, 0.72);
+  border-radius: 0px;
+  clear: both;
+  position: absolute;
+  top: 13%;
+  left: 15px;
+
+  -webkit-animation: blinkblue 0.5s infinite;
+  -moz-animation: blinkblue 0.5s infinite;
+  -ms-animation: blinkblue 0.5s infinite;
+  -o-animation: blinkblue 0.5s infinite;
+  animation: blinkblue 0.5s infinite;
+
+}
+
+.led-blue-disabled {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: #848484;
+  box-shadow: inset 0px 1px 0px 0px rgba(0, 0, 0, 0.5), 0px 0px 1px 1px rgba(76, 73, 73, 0.72);
+  border-radius: 0px;
+  clear: both;
+  position: absolute;
+  top: 13%;
+  left: 15px;
+}
+
+@-webkit-keyframes blinkblue {
+  from {
+    background-color: #057f8c;
+  }
+  50% {
+    background-color: rgba(159, 244, 255, 0.91);
+    box-shadow: #556579 0 -1px 2px 1px, inset #2c90b7 0 -1px 3px, #158294 0 2px 0;
+  }
+  to {
+    background-color: rgba(99, 130, 187, 0.48);
+  }
+}
+
+@-moz-keyframes blinkblue {
+  from {
+    background-color: #057f8c;
+  }
+  50% {
+    background-color: rgba(159, 244, 255, 0.91);
+    box-shadow: #556579 0 -1px 2px 1px, inset #2c90b7 0 -1px 3px, #158294 0 2px 0;
+  }
+  to {
+    background-color: rgba(99, 130, 187, 0.48);
+  }
+}
+
+@-ms-keyframes blinkblue {
+  from {
+    background-color: #057f8c;
+  }
+  50% {
+    background-color: rgba(159, 244, 255, 0.91);
+    box-shadow: #556579 0 -1px 2px 1px, inset #2c90b7 0 -1px 3px, #158294 0 2px 0;
+  }
+  to {
+    background-color: rgba(99, 130, 187, 0.48);
+  }
+}
+
+@-o-keyframes blinkblue {
+  from {
+    background-color: #057f8c;
+  }
+  50% {
+    background-color: rgba(159, 244, 255, 0.91);
+    box-shadow: #556579 0 -1px 2px 1px, inset #2c90b7 0 -1px 3px, #158294 0 2px 0;
+  }
+  to {
+    background-color: rgba(99, 130, 187, 0.48);
+  }
+}
+
+@keyframes blinkblue {
+  from {
+    background-color: #057f8c;
+  }
+  50% {
+    background-color: rgba(159, 244, 255, 0.91);
+    box-shadow: #556579 0 -1px 2px 1px, inset #2c90b7 0 -1px 3px, #158294 0 2px 0;
+  }
+  to {
+    background-color: rgba(99, 130, 187, 0.48);
+  }
+}
+
+.mrc1 {
+  padding-left: 12px;
+}
+
+.mrc2 {
+  padding-left: 12px;
+}
+
+.ise_name_pointer {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.h1-header{
+  margin:5px 0 12px 0 !important;
+}
+
+.display-time{
+  padding-left: 3px;
+}

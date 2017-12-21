@@ -1,0 +1,208 @@
+<div class="ise-encryption-container">
+  <div *ngIf="enableEncryptionBtnContainers">
+    <div class="row ise-encryption-label ise-encryption-btn-conatiners">
+      <div class="col-2">
+        <button md-raised-button color="primary" (click)="goToEnableEncryption()">
+          Enable Encryption
+        </button>
+      </div>
+      <div class="col-10" *ngIf ="enryptionEnable != 'disabled'">
+        <button md-raised-button color="warn" (click)="goToChangePassKey()">
+          Change Passkey
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="disableEncyptionBtnContainers">
+    <div class="row ise-encryption-label ise-encryption-btn-conatiners">
+      <div class="col-2">
+        <button md-raised-button color="primary" (click)="goToDisableEncryption()">
+          Disable Encryption
+        </button>
+      </div>
+      <div class="col-2">
+        <button md-raised-button color="warn" (click)="goToChangePassKey()">
+          Change Passkey
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="disableEncryptionFlag" class="enable-encryption-container">
+    <form novalidate [formGroup]="decryptionForm" (ngSubmit)="disableEncryption()">
+      <div class="ise-encryption-label label-conatiner">
+        Encryption Status : <span class="encryption-label">{{enryptionEnable}}</span>
+      </div>
+      <div class="ise-encryption-label">
+        Disable Encryption
+      </div>
+      <div class="row">
+        <md-input-container>
+          <input mdInput type="password" placeholder="Enter the passkey" formControlName="passKey">
+          <md-hint align="end">
+            <div *ngIf="!decryptionForm['controls']['passKey'].valid &&
+                         decryptionForm['controls']['passKey'].touched"
+                 class="text-danger text-right">
+               <span *ngIf="decryptionForm['controls']['passKey'].errors.required" class="text-danger text-right">
+                  PassKey should not be empty
+               </span>
+            </div>
+          </md-hint>
+        </md-input-container>
+      </div>
+      <div class="row ise-encryption-btn__containers">
+        <div class="col-2">
+          <button md-raised-button color="primary">
+            <span>Disable</span>
+          </button>
+        </div>
+        <div class="col-10">
+          <button md-raised-button color="warn" (click)="cancelDisableEncryption()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="enableEncryptionFlag" class="enable-encryption-container">
+    <form novalidate [formGroup]="encryptionForm" (ngSubmit)="enableEncryption()" >
+      <div class="ise-encryption-label label-conatiner">
+        Encryption Status : <span class="encryption-label">{{enryptionEnable}}</span>
+      </div>
+      <div class="ise-encryption-label">
+        Enable Encryption
+      </div>
+      <div class="row">
+        <md-input-container>
+          <input mdInput type="password" placeholder="Enter the passkey" formControlName="passKey" >
+          <md-hint align="end">
+            <div *ngIf="!encryptionForm['controls']['passKey'].valid &&
+                         encryptionForm['controls']['passKey'].touched"
+                 class="text-danger text-right">
+               <span *ngIf="encryptionForm['controls']['passKey'].errors.required"
+                     class="text-danger text-right">
+                  PassKey should not be empty
+               </span>
+            </div>
+            <div *ngIf=" !encryptionForm['controls']['passKey'].valid &&
+                          encryptionForm['controls']['passKey'].touched"
+                 class="text-danger text-right">
+                <span class="text-danger text-right">
+                  Passkey mismatch
+                </span>
+            </div>
+          </md-hint>
+        </md-input-container>
+      </div>
+      <div class="row">
+        <md-input-container>
+          <input mdInput type="password" placeholder="Confirm the passkey" formControlName="confirmPassKey"  required >
+          <md-hint align="end">
+            <div *ngIf=" !encryptionForm['controls']['confirmPassKey'].valid &&
+                          encryptionForm['controls']['confirmPassKey'].touched "
+                 class="text-danger text-right">
+               <span *ngIf="encryptionForm['controls']['confirmPassKey'].errors.required"
+                     class="text-danger text-right">
+                  Confirm passkey should not be empty
+               </span>
+            </div>
+            <div *ngIf=" !encryptionForm['controls']['confirmPassKey'].valid &&
+                          encryptionForm['controls']['confirmPassKey'].touched"
+                 class="text-danger text-right">
+                <span class="text-danger text-right">
+                  Passkey mismatch
+                </span>
+            </div>
+          </md-hint>
+        </md-input-container>
+      </div>
+      <div class="row encryptn-btn-cntnr ise-encryption-btn__containers">
+        <div class="col-2">
+          <button md-raised-button color="primary" type="submit" [disabled]="encryptionForm.invalid">
+            <span>Enable</span>
+          </button>
+        </div>
+        <div class="col-10">
+          <button md-raised-button color="warn" (click)="cancelEnableEncryption()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="changePassKeyFlag" class="enable-encryption-container">
+    <form novalidate [formGroup]="changePassKeyForm" (ngSubmit)="changePassKey()" >
+      <div class="ise-encryption-label label-conatiner">
+        Change Passkey
+      </div>
+      <div class="row">
+        <md-input-container>
+          <input mdInput type="password" placeholder="Enter the Old Passkey" formControlName="oldPassKey">
+          <md-hint align="end">
+            <div *ngIf="!changePassKeyForm['controls']['oldPassKey'].valid &&
+                         changePassKeyForm['controls']['oldPassKey'].touched"
+                 class="text-danger text-right">
+               <span *ngIf="changePassKeyForm['controls']['oldPassKey'].errors.required"
+                     class="text-danger text-right">
+                  Confirm passkey should not be empty
+               </span>
+            </div>
+          </md-hint>
+        </md-input-container>
+      </div>
+      <div class="row">
+        <md-input-container>
+          <input mdInput type="password" placeholder="Enter the New Passkey" formControlName="newPassKey" required >
+          <md-hint align="end">
+            <div *ngIf="!changePassKeyForm['controls']['newPassKey'].valid &&
+                         changePassKeyForm['controls']['newPassKey'].touched"
+                 class="text-danger text-right">
+               <span *ngIf="changePassKeyForm['controls']['newPassKey'].errors.required"
+                     class="text-danger text-right">
+                  Confirm passkey should not be empty
+               </span>
+            </div>
+            <div *ngIf=" !changePassKeyForm['controls']['newPassKey'].valid &&
+                          changePassKeyForm['controls']['newPassKey'].touched"
+                 class="text-danger text-right">
+                <span class="text-danger text-right">
+                  Passkey mismatch
+                </span>
+            </div>
+          </md-hint>
+        </md-input-container>
+      </div>
+      <div class="row">
+        <md-input-container>
+          <input mdInput type="password" placeholder="Confirm New Passkey" formControlName="confirmPassKey"
+                 required reverse="false">
+          <md-hint align="end">
+            <div *ngIf="!changePassKeyForm['controls']['confirmPassKey'].valid &&
+                         changePassKeyForm['controls']['confirmPassKey'].touched"
+                 class="text-danger text-right">
+               <span *ngIf="changePassKeyForm['controls']['confirmPassKey'].errors.required" class="text-danger text-right">
+                  Confirm passkey should not be empty
+               </span>
+            </div>
+            <div *ngIf="changePassKeyForm.hasError('mismatchedISEEncryptionPasswords')"
+                 class="text-danger text-right">
+                  <span class="text-danger text-right">
+                     Passkey mismatch
+                  </span>
+						</div>
+          </md-hint>
+        </md-input-container>
+      </div>
+      <div class="row ise-encryption-btn__containers">
+        <div class="col-12">
+          <button md-raised-button color="primary" [disabled]="changePassKeyForm.invalid">
+            <span>Update the Passkey</span>
+          </button>
+          <span>&nbsp;&nbsp;&nbsp;</span>
+          <button md-raised-button color="warn" (click)="cancelUpdatePassKey()" >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

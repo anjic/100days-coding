@@ -1,0 +1,205 @@
+<div class="col-12 text-center networkloadingtext"*ngIf="loading_stack.hardinfo_details">
+  <app-xio-loader [displayText]="loading_stack.hardinfo_details_text">
+  </app-xio-loader>
+</div>
+<div class="col-12 network networkloader" *ngIf="!loading_stack.hardinfo_details">
+  <md-card>
+    <div *ngIf="network_identify.dhcp">
+      <div class="row">
+        <div class="col-sm-6" *ngFor="let portlist of port_list; let i=index;">
+          <md-toolbar color="primary">
+            <label class="networkLbl">Network{{i+1}}</label>
+          </md-toolbar>
+          <div>
+            <md-card>
+              <div class="row">
+                <div class="col-6 colon bold">
+                  <span>IP Address</span>
+                </div>
+                <div class="col-6">
+                  <span>{{portlist.ipaddress}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 colon bold">
+                  <span>Subnet Mask</span>
+                </div>
+                <div class="col-6">
+                  <span>{{portlist.ipmask}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 colon bold">
+                  <span>Gateway</span>
+                </div>
+                <div class="col-6">
+                  <span>{{portlist.gateway}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 colon bold">
+                  <span>MAC Address</span>
+                </div>
+                <div class="col-6">
+                  <span>{{portlist.macaddress}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 colon bold">
+                  <span>Link Status</span>
+                </div>
+                <div class="col-6">
+                  <span>{{portlist.linkstatus}}</span>
+                </div>
+              </div>
+            </md-card>
+          </div>
+        </div>
+      </div>
+      <div class="row dnsSettings" *ngIf="DNS_list.dns">
+        <div class="col-md-12">
+          <md-toolbar color="primary">
+            <label class="dnsSettingsLbl">DNS Settings</label>
+          </md-toolbar>
+          <md-card>
+            <div class="row">
+              <div class="col-6 colon bold">
+                <span>DNS Domain</span>
+              </div>
+              <div class="col-6">
+                <span>{{DNS_list.dns.domainserver}}</span>
+              </div>
+            </div>
+            <div class="row" *ngFor="let ns of DNS_list.dns.nameservers; let i = index;">
+              <div class="col-6 colon bold">
+                <span>DNS Nameserver {{i+1}}</span>
+              </div>
+              <div class="col-6">
+                <span>{{ns}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 colon bold">
+                <span>DHCP({{DNS_list.dhcp._attr.string}})</span>
+              </div>
+              <div class="col-2">
+                <md-checkbox (click)="toogleForm(DNS_list.dhcp._attr.string)"
+                             [(ngModel)]="network_identify['dhcp']"
+                             [disabled]="network_identify['loading']">
+                </md-checkbox>
+              </div>
+            </div>
+          </md-card>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!network_identify.dhcp">
+      <form [formGroup]="networkForm">
+        <div class="col-12 network" formArrayName="network">
+          <div class="row">
+            <div class="col-sm-6" *ngFor="let network of port_list; let i=index">
+              <md-toolbar color="primary">
+                <label class="networkLbl">Network{{i+1}}</label>
+              </md-toolbar>
+              <div [formGroupName]="i">
+                <div class="form-group col-xs-6 network-align">
+                  <md-input-container class="form-input-container">
+                    <input mdInput formControlName="ipaddress" placeholder="IP Address" />
+                    <md-hint align="end">
+                      <div *ngIf="!networkForm.controls.network.controls[i].controls.ipaddress.valid &&
+                                   networkForm.controls.network.controls[i].controls.ipaddress.touched"
+                                   class="text-danger text-right">
+                            <span *ngIf="networkForm.controls.network.controls[i].controls.ipaddress.errors.pattern"
+                                  class="text-danger text-right">
+                                  Invalid ISE IP
+                            </span>
+                            <span *ngIf="networkForm.controls.network.controls[i].controls.ipaddress.errors.required"
+                                  class="text-danger text-right">
+                              IPaddress is required
+                            </span>
+                      </div>
+                    </md-hint>
+                  </md-input-container>
+                </div>
+                <div class="form-group col-xs-6 network1-align">
+                  <md-input-container class="form-input-container">
+                    <input mdInput formControlName="ipmask" placeholder="Subnet Mask" />
+                  </md-input-container>
+                </div>
+                <div class="form-group col-xs-6 network1-align">
+                  <md-input-container class="form-input-container">
+                    <input mdInput formControlName="gateway" placeholder="Gateway" />
+                  </md-input-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row dnsSettings">
+          <div class="col-md-12">
+            <md-toolbar color="primary">
+              <label class="dnsSettingsLbl">DNS Settings</label>
+            </md-toolbar>
+            <div class="form-group col-xs-6 dns-top-align">
+              <md-input-container class="form-input-container">
+                <input mdInput formControlName="domainserver" placeholder="Domainserver" />
+                <md-hint align="end">
+                  <div *ngIf="!networkForm['controls']['domainserver'].valid &&
+                               networkForm['controls']['domainserver'].touched"
+                       class="text-danger text-right">
+                      <span *ngIf="networkForm['controls']['domainserver'].errors.pattern"
+                            class="text-danger text-right">
+                        Invalid Domainserver
+                      </span>
+                  </div>
+                </md-hint>
+              </md-input-container>
+            </div>
+            <div class="form-group col-xs-6 dns-align">
+              <md-input-container class="form-input-container">
+                <input mdInput formControlName="dns_nameserver1" placeholder="DNS Nameserver1" />
+                <md-hint align="end">
+                  <div *ngIf="!networkForm['controls']['dns_nameserver1'].valid &&
+                               networkForm['controls']['dns_nameserver1'].touched"
+                               class="text-danger text-right">
+                      <span *ngIf="networkForm['controls']['dns_nameserver1'].errors.pattern"
+                            class="text-danger text-right">
+                        Invalid DNS Nameserver
+                      </span>
+                  </div>
+                </md-hint>
+              </md-input-container>
+            </div>
+            <div class="form-group col-xs-6 dns-align">
+              <md-input-container class="form-input-container">
+                <input mdInput formControlName="dns_nameserver2" placeholder="DNS Nameserver2" />
+                <md-hint align="end">
+                  <div *ngIf="!networkForm['controls']['dns_nameserver2'].valid &&
+                               networkForm['controls']['dns_nameserver2'].touched"
+                               class="text-danger text-right">
+                      <span *ngIf="networkForm['controls']['dns_nameserver2'].errors.pattern"
+                            class="text-danger text-right">
+                        Invalid DNS Nameserver
+                      </span>
+                  </div>
+                </md-hint>
+              </md-input-container>
+            </div>
+            <div class="form-group col-xs-6 dns-align">
+              <md-checkbox (change)="dhcpChange()" formControlName="dhcp">  DHCP
+              </md-checkbox>
+            </div>
+          </div>
+        </div>
+        <div class="row dns-align network-btn">
+          <div class="net-btn1">
+            <button md-raised-button color="primary" (click)="onSubmit()">
+              Submit
+            </button>
+          </div>
+          <div class="net-full"></div>
+        </div>
+      </form>
+    </div>
+  </md-card>
+</div>

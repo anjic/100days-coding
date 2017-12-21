@@ -1,0 +1,13 @@
+Source/webapp/xio-monitor/src/config.json
+Source/server/api/migrations/
+*.pyc
+*.pyo
+Source/webapp/xio-monitor/build/
+Source/webapp/xio-monitor/dist/
+Source/server/logs/
+Source/server/conf/
+Source/webapp/xio-monitor/src/assets/config.json
+src/assets/ruleOfThreeCount.js
+src/assets/test.js
+Source/webapp/xio-monitor-app/src/app/app-setting.ts
+.eslintrc.json

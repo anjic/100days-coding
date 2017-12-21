@@ -1,0 +1,22 @@
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;    
+    z-index: -1;
+}
+
+.footer-background {
+    color: white;
+    background: #36404a;
+    font-size: 80%;
+    padding: 5px;
+}
+
+.pl-240 {
+    padding-left:240px;
+}
+
+span.copyright:after { 
+    content:"\00a9"; 
+}

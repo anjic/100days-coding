@@ -1,0 +1,115 @@
+<div class="card">
+  <div class="row">
+    <div class="col-12 mar-tb-10">
+      <h4 class="pull-left">WWN Group Present / Unpresent</h4>
+    </div>
+    <div class="col-12">
+        <strong>WWN Group name:</strong> {{host_name}}
+    </div>
+    <div class="col-12" >
+      <span><strong>WWN:</strong></span>
+       <ul class="ul" style="list-style: none; padding-left: 0px; ">
+        <li class="li" *ngFor= "let e of end_point_name">
+         {{e}}
+          </li>
+      </ul>
+    </div>
+ <div class="col-12">
+      <div class="form-box">
+        <strong>Volume List</strong>
+        <hr/>
+        <form novalidate [formGroup]="allocationForm" autocomplete="off">
+          <div class="row">
+            <div class="col-12">
+                            <span class="text-danger"
+                                  *ngIf="allocationForm.errors && allocationForm.errors.duplicateLun && !allocationForm.errors.duplicateLun.valid">
+									LUN Number should be unique
+							</span>
+              <span class="text-danger"
+                    *ngIf="allocationForm.errors && allocationForm.errors.invalidLun && !allocationForm.errors.invalidLun.valid">
+									 Invalid LUN Number
+							</span>
+            </div>
+            <div class="col avail_sub">
+              <div formArrayName="volume_list" class="">
+                <div class="row " style="background-color:#14adab ;color: #ffffff">
+                  <div class="col">
+                    VOLUME
+                  </div>
+                  <div class="col">
+                    ASSIGNED
+                  </div>
+                  <div class="col">
+                    LUN
+                  </div>
+                </div>
+                <div *ngIf="loading_stack.volume_list">
+                  <app-xio-loader [displayText]="loading_stack.volume_list_text">
+                  </app-xio-loader>
+                </div>
+
+                <div class="row" [formGroupName]="i"
+                     *ngFor="let w of allocationForm['controls'].volume_list['controls']; let i=index;">
+                  <label class="col" for="volume-{{i}}">
+                    {{getVolumeLabel('volume_list',i, 'allocationForm')}}
+                  </label>
+                  <div class="col">
+                    <md-slide-toggle color="primary" size="small" [disabled] = "!allocationForm.valid" formControlName="volume" (change)="volume_listlun(i)">
+                    </md-slide-toggle>
+                  </div>
+                  <div class="col">
+                    <div [hidden]="!w['controls']['volume'].value">
+                      <input style="width: 70px;" id="{{i}}" type="number"  (focusin)="lunFocusIn($event)" (focusout) = "lunFocusOut($event)" formControlName="lun"/>
+                      <!-- <span class="text-danger" [hidden]="!w['controls']['lun'].invalid">
+                          Invalid LUN Number
+                      </span> -->
+                    </div>
+                  </div>
+                </div>
+                   <div
+                    *ngIf="!is_volume && !loading_stack.volume_list"
+                        class="form-group">
+                        <label class="text-danger" for="">
+                          No volumes available
+                        </label>
+                    </div>
+              </div>
+              <div formArrayName="allocate_volume_list">
+                <div class="row" [formGroupName]="i"
+                     *ngFor="let w of allocationForm['controls'].allocate_volume_list['controls']; let i=index;">
+                  <label class="col" for="volume-{{i}}">
+                    {{getVolumeLabel('allocate_volume_list',i, 'allocationForm')}}
+                  </label>
+                  <div class="col">
+                    <md-slide-toggle [disabled] = "!allocationForm.valid" color="primary" size="small" formControlName="volume"
+                                     (change)="allocate_volumelun(i)">
+                    </md-slide-toggle>
+                  </div>
+                  <div class="col">
+                    <div [hidden]="!w['controls']['volume'].value">
+                      <input style="width: 70px;" type="number" id="{{allocated_volume_name.length + i}}" (focusin)="lunFocusIn($event)" (focusout) = "lunFocusOut($event)" formControlName="lun"/>
+                      <!-- <span class="text-danger"
+                              [hidden]="!w['controls']['lun'].invalid">
+                              Invalid LUN Number
+                          </span> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-12">
+            <button md-raised-button color="warn" routerLink="/ise/{{ise_id}}/host">
+              Cancel
+            </button>
+            <button md-raised-button color="primary" (click)="onUpdateSubmit()" [disabled]="allocationForm.invalid">
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

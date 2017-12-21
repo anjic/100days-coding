@@ -1,0 +1,217 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="sub-heading pull-left">
+      <h4>{{form_title}}</h4>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <md-card class="mb-30">
+      <form novalidate [formGroup]="hostsForm" autocomplete="off">
+        <div *ngIf="host_details.current_step==1">
+          <div *ngIf="isSangroup">
+            <div class="col-12 form-slider-group">
+              <md-select placeholder="Select ISE" id="ise_select_list" formControlName="ise_id"
+                         (change)="onISESelectChange($event)">
+                <md-option *ngFor="let w of host_details.ise_select_list" value="{{w.id}}">
+                  {{w.ise_name}}
+                </md-option>
+              </md-select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <md-input-container class="form-input-container">
+                  <input mdInput formControlName="name" placeholder="Name">
+                  <md-hint align="end">
+                    <div *ngIf="!hostsForm['controls']['name'].valid && hostsForm['controls']['name'].touched"
+                         class="text-danger text-right">
+                      <span *ngIf="hostsForm['controls']['name'].errors.pattern" class="text-danger text-right">
+                                Invalid WWN Group name
+                                </span>
+                      <span *ngIf="hostsForm['controls']['name'].errors.required" class="text-danger text-right">
+                               WWN Group name is required
+                                </span>
+                    </div>
+                  </md-hint>
+                </md-input-container>
+              </div>
+              <div class="form-group">
+                <md-input-container>
+                  <textarea mdInput formControlName="comment" placeholder="comment"></textarea>
+                  <div *ngIf="!hostsForm['controls']['comment'].valid && hostsForm['controls']['comment'].touched"
+                       class="text-danger text-right">
+                  </div>
+                </md-input-container>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="form-box">
+                <div class="row">
+                  <div class="col-sm " formArrayName="current_wwns" *ngIf="host_details.id">
+                    <div class="row host-avail-head">
+                      <label for="cuurent-wwn" class="static-header"><strong>Current WWNs</strong></label>
+                    </div>
+                    <div>
+                      <div class="static-content avail_sub">
+                        <ul class="wwnul" style="list-style: none; padding-left: 0px; ">
+                          <li class="col-12 li form-group" [formGroupName]="i"
+                              *ngFor="let w of hostsForm['controls'].current_wwns['controls']; let i=index;">
+                            <label for="current-wwn-{{i}}">
+                              {{getWWNLabel('current_wwns',i)}}
+                            </label>
+                            <md-slide-toggle color="primary" formControlName="wwn">
+                            </md-slide-toggle>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm">
+                    <div class="row host-avail-head"><label for="cuurent-wwn" class="static-header"><strong> Available
+                      WWNs </strong></label></div>
+                    <div class="row avail_sub" formArrayName="available_wwns" *ngIf="host_details.ise_id">
+                      <div class="row">
+                        <div class="static-content">
+                          <div *ngIf="host_details.loading_stack.endpoint">
+                            <app-xio-loader [displayText]="host_details.loading_stack.endpoint_text">
+                            </app-xio-loader>
+                          </div>
+                          <ul class="wwnul" style="list-style: none; padding-left: 0px; ">
+                            <li class="col-12 li form-group " [formGroupName]="i"
+                                *ngFor="let w of hostsForm['controls'].available_wwns['controls'];let i= index;">
+                              <label for="available-wwn-{{i}}">
+                                {{getWWNLabel('available_wwns',i)}}
+                              </label>
+                              <md-slide-toggle color="primary" formControlName="wwn">
+                              </md-slide-toggle>
+                            </li>
+                          </ul>
+                          <div
+                            *ngIf="!host_details.loading_stack.endpoint && !hostsForm['controls'].available_wwns['controls'].length && host_details.id"
+                            class="form-group">
+                            <label class="text-danger" for="">
+                              No WWNs available
+                            </label>
+                          </div>
+                          <div
+                            *ngIf="!host_details.loading_stack.endpoint && !hostsForm['controls'].available_wwns['controls'].length && !host_details.id"
+                            class="form-group">
+                            <label class="text-danger" for="">
+                              No WWNs available
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="host_details.current_step==2" class="col-12">
+          <md-tab-group [(selectedIndex)]="host_details.selectedIndex" md-stretch-tabs="always">
+            <md-tab label="Volume List">
+              <div class="row vol-padd" *ngIf="svs.volume_list">
+                <div class="col-12 vol-padd">
+                  <span class="text-danger"
+                        *ngIf="hostsForm.errors && hostsForm.errors.validateLUN && !hostsForm.errors.validateLUN.valid">
+                                  LUN Number should be unique
+                              </span>
+                  <span class="text-danger"
+                        *ngIf="hostsForm.errors && hostsForm.errors.invalidLUN && !hostsForm.errors.invalidLUN.valid">
+                                Invalid LUN Number
+                              </span>
+                  <div class="col avail_sub vol-padd">
+                    <div formArrayName="volumes" *ngIf="host_details.ise_id">
+                      <div class="row vol-sub-header">
+                        <div class="col">
+                          Volume List
+                        </div>
+                        <div class="col">
+                          Status
+                        </div>
+                        <div class="col">
+                          LUN
+                        </div>
+                      </div>
+                      <div *ngIf="vol_loading_stack.vol_list && hostsForm['controls'].volumes['controls'].length === 0">
+                        <app-xio-loader [displayText]="vol_loading_stack.vol_list_text">
+                        </app-xio-loader>
+                      </div>
+                      <div style="padding-top:25px;">
+                        <div class="row" [formGroupName]="i" *ngFor="let w of hostsForm['controls'].volumes['controls'];
+                                     let i=index;">
+                          <label class="col" for="volumes-{{i}}">
+                            {{getVolumeLabel('volumes',i,'hostsForm')}}
+                          </label>
+                          <div class="col">
+                            <md-slide-toggle color="primary" size="small" id="volumes-{{i}}"
+                                             [disabled]="!hostsForm.valid" formControlName="volume"
+                                             (change)="lun(i)">
+                            </md-slide-toggle>
+                          </div>
+                          <div class="col">
+                            <div [hidden]="!w['controls']['volume'].value">
+                              <input style="width: 70px;" type="number" (focusin)="lunFocusIn($event)"
+                                     (focusout)="lunFocusOut($event)" formControlName="lun"/>
+                              <!--  <span class="text-danger" [hidden]="!w['controls']['lun'].invalid">
+                                                      Invalid LUN Number
+                                                  </span> -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="!hostsForm['controls'].volumes['controls'].length && !vol_loading_stack.vol_list"
+                         class="form-group">
+                      <label class="text-danger" for="">
+                        No Volumes available
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6"></div>
+              </div>
+            </md-tab>
+            <md-tab label="Create Volume">
+              <div *ngIf="host_details.ise_id">
+                <app-volume-form [isHost]="host_details.isHost" [isHostIse]="host_details.ise_id"
+                                 (isCreated)="isVolumeCreated($event)"></app-volume-form>
+              </div>
+            </md-tab>
+          </md-tab-group>
+        </div>
+      </form>
+      <div class="col-12">
+        <button class="col-sf button-left" color="warn" md-raised-button *ngIf="!isVolume && !isSangroup"
+                routerLink="/ise/{{host_details.ise_id}}/host">
+          Cancel
+        </button>
+        <button md-raised-button class="col-sf button-left" color="primary"
+                *ngIf="!host_details.id && !isVolume && host_details.current_step==1"
+                (click)="changeStep(2)" [disabled]="hostsForm.invalid">
+          Next
+        </button>
+        <button md-raised-button class="col-sf button-left" color="primary"
+                *ngIf="!host_details.id && !isVolume && host_details.current_step==2"
+                (click)="changeStep(1)" [disabled]="hostsForm.invalid">
+          Back
+        </button>
+        <button class="col-sf button-left" color="primary" md-raised-button *ngIf="!host_details.id"
+                (click)="onSubmit()"
+                [disabled]="hostsForm.invalid">
+          Create WWN Group
+        </button>
+        <button class="col-sf button-left" color="primary" md-raised-button *ngIf="host_details.id"
+                (click)="onUpdateSubmit()"
+                [disabled]="hostsForm.invalid">
+          Update WWN Group
+        </button>
+      </div>
+    </md-card>
+  </div>
+</div>

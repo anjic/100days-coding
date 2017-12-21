@@ -1,0 +1,43 @@
+<div class="div-body">
+  <div class="container-fluid body-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-7 col-md-8">
+          <div class="app-title">
+            <div><img class="home-logo" alt src="./assets/images/home-xio-app-logo.svg"></div>
+          </div>
+        </div>
+        <div class="col-sm-5 col-md-4 height-100">
+          <div class="wrap">
+            <form class="login" [formGroup]="loginForm">
+              <p *ngIf="error" class="text-danger">{{error_msg}}</p>
+              <md-input-container class="example-full-width form-input-container">
+                <input mdInput formControlName="user_name" placeholder="Username" />
+                <md-hint align="end">
+                  <div *ngIf="!loginForm['controls']['user_name'].valid && loginForm['controls']['user_name'].touched" class="text-danger text-right">
+                    <span *ngIf="loginForm['controls']['user_name'].errors.required" class="text-danger text-right">
+                          Please enter Username
+                    </span>
+                  </div>
+                </md-hint>
+              </md-input-container>
+              <md-input-container class="example-full-width form-input-container">
+                <input mdInput type="password" formControlName="password" placeholder="Password" />
+                <md-hint align="end">
+                  <div *ngIf="!loginForm['controls']['password'].valid && loginForm['controls']['password'].touched" class="text-danger text-right">
+                    <span *ngIf="loginForm['controls']['password'].errors.required" class="text-danger text-right">
+                        Please enter password
+                    </span>
+                  </div>
+                </md-hint>
+              </md-input-container>
+              <button (click)="doLogin()" type="submit" class="btn btn-sm" [disabled]="loginForm.invalid">
+                LOGIN
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="sub-heading pull-left">
+    <h4>Users List</h4>
+  </div>
+  <span class="example-spacer"></span>
+  <div class="pull-right main-btn">
+    <button md-raised-button class="toolbar-btn" (click)="navigateTo($event, '/user/create')" [routerLinkActive]="['active']" md-list-item>
+      Create User
+    </button>
+  </div>
+</div>
+<div class="row">
+  <xio-md-dataTable class="col-md-12" [gridOptions]="gridOptions"></xio-md-dataTable>
+</div>

@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col-12 btn-align">
+   <!-- <button md-raised-button class="col-sf button-left" color="primary" routerLink="/server/{{ser_id}}/edit/wwn">
+      Create WWN Groups
+    </button>-->
+  </div>
+</div>
+<div class="row">
+  <div class="col-12" style="padding-left:5%;">
+    <md-input-container>
+      <input mdInput type="text" placeholder="Server Name" [(ngModel)]="server_name">
+    </md-input-container>
+  </div>
+</div>
+<div class="box-align">
+  <div class="box-border-align">
+    <div class="box-bg">
+      <label class="label-align">List of WWN Groups</label>
+    </div>
+    <div *ngIf="!loading_stack.wwngroup_details" style="padding-top:10px">
+      <app-xio-loader [displayText]="loading_stack.wwngroup_details_text">
+      </app-xio-loader>
+    </div>
+    <div *ngIf="loading_stack.wwngroup_details">
+      <div *ngIf="ise_wnn_list.length > 0">
+        <div style="width:95%;" *ngFor="let ise_wwn of ise_wnn_list">
+          <div class="row">
+            <div class="col-6 ise-label-align">
+              {{ise_wwn.ise_name}}
+            </div>
+            <div class="col-6 pull-right" style="text-align:right">
+              <md-input-container floatPlaceholder="auto" style="padding-right:50px !important;">
+                <input mdInput type="text" placeholder="Search">
+              </md-input-container>
+            </div>
+          </div>
+          <div *ngIf="ise_wwn.wwns.length == 0" style="width:100%;text-align: center;">
+            No WWN Groups found to display
+          </div>
+          <div *ngIf="ise_wwn.wwns.length > 0">
+            <div class="row" *ngFor="let wwn_grp of ise_wwn.wwns">
+              <div class="col-6" style="padding-left:40px">
+              <span *ngIf="wwn_grp.server_name != '' && wwn_grp.server_name != server_name">
+                <div>
+                  <span style="color:#969595 !important;">
+                  {{wwn_grp.wwngroup}}-({{wwn_grp.server_name}})
+                  </span>
+                 <!-- <span class="pointer">
+                    <i class="material-icons" style="color:#969595 !important;"  mdTooltipPosition="right">mode_edit</i>
+                  </span>-->
+                </div>
+              </span>
+                <span *ngIf="wwn_grp.server_name == server_name || !wwn_grp.server_name">
+                <div>{{wwn_grp.wwngroup}}
+                  <span *ngIf="wwn_grp.server_name"> - ({{wwn_grp.server_name}})</span>
+                  <!--<span class="pointer">
+                    <i class="material-icons" mdTooltip="Edit" mdTooltipPosition="right"
+                       routerLink="/server/{{ser_id}}/edit/wwngroup/{{ise_wwn.ise_id}}/{{wwn_grp.wwngroup_id}}">
+                      mode_edit
+                    </i>
+                  </span>-->
+              </div>
+            </span>
+              </div>
+              <div *ngIf="wwn_grp.server_name == server_name" class="col-6">
+                <!--<div style="width: 100%;text-align: right;padding-right: 50px;">
+                  <md-slide-toggle color="primary" size="small" (change)="togglewwn($event,wwn_grp.wwngroup,ise_wwn.ise_id)" checked="checked">
+                  </md-slide-toggle>
+                </div>
+              </div>
+              <div *ngIf="!wwn_grp.server_name" class="col-6">
+                <div style="width: 100%;text-align: right;padding-right: 50px;">
+                  <md-slide-toggle color="primary" size="small" (change)="togglewwn($event,wwn_grp.wwngroup,ise_wwn.ise_id)" >
+                  </md-slide-toggle>
+                </div>
+              </div>
+              <div *ngIf="wwn_grp.server_name != '' && wwn_grp.server_name !== server_name" class="col-6">
+                <div style="width: 100%;text-align: right;padding-right: 50px;">
+                  <md-slide-toggle color="primary" size="small" disabled="disabled" checked="checked">
+                  </md-slide-toggle>
+                </div>
+              </div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div >
+
+      </div>
+  </div>
+      <div *ngIf="ise_wnn_list.length == 0" class="no-wwn-found-to-display">
+        <label>No WWN(s) Found to Display</label>
+      </div>
+</div>
+</div>
+<div class="btn-align1">
+  <button md-raised-button class="col-sf button-left" color="warn" routerLink="/server/list">
+    Cancel
+  </button>
+  <!--<button md-raised-button class="col-sf button-left" color="primary" (click)="onUpdate()">
+    Update
+  </button>-->
+</div>

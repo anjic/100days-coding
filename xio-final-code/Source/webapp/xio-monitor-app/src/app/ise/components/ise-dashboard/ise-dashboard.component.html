@@ -1,0 +1,203 @@
+<div class="row ise-isu" style="margin-top: 20px;">
+  <div class="col-10">
+    <div class="sub-heading">
+      <h4>Dashboard</h4>
+    </div>
+  </div>
+  <div class="col-2" class="refresh-btn">
+    <app-refresh-button [screen_name] ='screen_name'
+                        (onRefreshClick) ="refreshDashBoard()" >
+    </app-refresh-button>
+  </div>
+  <div class="col-md-12">
+    <md-card *ngIf="containers.length">
+        <div class="col-12 text-center" style="margin-top: 25px;" *ngIf="loading_stack.capacity_details">
+          <app-xio-loader [displayText]="loading_stack.dashboard_details_text">
+          </app-xio-loader>
+        </div>
+        <div *ngIf="!loading_stack.capacity_details">
+          <h4 class="mb-0 sub-heading capacities-header" style="padding: 0;">
+            <span class ="label-left-align">Storage Utilization </span>
+            <span class="data-reduction-label" *ngIf="containers[0].bars.length && containers[0].storageSize > 0">{{storageUtilization.ratio | number:'1.0-2'}}:1 Data reduction ratio*</span>
+            <span style="display: block; clear: both;">
+                <a href="javascript:void(0);" (click)="capacitiesView = 'graph'" class="capacities-view-link">Graph View</a>
+                <a href="javascript:void(0);" (click)="capacitiesView = 'data'" class="capacities-view-link">Data View</a>
+            </span>
+
+          </h4>
+          <div style="clear: both;"></div>
+          <div *ngIf="capacitiesView === 'data'" style="display: flex; flex-wrap: wrap; justify-content: space-around; position: relative; top: -25px;">
+            <div *ngFor="let container of containers" class="data-view-container">
+              <h5>{{container.storageType}} ({{container.storageSize | number:'1.0-2'}}TB {{container.capacityLabel}})</h5>
+              <hr/>
+              <div *ngFor="let bar of container.bars">
+                <label class="data-view-bar-label">{{bar.data.label}}:</label> {{bar.data.value | number:'1.3'}}TB ({{(bar.data.value / container.storageSize)*100 | number:'1.0-2'}}%)
+              </div>
+              <div *ngIf="container.bars.length === 0" style="font-weight: bold;">No Data Available</div>
+            </div>
+            <div class="data-view-container">
+                <h5>Free Capacity</h5>
+                <hr/>
+                <div class="data-view-label-container">
+                  <label class="data-view-bar-label" style="width: 65px; float: left;">RAW:</label> <span class="data-view-bar-data">{{(totalPoolData.free.raw / 1024) | number:'1.3'}}TB</span>
+                </div>
+                <div class="data-view-label-container">
+                  <label class="data-view-bar-label" style="width: 65px; float: left;">RAID1:</label> <span class="data-view-bar-data">{{(totalPoolData.free.raid1 / 1024) | number:'1.3'}}TB</span>
+                </div>
+                <div class="data-view-label-container">
+                  <label class="data-view-bar-label" style="width: 65px; float: left;">RAID5:</label> <span class="data-view-bar-data">{{(totalPoolData.free.raid5 / 1024) | number:'1.3'}}TB</span>
+                </div>
+              </div>
+          </div>
+          <div *ngIf="capacitiesView === 'graph'">
+              <h1 style="text-align: center;" *ngIf="(containers | nonEmptyContainers).length === 0">No Data Available</h1>
+              <app-fill-container [container]="container" [first]="$first" [scaleContainerSize]="scaleContainerSize"
+                [scaleContainers]="scaleContainers" *ngFor="let container of containers; let $first = first;"></app-fill-container>
+
+              <h4 class="sub-heading" style="padding: 0; margin-top: 55px; margin-bottom: 5px;">
+                <span class="free-capacity-label" *ngIf="(containers | nonEmptyContainers).length !== 0">
+                  Free Capacity - RAW: {{(totalPoolData.free.raw / 1024) | number:'1.0-2'}}TB |
+                  RAID1: {{(totalPoolData.free.raid1 / 1024) | number:'1.0-2'}}TB |
+                  RAID5: {{(totalPoolData.free.raid5 / 1024) | number:'1.0-2'}}TB
+                </span>
+              </h4>
+              <span style="display: block; clear: both;">
+                <span *ngIf="containers[0].bars.length && containers[0].storageSize > 0">
+                  <span class="color-swatch" [ngStyle]="{'background': barColors.blue.gradient}"></span> = Dedupe &nbsp;
+                  <span class="color-swatch" [ngStyle]="{'background': barColors.pink.gradient}"></span> = Raid1 &nbsp;
+                  <span class="color-swatch" [ngStyle]="{'background': barColors.teal.gradient}"></span> = Raid5 &nbsp;
+                </span>
+                <span *ngIf="(containers | nonEmptyContainers).length !== 0">
+                  <span class="color-swatch" [ngStyle]="{'background': barColors.yellow.gradient}"></span> = Allocated
+                </span>
+              </span>
+          </div>
+          <span *ngIf="containers[0].bars.length && containers[0].storageSize > 0">*Data reduction ratio only applies to dedupe volumes</span>
+        </div>
+    </md-card>
+    <md-card *ngIf="false">
+      <div class="row mb-5px" *ngIf="bullet_chart">
+        <div class="col-12 text-center" style="margin-top: 25px;" *ngIf="loading_stack.dashboard_details">
+          <app-xio-loader [displayText]="loading_stack.dashboard_details_text">
+          </app-xio-loader>
+        </div>
+        <div class="col-sm-4" *ngIf="!loading_stack.dashboard_details">
+          <h3 class="text-center">Available Capacity</h3>
+          <div *ngIf="storageUtilization.ratio <= 1">
+            <div class="chart-box">
+              <div tooltip="With current reduction"
+                   [ngStyle]="{'width': '100%', 'height': '100%', 'background-color': '#E0E1E2','float':'left'}">
+              </div>
+
+              <div
+                [ngStyle]="{'width': current_used,'height': '100%', 'background-color': '#00AD9A','border-radius':'15px'}"
+                tooltip="Without reduction">
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="storageUtilization.ratio > 1">
+            <div class="chart-box">
+              <div tooltip="Without reduction" [ngStyle]="{'width': available_r,'height': '100%','float':'left'}">
+              </div>
+              <div [ngStyle]="{'width': current_r,'height': '100%', 'background-color': '#00AD9A','float':'left'}"
+                   tooltip="With current reduction">
+              </div>
+            </div>
+          </div>
+          <div class="legend">
+            <div class="">
+              <span class="available"></span> Without reduction: {{available_Tb}}
+            </div>
+            <div class="">
+              <span class="current"></span> With current reduction: {{current_Tb}}
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 capacity-data-bg" *ngIf="!loading_stack.dashboard_details">
+          <h3 class="text-center"> Host Utilization </h3>
+          <div [ngStyle]="{'width': '100%', 'height': '7px', 'background-color': '#E0E1E2','border-radius':'15px'}"
+               tooltip="Host Visible">
+
+            <div [ngStyle]="{'width':'200px', 'height': '100%','background-color': '#DCE11F'}" tooltip="Allocated">
+              <div
+                [ngStyle]="{'width': '100px', 'height': '100%', 'background-color': '#00AD9A','border-radius':'15px'}"
+                tooltip="Used">
+              </div>
+            </div>
+          </div>
+
+
+          <div class="legend">
+            <div class="">
+              <span class="available"></span>
+              Host Visible: {{host_Tb}}
+            </div>
+            <div class="">
+              <span class="host_used"></span>
+              Used: {{used_Tb}}
+            </div>
+            <div class="">
+              <span class="allocated"></span>
+              Allocated: {{alloc_Tb}}
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 ise-prgrs-bars" *ngIf="!loading_stack.dashboard_details">
+          <div class="">
+            <h3 class="text-center"> System Utilization </h3>
+          </div>
+          <div class="chart-box">
+            <div tooltip="Free"
+                 [ngStyle]="{'width': measure_reduction, 'height': '100%', 'background-color': '#E0E1E2','float':'right','border-radius':'15px'}">
+            </div>
+            <div
+              [ngStyle]="{'width': measure_used, 'height': '100%', 'background-color': '#00AD9A','border-radius':'15px'}"
+              tooltip="Used">
+            </div>
+          </div>
+
+          <div class="legend">
+            <div class="">
+              <span class="total"></span>
+              Free: {{range_Tb}}
+            </div>
+            <div class="">
+              <span class="used"></span>
+              Used: {{measure_Tb}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="bullet_chart">
+        <div class="col-sm-4" *ngIf="!loading_stack.dashboard_details">
+          <div class="capacity-data-1">
+            <span> Total system capacity: {{system_capacity}} </span>
+          </div>
+        </div>
+        <div class="col-sm-4" *ngIf="!loading_stack.dashboard_details">
+          <div class="capacity-data-1">
+                        <span> System capacity used: {{measure_Tb}}
+                        </span>
+          </div>
+        </div>
+        <div class="col-sm-4" *ngIf="!loading_stack.dashboard_details">
+          <div class="capacity-data-1">
+            <span> Current Data Reduction: {{storageUtilization.ratio}}:1</span>
+          </div>
+        </div>
+      </div>
+    </md-card>
+  </div>
+</div>
+<div class="row padding10">
+  <div class="col-xl-12">
+    <app-iops  [iop_data]='iops_new_data' (iopCallCountEmmiter)="getCallsCount()"></app-iops>
+    <div class="line mtb-15"></div>
+    <app-latency [new_latency_data]='latency_new_data' (latencyCallCountEmmiter)="getCallsCount()">
+    </app-latency>
+    <div class="line mtb-15"></div>
+    <app-data-rate [datarate_data]='datarate_new_data' (dataRateCallCountEmmiter)="getCallsCount()">
+    </app-data-rate>
+  </div>
+</div>

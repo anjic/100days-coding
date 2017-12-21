@@ -1,0 +1,20 @@
+<md-card class="row">
+  <md-card-header>
+    <h5>Latency (ms)</h5>
+  </md-card-header>
+  <md-card-content>
+    <div class="col-sm-12 chart-container mx-auto text-center">
+      <div class="card card-325">
+        <p><strong>ISE (Overall)</strong></p>
+        <div class="col-12 text-center" style="margin-top: 25px;" *ngIf="loading_stack.latency_details">
+          <app-xio-loader [displayText]="loading_stack.latency_details_text">
+          </app-xio-loader>
+        </div>
+        <div *ngIf="!loading_stack.latency_details">
+          <nvd3 [options]="latency_options" [data]="array_data"></nvd3>
+        </div>
+      </div>
+    </div>
+  </md-card-content>
+</md-card>
+

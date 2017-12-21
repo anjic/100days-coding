@@ -1,0 +1,54 @@
+<div class="col-12 text-center fanLoadingtext" *ngIf="loading_stack.fans_details">
+  <app-xio-loader [displayText]="loading_stack.fans_details_text">
+  </app-xio-loader>
+</div>
+<div class="col-12 fandatapac fanLoader" *ngIf="!loading_stack.fans_details">
+  <md-card>
+    <div class="row">
+      <div class="col-6 fanCard" *ngFor="let fan of fansList; let i=index;">
+        <md-toolbar [ngClass]="toolBarClass(fan.status._attr.string)">
+          <div class="col-6">
+            <h6>Fan {{i+1}}</h6>
+          </div>
+          <div class="col-6 pull-right fanIdentifyalign">
+            <label class="fansIdentify">Identify</label>
+            <md-slide-toggle class="slide-color" color="primary" [(ngModel)]="fans_identify[i]['value']" [disabled]="fans_identify[i]['loading']" (change)="identifyFans(i,fan.id)">
+            </md-slide-toggle>
+            <span class="fansUpdating" [hidden]="!fans_identify[i]['loading']">Updating....</span>
+          </div>
+        </md-toolbar>
+        <div>
+          <md-card>
+            <div class="row">
+              <div class="col-6 colon bold">
+                <span>Status</span>
+              </div>
+              <div class="col-6">
+                <span [ngClass]="statusClass(fan.status._attr.string)">{{fan.status._attr.string}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 colon bold">
+                <span>ID</span>
+              </div>
+              <div class="col-6">
+                <span>{{fan.id}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 colon bold">
+                <span>RPM</span>
+              </div>
+              <div class="col-6">
+                <span>{{fan.rpm}}</span>
+              </div>
+            </div>
+          </md-card>
+        </div>
+      </div>
+      <div class="available_msg" *ngIf="fansList.length == 0">
+        <span>No Data Available</span>
+      </div>
+    </div>
+  </md-card>
+</div>

@@ -1,0 +1,32 @@
+.ise-info-card{
+	background: #fff;
+	margin:0 0 10px 0;
+	font-size:12px;
+	@include card(1);
+	&:hover{
+		@include card(2);
+	}
+}
+
+.dot{
+	display: inline-block;
+	width:10px;
+	height:10px;
+	border-radius:50%;
+	&.green{
+		background:#6FBF44;
+	}
+	&.red{
+		background:#F0454D;
+	}
+}
+
+.uptime-container{
+	padding:0;
+}
+.uptime-lbl{
+	font-size:.9rem;
+}
+.uptime-data{
+	font-size:1.8rem;
+}

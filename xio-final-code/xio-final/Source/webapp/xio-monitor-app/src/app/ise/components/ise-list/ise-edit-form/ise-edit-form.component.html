@@ -1,0 +1,171 @@
+<div class="main-bar">
+  <div class="row">
+    <div class=" col-sm white main-heading">
+      <h3 class="mtb-0">
+        <md-icon>developer_board</md-icon>
+        <span> ISE Management </span>
+      </h3>
+    </div>
+  </div>
+</div>
+<div class="container-fluid ise-edit-card">
+  <md-card class="card">
+    <md-card-title color="primary">
+      Update ISE Details
+      <div class="line mtb-15"></div>
+    </md-card-title>
+    <md-card-content>
+      <div *ngIf="!loading_stack.ise_details" class="col-12 text-center loader-align">
+        <app-xio-loader [displayText]="loading_stack.ise_details_text">
+        </app-xio-loader>
+      </div>
+      <div class="col-sm-12" *ngIf="ise_details">
+        <div class="form-box" *ngIf="loading_stack.ise_details">
+          <div class="row">
+            <div class="col-6 padd-tb20">
+              <div class="row">
+                <label class="col-4 ise-label-b colon">
+                  Serial Number
+                </label>
+                <span class="col-8">{{ise_details.serial_no}}
+                </span>
+              </div>
+              <div class="row">
+                <label class="col-4 ise-label-b  colon">
+                  Model
+                </label>
+                <span class="col-8">
+                  {{ise_details.model}}
+                </span>
+              </div>
+              <div class="row padd-tb20 mrc-list-dt" *ngFor="let item of ise_details.controllers.controllers;let i=index">
+                <div class="col-12">
+                  <h4>MRC{{i+1}}</h4>
+                </div>
+                <div class="col-12 col-nopadd">
+                  <div class="row">
+                    <label class="col-4 ise-label-b colon">MAC Address</label>
+                    <span class="col-6">{{item.macaddress}}</span>
+                  </div>
+                </div>
+                <div class="col-12 col-nopadd">
+                  <div class="row">
+                    <label class="col-4 ise-label-b colon">IP Address</label>
+                    <span class="col-6">{{item.ipaddress}}</span>
+                  </div>
+                </div>
+                <div class="col-12 col-nopadd">
+                  <div class="row">
+                    <label class="col-4 ise-label-b colon">fwversion</label>
+                    <span class="col-6">{{item.fwversion}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="row">
+                <form novalidate autocomplete="off" [formGroup]="ISEEditForm">
+                  <div class="form-group row">
+                    <md-input-container>
+                      <input mdInput type="text" id="ise_name" formControlName="name" placeholder="ISE Name" />
+                    </md-input-container>
+                  </div>
+                </form>
+              </div>
+              <div class="row">
+                <div class="col-12 padd0">
+                  <h4>Customer Details</h4>
+                </div>
+                <form novalidate autocomplete="off" [formGroup]="ISEEditForm">
+                  <div class="form-group row">
+                    <md-input-container>
+                      <input mdInput type="text" id="name" formControlName="contactname" placeholder="Name" />
+                      <md-hint align="end">
+                        <div *ngIf="!ISEEditForm['controls']['contactname'].valid && ISEEditForm['controls']['contactname'].touched" class="text-danger text-right">
+                          <span *ngIf="ISEEditForm['controls']['contactname'].errors.pattern">
+                            Invalid Contact name
+                          </span>
+                          <span *ngIf="ISEEditForm['controls']['contactname'].errors.maxlength">
+                            Contact name cannot be more than 60 characters.
+                          </span>
+                        </div>
+                      </md-hint>
+                    </md-input-container>
+                  </div>
+                  <div class="form-group row">
+                    <md-input-container>
+                      <input mdInput type="text" id="address" formControlName="address" placeholder="Address" />
+                      <md-hint align="end">
+                        <div *ngIf="!ISEEditForm['controls']['address'].valid && ISEEditForm['controls']['address'].touched" class="text-danger text-right">
+                          <span *ngIf="ISEEditForm['controls']['address'].errors.maxlength">
+                            Address cannot be more than 60 characters.
+                          </span>
+                        </div>
+                      </md-hint>
+                    </md-input-container>
+                  </div>
+                  <div class="form-group row">
+                    <md-input-container>
+                      <input mdInput type="text" id="location" formControlName="location" placeholder="Location" />
+                      <md-hint align="end">
+                        <div *ngIf="!ISEEditForm['controls']['location'].valid && ISEEditForm['controls']['address'].touched" class="text-danger text-right">
+                          <span *ngIf="ISEEditForm['controls']['location'].errors.maxlength">
+                            Location cannot be more than 32 characters.
+                          </span>
+                        </div>
+                      </md-hint>
+                    </md-input-container>
+                  </div>
+                  <div class="form-group row">
+                    <md-input-container>
+                      <input mdInput type="email" id="email" formControlName="contactemail" placeholder="Email" />
+                    </md-input-container>
+                    <md-hint align="end">
+                      <div *ngIf="!ISEEditForm['controls']['contactemail'].valid && ISEEditForm['controls']['contactemail'].touched" class="text-danger text-right">
+                        <span *ngIf="ISEEditForm['controls']['contactemail'].errors.pattern">
+                          Invalid Email
+                        </span>
+                      </div>
+                    </md-hint>
+                  </div>
+                  <div class="form-group row">
+                    <md-input-container>
+                      <input mdInput type="text" id="phone" formControlName="contactphone" placeholder="Phone" />
+                      <md-hint align="end">
+                        <div *ngIf="!ISEEditForm['controls']['contactphone'].valid && ISEEditForm['controls']['contactphone'].touched" class="text-danger text-right">
+                          <span *ngIf="ISEEditForm['controls']['contactphone'].errors.maxlength">
+                            Must be 16 characters or Less
+                          </span>
+                        </div>
+                      </md-hint>
+                    </md-input-container>
+                  </div>
+                  <div class="row">
+                    <md-checkbox color="primary" id="prefered_ise" name="prefered_ise" formControlName="prefered_ise">
+                    </md-checkbox>
+                    <label class="preferred-ise-label">
+                      <Strong>Preferred ISE</Strong>
+                    </label>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </md-card-content>
+    <md-card-actions>
+      <div class="row" *ngIf="loading_stack.ise_details">
+        <div class="col-md-10 form-btn-group">
+          <div class="pull-right  main-btn">
+            <button color="warn" md-raised-button routerLink="/ise">
+              Cancel
+            </button>
+            <button color="primary" md-raised-button (click)="onSubmit()" [disabled]="ISEEditForm.invalid"> Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </md-card-actions>
+  </md-card>
+</div>

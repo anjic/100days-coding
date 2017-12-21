@@ -1,0 +1,565 @@
+[28/Feb/2017 12:37:23] "GET /api/ise-list/ HTTP/1.1" 200 11643
+[28/Feb/2017 12:37:23] "GET /api/sangroup/ HTTP/1.1" 200 505
+Internal Server Error: /api/sangroup/10/hosts/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/test/xio-projects/Source/server/api/views/sangroup_views.py", line 123, in get
+    res = req_obj.send_request(url, AUTH, headers=HEADER_JSON)
+  File "/home/test/xio-projects/Source/server/lib/generic_request.py", line 40, in send_request
+    SEND = loads(xml_to_json(res.text.encode('utf-8')),strict=False)
+  File "/home/test/xio-projects/Source/server/utility/xml_to_json_parser.py", line 49, in xml_to_json
+    else objectify.fromstring(xml)
+  File "src/lxml/lxml.objectify.pyx", line 1804, in lxml.objectify.fromstring (src/lxml/lxml.objectify.c:25178)
+  File "src/lxml/lxml.etree.pyx", line 3213, in lxml.etree.fromstring (src/lxml/lxml.etree.c:77737)
+  File "src/lxml/parser.pxi", line 1830, in lxml.etree._parseMemoryDocument (src/lxml/lxml.etree.c:116674)
+  File "src/lxml/parser.pxi", line 1718, in lxml.etree._parseDoc (src/lxml/lxml.etree.c:115324)
+  File "src/lxml/parser.pxi", line 1090, in lxml.etree._BaseParser._parseDoc (src/lxml/lxml.etree.c:109723)
+  File "src/lxml/parser.pxi", line 584, in lxml.etree._ParserContext._handleParseResultDoc (src/lxml/lxml.etree.c:103584)
+  File "src/lxml/parser.pxi", line 694, in lxml.etree._handleParseResult (src/lxml/lxml.etree.c:105238)
+  File "src/lxml/parser.pxi", line 635, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:104381)
+XMLSyntaxError: None
+[28/Feb/2017 12:37:38] "GET /api/sangroup/10/hosts/ HTTP/1.1" 500 91504
+Internal Server Error: /api/ise/2/array-info/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/test/xio-projects/Source/server/api/views/array_info.py", line 30, in get
+    response = req_obj.send_request(url_dynamic, AUTH, headers=HEADER_JSON)
+  File "/home/test/xio-projects/Source/server/lib/generic_request.py", line 40, in send_request
+    SEND = loads(xml_to_json(res.text.encode('utf-8')),strict=False)
+  File "/home/test/xio-projects/Source/server/utility/xml_to_json_parser.py", line 49, in xml_to_json
+    else objectify.fromstring(xml)
+  File "src/lxml/lxml.objectify.pyx", line 1804, in lxml.objectify.fromstring (src/lxml/lxml.objectify.c:25178)
+  File "src/lxml/lxml.etree.pyx", line 3213, in lxml.etree.fromstring (src/lxml/lxml.etree.c:77737)
+  File "src/lxml/parser.pxi", line 1830, in lxml.etree._parseMemoryDocument (src/lxml/lxml.etree.c:116674)
+  File "src/lxml/parser.pxi", line 1718, in lxml.etree._parseDoc (src/lxml/lxml.etree.c:115324)
+  File "src/lxml/parser.pxi", line 1090, in lxml.etree._BaseParser._parseDoc (src/lxml/lxml.etree.c:109723)
+  File "src/lxml/parser.pxi", line 584, in lxml.etree._ParserContext._handleParseResultDoc (src/lxml/lxml.etree.c:103584)
+  File "src/lxml/parser.pxi", line 694, in lxml.etree._handleParseResult (src/lxml/lxml.etree.c:105238)
+  File "src/lxml/parser.pxi", line 635, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:104381)
+XMLSyntaxError: None
+[28/Feb/2017 12:37:39] "GET /api/ise/2/array-info/ HTTP/1.1" 500 89902
+Internal Server Error: /api/ise/1/array-info/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/test/xio-projects/Source/server/api/views/array_info.py", line 30, in get
+    response = req_obj.send_request(url_dynamic, AUTH, headers=HEADER_JSON)
+  File "/home/test/xio-projects/Source/server/lib/generic_request.py", line 40, in send_request
+    SEND = loads(xml_to_json(res.text.encode('utf-8')),strict=False)
+  File "/home/test/xio-projects/Source/server/utility/xml_to_json_parser.py", line 49, in xml_to_json
+    else objectify.fromstring(xml)
+  File "src/lxml/lxml.objectify.pyx", line 1804, in lxml.objectify.fromstring (src/lxml/lxml.objectify.c:25178)
+  File "src/lxml/lxml.etree.pyx", line 3213, in lxml.etree.fromstring (src/lxml/lxml.etree.c:77737)
+  File "src/lxml/parser.pxi", line 1830, in lxml.etree._parseMemoryDocument (src/lxml/lxml.etree.c:116674)
+  File "src/lxml/parser.pxi", line 1718, in lxml.etree._parseDoc (src/lxml/lxml.etree.c:115324)
+  File "src/lxml/parser.pxi", line 1090, in lxml.etree._BaseParser._parseDoc (src/lxml/lxml.etree.c:109723)
+  File "src/lxml/parser.pxi", line 584, in lxml.etree._ParserContext._handleParseResultDoc (src/lxml/lxml.etree.c:103584)
+  File "src/lxml/parser.pxi", line 694, in lxml.etree._handleParseResult (src/lxml/lxml.etree.c:105238)
+  File "src/lxml/parser.pxi", line 635, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:104381)
+XMLSyntaxError: None
+[28/Feb/2017 12:37:49] "GET /api/ise/1/array-info/ HTTP/1.1" 500 89904
+Internal Server Error: /api/ise/3/array-info/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/test/xio-projects/Source/server/api/views/array_info.py", line 30, in get
+    response = req_obj.send_request(url_dynamic, AUTH, headers=HEADER_JSON)
+  File "/home/test/xio-projects/Source/server/lib/generic_request.py", line 40, in send_request
+    SEND = loads(xml_to_json(res.text.encode('utf-8')),strict=False)
+  File "/home/test/xio-projects/Source/server/utility/xml_to_json_parser.py", line 49, in xml_to_json
+    else objectify.fromstring(xml)
+  File "src/lxml/lxml.objectify.pyx", line 1804, in lxml.objectify.fromstring (src/lxml/lxml.objectify.c:25178)
+  File "src/lxml/lxml.etree.pyx", line 3213, in lxml.etree.fromstring (src/lxml/lxml.etree.c:77737)
+  File "src/lxml/parser.pxi", line 1830, in lxml.etree._parseMemoryDocument (src/lxml/lxml.etree.c:116674)
+  File "src/lxml/parser.pxi", line 1718, in lxml.etree._parseDoc (src/lxml/lxml.etree.c:115324)
+  File "src/lxml/parser.pxi", line 1090, in lxml.etree._BaseParser._parseDoc (src/lxml/lxml.etree.c:109723)
+  File "src/lxml/parser.pxi", line 584, in lxml.etree._ParserContext._handleParseResultDoc (src/lxml/lxml.etree.c:103584)
+  File "src/lxml/parser.pxi", line 694, in lxml.etree._handleParseResult (src/lxml/lxml.etree.c:105238)
+  File "src/lxml/parser.pxi", line 635, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:104381)
+XMLSyntaxError: None
+[28/Feb/2017 12:38:18] "GET /api/ise/3/array-info/ HTTP/1.1" 500 89902
+Internal Server Error: /api/ise/2/array-info/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/test/xio-projects/Source/server/api/views/array_info.py", line 30, in get
+    response = req_obj.send_request(url_dynamic, AUTH, headers=HEADER_JSON)
+  File "/home/test/xio-projects/Source/server/lib/generic_request.py", line 40, in send_request
+    SEND = loads(xml_to_json(res.text.encode('utf-8')),strict=False)
+  File "/home/test/xio-projects/Source/server/utility/xml_to_json_parser.py", line 49, in xml_to_json
+    else objectify.fromstring(xml)
+  File "src/lxml/lxml.objectify.pyx", line 1804, in lxml.objectify.fromstring (src/lxml/lxml.objectify.c:25178)
+  File "src/lxml/lxml.etree.pyx", line 3213, in lxml.etree.fromstring (src/lxml/lxml.etree.c:77737)
+  File "src/lxml/parser.pxi", line 1830, in lxml.etree._parseMemoryDocument (src/lxml/lxml.etree.c:116674)
+  File "src/lxml/parser.pxi", line 1718, in lxml.etree._parseDoc (src/lxml/lxml.etree.c:115324)
+  File "src/lxml/parser.pxi", line 1090, in lxml.etree._BaseParser._parseDoc (src/lxml/lxml.etree.c:109723)
+  File "src/lxml/parser.pxi", line 584, in lxml.etree._ParserContext._handleParseResultDoc (src/lxml/lxml.etree.c:103584)
+  File "src/lxml/parser.pxi", line 694, in lxml.etree._handleParseResult (src/lxml/lxml.etree.c:105238)
+  File "src/lxml/parser.pxi", line 635, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:104381)
+XMLSyntaxError: None
+[28/Feb/2017 12:38:19] "GET /api/ise/2/array-info/ HTTP/1.1" 500 89902
+[28/Feb/2017 12:39:05] "GET /api/sangroup/ HTTP/1.1" 200 505
+[28/Feb/2017 12:39:06] "GET /api/sangroup/10/hosts HTTP/1.1" 301 0
+[28/Feb/2017 12:39:07] "GET /api/sangroup/ HTTP/1.1" 200 505
+[28/Feb/2017 12:39:08] "GET /api/sangroup/10/hosts HTTP/1.1" 301 0
+[28/Feb/2017 12:39:10] "GET /api/sangroup/ HTTP/1.1" 200 505
+[28/Feb/2017 12:39:11] "GET /api/sangroup/ HTTP/1.1" 200 505
+[28/Feb/2017 12:39:11] "GET /api/sangroup/10/hosts HTTP/1.1" 301 0
+Internal Server Error: /api/ise/2/array-info/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/test/xio-projects/Source/server/api/views/array_info.py", line 30, in get
+    response = req_obj.send_request(url_dynamic, AUTH, headers=HEADER_JSON)
+  File "/home/test/xio-projects/Source/server/lib/generic_request.py", line 40, in send_request
+    SEND = loads(xml_to_json(res.text.encode('utf-8')),strict=False)
+  File "/home/test/xio-projects/Source/server/utility/xml_to_json_parser.py", line 49, in xml_to_json
+    else objectify.fromstring(xml)
+  File "src/lxml/lxml.objectify.pyx", line 1804, in lxml.objectify.fromstring (src/lxml/lxml.objectify.c:25178)
+  File "src/lxml/lxml.etree.pyx", line 3213, in lxml.etree.fromstring (src/lxml/lxml.etree.c:77737)
+  File "src/lxml/parser.pxi", line 1830, in lxml.etree._parseMemoryDocument (src/lxml/lxml.etree.c:116674)
+  File "src/lxml/parser.pxi", line 1718, in lxml.etree._parseDoc (src/lxml/lxml.etree.c:115324)
+  File "src/lxml/parser.pxi", line 1090, in lxml.etree._BaseParser._parseDoc (src/lxml/lxml.etree.c:109723)
+  File "src/lxml/parser.pxi", line 584, in lxml.etree._ParserContext._handleParseResultDoc (src/lxml/lxml.etree.c:103584)
+  File "src/lxml/parser.pxi", line 694, in lxml.etree._handleParseResult (src/lxml/lxml.etree.c:105238)
+  File "src/lxml/parser.pxi", line 635, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:104381)
+XMLSyntaxError: None
+[28/Feb/2017 12:39:20] "GET /api/ise/2/array-info/ HTTP/1.1" 500 90037
+Internal Server Error: /api/sangroup/10/hosts/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/test/xio-projects/Source/server/api/views/sangroup_views.py", line 123, in get
+    res = req_obj.send_request(url, AUTH, headers=HEADER_JSON)
+  File "/home/test/xio-projects/Source/server/lib/generic_request.py", line 40, in send_request
+    SEND = loads(xml_to_json(res.text.encode('utf-8')),strict=False)
+  File "/home/test/xio-projects/Source/server/utility/xml_to_json_parser.py", line 49, in xml_to_json
+    else objectify.fromstring(xml)
+  File "src/lxml/lxml.objectify.pyx", line 1804, in lxml.objectify.fromstring (src/lxml/lxml.objectify.c:25178)
+  File "src/lxml/lxml.etree.pyx", line 3213, in lxml.etree.fromstring (src/lxml/lxml.etree.c:77737)
+  File "src/lxml/parser.pxi", line 1830, in lxml.etree._parseMemoryDocument (src/lxml/lxml.etree.c:116674)
+  File "src/lxml/parser.pxi", line 1718, in lxml.etree._parseDoc (src/lxml/lxml.etree.c:115324)
+  File "src/lxml/parser.pxi", line 1090, in lxml.etree._BaseParser._parseDoc (src/lxml/lxml.etree.c:109723)
+  File "src/lxml/parser.pxi", line 584, in lxml.etree._ParserContext._handleParseResultDoc (src/lxml/lxml.etree.c:103584)
+  File "src/lxml/parser.pxi", line 694, in lxml.etree._handleParseResult (src/lxml/lxml.etree.c:105238)
+  File "src/lxml/parser.pxi", line 635, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:104381)
+XMLSyntaxError: None
+[28/Feb/2017 12:39:21] "GET /api/sangroup/10/hosts/ HTTP/1.1" 500 91516
+Internal Server Error: /api/sangroup/10/hosts/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/test/xio-projects/Source/server/api/views/sangroup_views.py", line 123, in get
+    res = req_obj.send_request(url, AUTH, headers=HEADER_JSON)
+  File "/home/test/xio-projects/Source/server/lib/generic_request.py", line 40, in send_request
+    SEND = loads(xml_to_json(res.text.encode('utf-8')),strict=False)
+  File "/home/test/xio-projects/Source/server/utility/xml_to_json_parser.py", line 49, in xml_to_json
+    else objectify.fromstring(xml)
+  File "src/lxml/lxml.objectify.pyx", line 1804, in lxml.objectify.fromstring (src/lxml/lxml.objectify.c:25178)
+  File "src/lxml/lxml.etree.pyx", line 3213, in lxml.etree.fromstring (src/lxml/lxml.etree.c:77737)
+  File "src/lxml/parser.pxi", line 1830, in lxml.etree._parseMemoryDocument (src/lxml/lxml.etree.c:116674)
+  File "src/lxml/parser.pxi", line 1718, in lxml.etree._parseDoc (src/lxml/lxml.etree.c:115324)
+  File "src/lxml/parser.pxi", line 1090, in lxml.etree._BaseParser._parseDoc (src/lxml/lxml.etree.c:109723)
+  File "src/lxml/parser.pxi", line 584, in lxml.etree._ParserContext._handleParseResultDoc (src/lxml/lxml.etree.c:103584)
+  File "src/lxml/parser.pxi", line 694, in lxml.etree._handleParseResult (src/lxml/lxml.etree.c:105238)
+  File "src/lxml/parser.pxi", line 635, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:104381)
+XMLSyntaxError: None
+[28/Feb/2017 12:39:23] "GET /api/sangroup/10/hosts/ HTTP/1.1" 500 91514
+Internal Server Error: /api/sangroup/10/hosts/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/test/xio-projects/Source/server/api/views/sangroup_views.py", line 123, in get
+    res = req_obj.send_request(url, AUTH, headers=HEADER_JSON)
+  File "/home/test/xio-projects/Source/server/lib/generic_request.py", line 40, in send_request
+    SEND = loads(xml_to_json(res.text.encode('utf-8')),strict=False)
+  File "/home/test/xio-projects/Source/server/utility/xml_to_json_parser.py", line 49, in xml_to_json
+    else objectify.fromstring(xml)
+  File "src/lxml/lxml.objectify.pyx", line 1804, in lxml.objectify.fromstring (src/lxml/lxml.objectify.c:25178)
+  File "src/lxml/lxml.etree.pyx", line 3213, in lxml.etree.fromstring (src/lxml/lxml.etree.c:77737)
+  File "src/lxml/parser.pxi", line 1830, in lxml.etree._parseMemoryDocument (src/lxml/lxml.etree.c:116674)
+  File "src/lxml/parser.pxi", line 1718, in lxml.etree._parseDoc (src/lxml/lxml.etree.c:115324)
+  File "src/lxml/parser.pxi", line 1090, in lxml.etree._BaseParser._parseDoc (src/lxml/lxml.etree.c:109723)
+  File "src/lxml/parser.pxi", line 584, in lxml.etree._ParserContext._handleParseResultDoc (src/lxml/lxml.etree.c:103584)
+  File "src/lxml/parser.pxi", line 694, in lxml.etree._handleParseResult (src/lxml/lxml.etree.c:105238)
+  File "src/lxml/parser.pxi", line 635, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:104381)
+XMLSyntaxError: None
+[28/Feb/2017 12:39:38] "GET /api/sangroup/10/hosts/ HTTP/1.1" 500 91510
+[28/Feb/2017 12:40:09] "GET /api/sangroup/ HTTP/1.1" 200 505
+[28/Feb/2017 12:40:09] "GET /api/sangroup/10/hosts HTTP/1.1" 301 0
+[28/Feb/2017 12:40:11] "GET /api/sangroup/ HTTP/1.1" 200 505
+[28/Feb/2017 12:40:13] "GET /api/sangroup/ HTTP/1.1" 200 505
+[28/Feb/2017 12:40:15] "GET /api/sangroup/ HTTP/1.1" 200 505
+[28/Feb/2017 12:40:15] "GET /api/sangroup/ HTTP/1.1" 200 505
+[28/Feb/2017 12:40:15] "GET /api/sangroup/10/hosts HTTP/1.1" 301 0
+[28/Feb/2017 12:40:22] "GET /api/ise-list/ HTTP/1.1" 200 11643
+Internal Server Error: /api/ise/2/array-info/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/test/xio-projects/Source/server/api/views/array_info.py", line 30, in get
+    response = req_obj.send_request(url_dynamic, AUTH, headers=HEADER_JSON)
+  File "/home/test/xio-projects/Source/server/lib/generic_request.py", line 40, in send_request
+    SEND = loads(xml_to_json(res.text.encode('utf-8')),strict=False)
+  File "/home/test/xio-projects/Source/server/utility/xml_to_json_parser.py", line 49, in xml_to_json
+    else objectify.fromstring(xml)
+  File "src/lxml/lxml.objectify.pyx", line 1804, in lxml.objectify.fromstring (src/lxml/lxml.objectify.c:25178)
+  File "src/lxml/lxml.etree.pyx", line 3213, in lxml.etree.fromstring (src/lxml/lxml.etree.c:77737)
+  File "src/lxml/parser.pxi", line 1830, in lxml.etree._parseMemoryDocument (src/lxml/lxml.etree.c:116674)
+  File "src/lxml/parser.pxi", line 1718, in lxml.etree._parseDoc (src/lxml/lxml.etree.c:115324)
+  File "src/lxml/parser.pxi", line 1090, in lxml.etree._BaseParser._parseDoc (src/lxml/lxml.etree.c:109723)
+  File "src/lxml/parser.pxi", line 584, in lxml.etree._ParserContext._handleParseResultDoc (src/lxml/lxml.etree.c:103584)
+  File "src/lxml/parser.pxi", line 694, in lxml.etree._handleParseResult (src/lxml/lxml.etree.c:105238)
+  File "src/lxml/parser.pxi", line 635, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:104381)
+XMLSyntaxError: None
+[28/Feb/2017 12:40:24] "GET /api/ise/2/array-info/ HTTP/1.1" 500 90037
+Internal Server Error: /api/sangroup/10/hosts/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/test/xio-projects/Source/server/api/views/sangroup_views.py", line 123, in get
+    res = req_obj.send_request(url, AUTH, headers=HEADER_JSON)
+  File "/home/test/xio-projects/Source/server/lib/generic_request.py", line 40, in send_request
+    SEND = loads(xml_to_json(res.text.encode('utf-8')),strict=False)
+  File "/home/test/xio-projects/Source/server/utility/xml_to_json_parser.py", line 49, in xml_to_json
+    else objectify.fromstring(xml)
+  File "src/lxml/lxml.objectify.pyx", line 1804, in lxml.objectify.fromstring (src/lxml/lxml.objectify.c:25178)
+  File "src/lxml/lxml.etree.pyx", line 3213, in lxml.etree.fromstring (src/lxml/lxml.etree.c:77737)
+  File "src/lxml/parser.pxi", line 1830, in lxml.etree._parseMemoryDocument (src/lxml/lxml.etree.c:116674)
+  File "src/lxml/parser.pxi", line 1718, in lxml.etree._parseDoc (src/lxml/lxml.etree.c:115324)
+  File "src/lxml/parser.pxi", line 1090, in lxml.etree._BaseParser._parseDoc (src/lxml/lxml.etree.c:109723)
+  File "src/lxml/parser.pxi", line 584, in lxml.etree._ParserContext._handleParseResultDoc (src/lxml/lxml.etree.c:103584)
+  File "src/lxml/parser.pxi", line 694, in lxml.etree._handleParseResult (src/lxml/lxml.etree.c:105238)
+  File "src/lxml/parser.pxi", line 635, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:104381)
+XMLSyntaxError: None
+[28/Feb/2017 12:40:25] "GET /api/sangroup/10/hosts/ HTTP/1.1" 500 91516
+Internal Server Error: /api/sangroup/10/hosts/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/test/xio-projects/Source/server/api/views/sangroup_views.py", line 123, in get
+    res = req_obj.send_request(url, AUTH, headers=HEADER_JSON)
+  File "/home/test/xio-projects/Source/server/lib/generic_request.py", line 40, in send_request
+    SEND = loads(xml_to_json(res.text.encode('utf-8')),strict=False)
+  File "/home/test/xio-projects/Source/server/utility/xml_to_json_parser.py", line 49, in xml_to_json
+    else objectify.fromstring(xml)
+  File "src/lxml/lxml.objectify.pyx", line 1804, in lxml.objectify.fromstring (src/lxml/lxml.objectify.c:25178)
+  File "src/lxml/lxml.etree.pyx", line 3213, in lxml.etree.fromstring (src/lxml/lxml.etree.c:77737)
+  File "src/lxml/parser.pxi", line 1830, in lxml.etree._parseMemoryDocument (src/lxml/lxml.etree.c:116674)
+  File "src/lxml/parser.pxi", line 1718, in lxml.etree._parseDoc (src/lxml/lxml.etree.c:115324)
+  File "src/lxml/parser.pxi", line 1090, in lxml.etree._BaseParser._parseDoc (src/lxml/lxml.etree.c:109723)
+  File "src/lxml/parser.pxi", line 584, in lxml.etree._ParserContext._handleParseResultDoc (src/lxml/lxml.etree.c:103584)
+  File "src/lxml/parser.pxi", line 694, in lxml.etree._handleParseResult (src/lxml/lxml.etree.c:105238)
+  File "src/lxml/parser.pxi", line 635, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:104381)
+XMLSyntaxError: None
+[28/Feb/2017 12:40:26] "GET /api/sangroup/10/hosts/ HTTP/1.1" 500 91514
+Internal Server Error: /api/ise/2/array-info/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/test/xio-projects/Source/server/api/views/array_info.py", line 30, in get
+    response = req_obj.send_request(url_dynamic, AUTH, headers=HEADER_JSON)
+  File "/home/test/xio-projects/Source/server/lib/generic_request.py", line 40, in send_request
+    SEND = loads(xml_to_json(res.text.encode('utf-8')),strict=False)
+  File "/home/test/xio-projects/Source/server/utility/xml_to_json_parser.py", line 49, in xml_to_json
+    else objectify.fromstring(xml)
+  File "src/lxml/lxml.objectify.pyx", line 1804, in lxml.objectify.fromstring (src/lxml/lxml.objectify.c:25178)
+  File "src/lxml/lxml.etree.pyx", line 3213, in lxml.etree.fromstring (src/lxml/lxml.etree.c:77737)
+  File "src/lxml/parser.pxi", line 1830, in lxml.etree._parseMemoryDocument (src/lxml/lxml.etree.c:116674)
+  File "src/lxml/parser.pxi", line 1718, in lxml.etree._parseDoc (src/lxml/lxml.etree.c:115324)
+  File "src/lxml/parser.pxi", line 1090, in lxml.etree._BaseParser._parseDoc (src/lxml/lxml.etree.c:109723)
+  File "src/lxml/parser.pxi", line 584, in lxml.etree._ParserContext._handleParseResultDoc (src/lxml/lxml.etree.c:103584)
+  File "src/lxml/parser.pxi", line 694, in lxml.etree._handleParseResult (src/lxml/lxml.etree.c:105238)
+  File "src/lxml/parser.pxi", line 635, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:104381)
+XMLSyntaxError: None
+[28/Feb/2017 12:40:28] "GET /api/ise/2/array-info/ HTTP/1.1" 500 89902
+Internal Server Error: /api/sangroup/10/hosts/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/test/xio-projects/Source/server/api/views/sangroup_views.py", line 123, in get
+    res = req_obj.send_request(url, AUTH, headers=HEADER_JSON)
+  File "/home/test/xio-projects/Source/server/lib/generic_request.py", line 40, in send_request
+    SEND = loads(xml_to_json(res.text.encode('utf-8')),strict=False)
+  File "/home/test/xio-projects/Source/server/utility/xml_to_json_parser.py", line 49, in xml_to_json
+    else objectify.fromstring(xml)
+  File "src/lxml/lxml.objectify.pyx", line 1804, in lxml.objectify.fromstring (src/lxml/lxml.objectify.c:25178)
+  File "src/lxml/lxml.etree.pyx", line 3213, in lxml.etree.fromstring (src/lxml/lxml.etree.c:77737)
+  File "src/lxml/parser.pxi", line 1830, in lxml.etree._parseMemoryDocument (src/lxml/lxml.etree.c:116674)
+  File "src/lxml/parser.pxi", line 1718, in lxml.etree._parseDoc (src/lxml/lxml.etree.c:115324)
+  File "src/lxml/parser.pxi", line 1090, in lxml.etree._BaseParser._parseDoc (src/lxml/lxml.etree.c:109723)
+  File "src/lxml/parser.pxi", line 584, in lxml.etree._ParserContext._handleParseResultDoc (src/lxml/lxml.etree.c:103584)
+  File "src/lxml/parser.pxi", line 694, in lxml.etree._handleParseResult (src/lxml/lxml.etree.c:105238)
+  File "src/lxml/parser.pxi", line 635, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:104381)
+XMLSyntaxError: None
+[28/Feb/2017 12:40:28] "GET /api/sangroup/10/hosts/ HTTP/1.1" 500 91516
+Internal Server Error: /api/ise/1/array-info/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/test/xio-projects/Source/server/api/views/array_info.py", line 30, in get
+    response = req_obj.send_request(url_dynamic, AUTH, headers=HEADER_JSON)
+  File "/home/test/xio-projects/Source/server/lib/generic_request.py", line 40, in send_request
+    SEND = loads(xml_to_json(res.text.encode('utf-8')),strict=False)
+  File "/home/test/xio-projects/Source/server/utility/xml_to_json_parser.py", line 49, in xml_to_json
+    else objectify.fromstring(xml)
+  File "src/lxml/lxml.objectify.pyx", line 1804, in lxml.objectify.fromstring (src/lxml/lxml.objectify.c:25178)
+  File "src/lxml/lxml.etree.pyx", line 3213, in lxml.etree.fromstring (src/lxml/lxml.etree.c:77737)
+  File "src/lxml/parser.pxi", line 1830, in lxml.etree._parseMemoryDocument (src/lxml/lxml.etree.c:116674)
+  File "src/lxml/parser.pxi", line 1718, in lxml.etree._parseDoc (src/lxml/lxml.etree.c:115324)
+  File "src/lxml/parser.pxi", line 1090, in lxml.etree._BaseParser._parseDoc (src/lxml/lxml.etree.c:109723)
+  File "src/lxml/parser.pxi", line 584, in lxml.etree._ParserContext._handleParseResultDoc (src/lxml/lxml.etree.c:103584)
+  File "src/lxml/parser.pxi", line 694, in lxml.etree._handleParseResult (src/lxml/lxml.etree.c:105238)
+  File "src/lxml/parser.pxi", line 635, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:104381)
+XMLSyntaxError: None
+[28/Feb/2017 12:40:30] "GET /api/ise/1/array-info/ HTTP/1.1" 500 89904
+Internal Server Error: /api/ise/2/pools/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/test/xio-projects/Source/server/api/views/pool_views.py", line 27, in get
+    res  = req_obj.send_request(url,AUTH,headers=HEADER_JSON)
+  File "/home/test/xio-projects/Source/server/lib/generic_request.py", line 40, in send_request
+    SEND = loads(xml_to_json(res.text.encode('utf-8')),strict=False)
+  File "/home/test/xio-projects/Source/server/utility/xml_to_json_parser.py", line 49, in xml_to_json
+    else objectify.fromstring(xml)
+  File "src/lxml/lxml.objectify.pyx", line 1804, in lxml.objectify.fromstring (src/lxml/lxml.objectify.c:25178)
+  File "src/lxml/lxml.etree.pyx", line 3213, in lxml.etree.fromstring (src/lxml/lxml.etree.c:77737)
+  File "src/lxml/parser.pxi", line 1830, in lxml.etree._parseMemoryDocument (src/lxml/lxml.etree.c:116674)
+  File "src/lxml/parser.pxi", line 1718, in lxml.etree._parseDoc (src/lxml/lxml.etree.c:115324)
+  File "src/lxml/parser.pxi", line 1090, in lxml.etree._BaseParser._parseDoc (src/lxml/lxml.etree.c:109723)
+  File "src/lxml/parser.pxi", line 584, in lxml.etree._ParserContext._handleParseResultDoc (src/lxml/lxml.etree.c:103584)
+  File "src/lxml/parser.pxi", line 694, in lxml.etree._handleParseResult (src/lxml/lxml.etree.c:105238)
+  File "src/lxml/parser.pxi", line 635, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:104381)
+XMLSyntaxError: None
+[28/Feb/2017 12:40:31] "GET /api/ise/2/pools/ HTTP/1.1" 500 89295
+Internal Server Error: /api/sangroup/10/hosts/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python2.7/dist-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/test/xio-projects/Source/server/api/views/sangroup_views.py", line 123, in get
+    res = req_obj.send_request(url, AUTH, headers=HEADER_JSON)
+  File "/home/test/xio-projects/Source/server/lib/generic_request.py", line 40, in send_request
+    SEND = loads(xml_to_json(res.text.encode('utf-8')),strict=False)
+  File "/home/test/xio-projects/Source/server/utility/xml_to_json_parser.py", line 49, in xml_to_json
+    else objectify.fromstring(xml)
+  File "src/lxml/lxml.objectify.pyx", line 1804, in lxml.objectify.fromstring (src/lxml/lxml.objectify.c:25178)
+  File "src/lxml/lxml.etree.pyx", line 3213, in lxml.etree.fromstring (src/lxml/lxml.etree.c:77737)
+  File "src/lxml/parser.pxi", line 1830, in lxml.etree._parseMemoryDocument (src/lxml/lxml.etree.c:116674)
+  File "src/lxml/parser.pxi", line 1718, in lxml.etree._parseDoc (src/lxml/lxml.etree.c:115324)
+  File "src/lxml/parser.pxi", line 1090, in lxml.etree._BaseParser._parseDoc (src/lxml/lxml.etree.c:109723)
+  File "src/lxml/parser.pxi", line 584, in lxml.etree._ParserContext._handleParseResultDoc (src/lxml/lxml.etree.c:103584)
+  File "src/lxml/parser.pxi", line 694, in lxml.etree._handleParseResult (src/lxml/lxml.etree.c:105238)
+  File "src/lxml/parser.pxi", line 635, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:104381)
+XMLSyntaxError: None
+[28/Feb/2017 12:40:41] "GET /api/sangroup/10/hosts/ HTTP/1.1" 500 91510
+[28/Feb/2017 12:53:43] "GET /api/ise/1/array-info/ HTTP/1.1" 200 1043
+[28/Feb/2017 12:53:46] "GET /api/ise/1/pools/ HTTP/1.1" 200 2838
+[28/Feb/2017 12:53:46] "GET /api/ise/1/volumes/ HTTP/1.1" 200 2522
+[28/Feb/2017 12:53:50] "GET /api/ise/1/array-info/ HTTP/1.1" 200 1043
+[28/Feb/2017 12:54:27] "GET /api/sangroup/ HTTP/1.1" 200 505
+[28/Feb/2017 12:54:27] "GET /api/sangroup/10/hosts HTTP/1.1" 301 0
+[28/Feb/2017 12:54:29] "GET /api/sangroup/ HTTP/1.1" 200 505
+[28/Feb/2017 12:54:29] "GET /api/sangroup/10/hosts HTTP/1.1" 301 0
+[28/Feb/2017 12:54:29] "GET /api/sangroup/10/hosts/ HTTP/1.1" 200 713
+[28/Feb/2017 12:54:29] "GET /api/ise/1/array-info/ HTTP/1.1" 200 1045
+[28/Feb/2017 12:54:31] "GET /api/sangroup/10/hosts/ HTTP/1.1" 200 713
+[28/Feb/2017 12:54:31] "GET /api/sangroup/ HTTP/1.1" 200 505
+[28/Feb/2017 12:54:32] "GET /api/sangroup/ HTTP/1.1" 200 505
+[28/Feb/2017 12:54:32] "GET /api/sangroup/10/hosts HTTP/1.1" 301 0
+[28/Feb/2017 12:54:34] "GET /api/sangroup/10/hosts/ HTTP/1.1" 200 713
+[28/Feb/2017 12:54:35] "GET /api/ise/2/array-info/ HTTP/1.1" 200 989
+[28/Feb/2017 12:54:37] "GET /api/ise/1/array-info/ HTTP/1.1" 200 1045
+[28/Feb/2017 12:54:39] "GET /api/ise/2/array-info/ HTTP/1.1" 200 989
+[28/Feb/2017 12:54:42] "GET /api/ise/3/array-info/ HTTP/1.1" 200 1028
+[28/Feb/2017 12:54:43] "GET /api/ise/1/array-info/ HTTP/1.1" 200 1045
+[28/Feb/2017 12:54:50] "GET /api/ise/2/array-info/ HTTP/1.1" 200 989
+[28/Feb/2017 12:54:54] "GET /api/ise-list/ HTTP/1.1" 200 11643
+[28/Feb/2017 12:55:05] "GET /api/ise/2/array-info/ HTTP/1.1" 200 989
+[28/Feb/2017 12:55:10] "GET /api/ise/2/pools/ HTTP/1.1" 200 2392
+[28/Feb/2017 12:55:10] "GET /api/ise/2/volumes/ HTTP/1.1" 200 10752
+[28/Feb/2017 12:55:17] "GET /api/ise/3/array-info/ HTTP/1.1" 200 1026
+[28/Feb/2017 12:55:33] "GET /api/ise/2/array-info/ HTTP/1.1" 200 989
+[28/Feb/2017 12:55:39] "GET /api/ise/3/array-info/ HTTP/1.1" 200 1028
+[28/Feb/2017 12:55:40] "GET /api/ise/1/array-info/ HTTP/1.1" 200 1047
+[28/Feb/2017 12:56:17] "GET /api/ise/3/pools/ HTTP/1.1" 200 1800
+[28/Feb/2017 12:56:18] "GET /api/ise/3/volumes/ HTTP/1.1" 200 1209
+[28/Feb/2017 12:56:23] "GET /api/ise/3/array-info/ HTTP/1.1" 200 1028
+[28/Feb/2017 12:56:27] "GET /api/ise/1/array-info/ HTTP/1.1" 200 1047
+[28/Feb/2017 12:56:32] "GET /api/ise/2/array-info/ HTTP/1.1" 200 989
+[28/Feb/2017 12:56:36] "GET /api/ise/3/pools/ HTTP/1.1" 200 1800
+[28/Feb/2017 12:56:37] "GET /api/ise/3/volumes/ HTTP/1.1" 200 1209
+[28/Feb/2017 12:56:54] "GET /api/ise/3/array-info/ HTTP/1.1" 200 1028
+[28/Feb/2017 12:57:02] "GET /api/ise/2/array-info/ HTTP/1.1" 200 987

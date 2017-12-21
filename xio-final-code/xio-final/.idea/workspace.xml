@@ -1,0 +1,1061 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dae38db5-e9c6-405a-a19e-9bfee88975fe" name="Default" comment="Code Clean Up - 716 - Done.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/Component/refresh-button/refresh-button.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/Component/refresh-button/refresh-button.component.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/Component/refresh-button/refresh-button.component.spec.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/Component/refresh-button/refresh-button.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/service/emitter.service.spec.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/service/emitter.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/server/config.py" afterPath="$PROJECT_DIR$/Source/server/config.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/server/xio_ise/local_settings.py" afterPath="$PROJECT_DIR$/Source/server/xio_ise/local_settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/server/xio_ise/settings.py" afterPath="$PROJECT_DIR$/Source/server/xio_ise/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/app-setting.ts" afterPath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/app-setting.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-dashboard/ise-dashboard.component.html" afterPath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-dashboard/ise-dashboard.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-dashboard/ise-dashboard.component.ts" afterPath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-dashboard/ise-dashboard.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance-host/ise-performance-host.component.ts" afterPath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance-host/ise-performance-host.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance-volume/ise-performance-volume.component.ts" afterPath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance-volume/ise-performance-volume.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance/ise-performance.component.html" afterPath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance/ise-performance.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance/ise-performance.component.scss" afterPath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance/ise-performance.component.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance/ise-performance.component.ts" afterPath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance/ise-performance.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/shared.module.ts" afterPath="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/shared.module.ts" />
+    </list>
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/common/utils/ng2-nvd3.d.ts/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/karma/config.tpl.js/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/Reflect.js/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/Reflect.d.ts/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/Reflect.js.map/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-definemetadata.js/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-definemetadata.js.map/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-getmetadatakeys.js/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-getmetadatakeys.js.map/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-metadata.js/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-metadata.js.map/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-getmetadata.js/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-getmetadata.js.map/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-getownmetadata.js/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-getownmetadata.js.map/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-getownmetadatakeys.js/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-getownmetadatakeys.js.map/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-hasownmetadata.js/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-hasownmetadata.js.map/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-decorate.js/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-decorate.js.map/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-deletemetadata.js/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-deletemetadata.js.map/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-hasmetadata.js/" />
+    <ignored path="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-hasmetadata.js.map/" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="app-setting.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/app-setting.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ise-dashboard.component.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-dashboard/ise-dashboard.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ise-performance.component.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance/ise-performance.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="394">
+              <caret line="39" column="36" lean-forward="false" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ise-performance-host.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance-host/ise-performance-host.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="328">
+              <caret line="205" column="10" lean-forward="false" selection-start-line="205" selection-start-column="2" selection-end-line="205" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="queue-depth.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/charts/queue-depth/queue-depth.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-722">
+              <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data-rate.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/charts/data-rate/data-rate.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-747">
+              <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ise-performance.component.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance/ise-performance.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="66" lean-forward="false" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="latency.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/charts/latency/latency.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-716">
+              <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iops.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/charts/iops/iops.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="77" column="9" lean-forward="false" selection-start-line="77" selection-start-column="2" selection-end-line="77" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ise-performance-volume.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance-volume/ise-performance-volume.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1071">
+              <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>multiplevolume</find>
+      <find>IseService</find>
+      <find>HostService</find>
+      <find>dedupchange</find>
+      <find>fb</find>
+      <find>initForm</find>
+      <find>volume_details</find>
+      <find>wizard</find>
+      <find>chageWizard</find>
+      <find>console</find>
+      <find>poolService</find>
+      <find>alertRef</find>
+      <find>error</find>
+      <find>WS</find>
+      <find>onMessage</find>
+      <find>onCloseHandler</find>
+      <find>provider</find>
+      <find>@In</find>
+      <find>@Input</find>
+      <find>ngO</find>
+      <find>onChangw</find>
+      <find>cons</find>
+      <find>setAllocatedH</find>
+      <find>xio</find>
+      <find>toggleBtnClick</find>
+      <find>masterToggleLed</find>
+      <find>ngOnI</find>
+      <find>web</find>
+      <find>volume_list</find>
+      <find>getData</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/hardwareinfo/hardware-tabs/opendatapac/opendatapac.component.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/hardwareinfo/hardware-tabs/powersupply/powersupply.component.html" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/hardwareinfo/hardware-tabs/network/network.component.html" />
+        <option value="$PROJECT_DIR$/Source/server/xio_ise/settings.py" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-landing/ise-landing.component.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/hardwareinfo/hardwareinfo.component.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/reducers/pools.reducer.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/actions/pools.actions.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/effects/pools.effects.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/services/pools.service.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/models/drives.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/pools/pools-list/pools-list.component.html" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/hardwareinfo/hardware-tabs/opendatapac/opendatapac.component.html" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/hardwareinfo/hardware-tabs/opendatapac/opendatapac.component.scss" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/charts/chart-config.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/charts/iops/iops.component.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/charts/data-rate/data-rate.component.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/charts/latency/latency.component.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/volume/volume-present-link/volume-present-link.component.ts" />
+        <option value="$PROJECT_DIR$/Source/server/config.py" />
+        <option value="$PROJECT_DIR$/Source/server/xio_ise/local_settings.py" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/styles.scss" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/app.component.scss" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/Component/xio-md-dataTable/xio-md-rowContainer/xio-md-rowContainer.component.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/hardwareinfo/hardware-tabs/mrc/mrc.component.html" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/material/material.module.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/utils/app.settings.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/volume/volume.component.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/volume/volume.component.html" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/common/utils/CommonUtil.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-list/ise-list.component.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/app.component.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/app.component.html" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/volume/volume-form/volume-form.component.html" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/common/utils/ISEVolumeUtil.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/services/storagevolume.service.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/pools/pools-list/pools-list.component.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/service/emitter.service.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/shared.module.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/volume/volume-form/volume-form.component.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/Component/refresh-button/refresh-button.component.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/Component/refresh-button/refresh-button.component.html" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/app-setting.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-dashboard/ise-dashboard.component.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-dashboard/ise-dashboard.component.html" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance/ise-performance.component.html" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance/ise-performance.component.scss" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance-host/ise-performance-host.component.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance-volume/ise-performance-volume.component.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance/ise-performance.component.ts" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/Docs/Assets/new-html/node_modules" />
+    <handled-path value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="10" />
+    <option name="y" value="20" />
+    <option name="width" value="1346" />
+    <option name="height" value="688" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="xio-projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xio-projects" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xio-projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xio-projects" type="462c0819:PsiDirectoryNode" />
+              <item name="Source" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xio-projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xio-projects" type="462c0819:PsiDirectoryNode" />
+              <item name="Source" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xio-projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xio-projects" type="462c0819:PsiDirectoryNode" />
+              <item name="Source" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="xio-monitor-app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xio-projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xio-projects" type="462c0819:PsiDirectoryNode" />
+              <item name="Source" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="xio-monitor-app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xio-projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xio-projects" type="462c0819:PsiDirectoryNode" />
+              <item name="Source" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="xio-monitor-app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xio-projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xio-projects" type="462c0819:PsiDirectoryNode" />
+              <item name="Source" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="xio-monitor-app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="ise" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xio-projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xio-projects" type="462c0819:PsiDirectoryNode" />
+              <item name="Source" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="xio-monitor-app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xio-projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xio-projects" type="462c0819:PsiDirectoryNode" />
+              <item name="Source" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="xio-monitor-app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="D:\XIO-WorkSpace\xio-project\xio-projects\Source\webapp\xio-monitor-app\node_modules\tslint" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="node.js.path.for.package.jscs" value="project" />
+    <property name="node.js.detected.package.jscs" value="true" />
+    <property name="node.js.selected.package.jscs" value="" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\XIO-WorkSpace\xio-project\xio-projects\Source\webapp\xio-monitor-app\src\app\utils" />
+    </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/set-ise-password/set-ise-password.component.html</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dae38db5-e9c6-405a-a19e-9bfee88975fe" name="Default" comment="" />
+      <created>1511420713025</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1511420713025</updated>
+      <workItem from="1511420718521" duration="5324000" />
+      <workItem from="1511428570217" duration="7777000" />
+      <workItem from="1511438727603" duration="1456000" />
+      <workItem from="1511440358459" duration="2539000" />
+      <workItem from="1511443439550" duration="1801000" />
+      <workItem from="1511446433674" duration="4911000" />
+      <workItem from="1511509593666" duration="6640000" />
+      <workItem from="1512564137103" duration="31065000" />
+      <workItem from="1512714194041" duration="9780000" />
+      <workItem from="1512741156140" duration="12551000" />
+      <workItem from="1512812758596" duration="36289000" />
+    </task>
+    <task id="LOCAL-00001" summary="Code Clean Up - 716 - Done.">
+      <created>1512630815059</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1512630815059</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Code Clean Up - 716 - Volume.">
+      <created>1512992777760</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1512992777760</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="120384000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27083334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5686275" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/common/utils/ng2-nvd3.d.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/karma/config.tpl.js" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/Reflect.js" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/Reflect.d.ts" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/Reflect.js.map" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-definemetadata.js" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-definemetadata.js.map" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-getmetadatakeys.js" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-getmetadatakeys.js.map" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-metadata.js" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-metadata.js.map" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-getmetadata.js" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-getmetadata.js.map" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-getownmetadata.js" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-getownmetadata.js.map" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-getownmetadatakeys.js" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-getownmetadatakeys.js.map" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-hasownmetadata.js" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-hasownmetadata.js.map" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-decorate.js" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-decorate.js.map" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-deletemetadata.js" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-deletemetadata.js.map" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-hasmetadata.js" />
+        <option value="$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/reflect-metadata/test/reflect-hasmetadata.js.map" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="NUI-688-689-690-Created." />
+    <MESSAGE value="NUI-routing" />
+    <MESSAGE value="NUI-688-689-690-routing." />
+    <MESSAGE value="NUI-688-689-690-Router-name." />
+    <MESSAGE value="removed validation" />
+    <MESSAGE value="Gateway resolved." />
+    <MESSAGE value="NUI-704-SideMenu_Implemented" />
+    <MESSAGE value="Settings icon menu changes done." />
+    <MESSAGE value="Code Clean Up - 716 - Done." />
+    <MESSAGE value="Code Clean Up - 716 - Volume." />
+    <option name="LAST_COMMIT_MESSAGE" value="Code Clean Up - 716 - Volume." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="435" height="431" key="Git.Branch.Popup" />
+    <state width="435" height="431" key="Git.Branch.Popup/1366.768" />
+    <state width="435" height="431" key="Git.Branch.Popup@1366.768" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="6" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/directives/equal-validator.directive.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="33" lean-forward="true" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-settings/subscription-form/subscription-form.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="171" column="40" lean-forward="false" selection-start-line="171" selection-start-column="40" selection-end-line="171" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/common/utils/CommonUtil.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/utils/app.settings.ts" />
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-list/ise-list.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="89" column="52" lean-forward="true" selection-start-line="89" selection-start-column="52" selection-end-line="89" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#61#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/styles.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="158" column="1" lean-forward="true" selection-start-line="158" selection-start-column="1" selection-end-line="158" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1462">
+          <caret line="86" column="5" lean-forward="true" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/app.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/host/host-form/host-form.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="181" column="17" lean-forward="false" selection-start-line="181" selection-start-column="17" selection-end-line="181" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/server/static/admin/js/timeparse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/services/storagevolume.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#43#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/common/utils/ISEVolumeUtil.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1766">
+          <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/pools/pools-list/pools-list.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="81" column="41" lean-forward="true" selection-start-line="81" selection-start-column="41" selection-end-line="81" selection-end-column="41" />
+          <folding>
+            <element signature="e#34#95#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/app.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="33" lean-forward="true" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/app.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/theme/xio-loader/xio-loader.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/theme/xio-loader/xio-loader.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/@angular/common/src/common_module.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/service/ise-setting.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/hardwareinfo/hardwareinfo.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="2" lean-forward="false" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#62#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="757">
+          <caret line="79" column="25" lean-forward="true" selection-start-line="79" selection-start-column="25" selection-end-line="79" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/ise.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/@angular/material/@angular/material.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="13897" column="23" lean-forward="false" selection-start-line="13897" selection-start-column="23" selection-end-line="13897" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/hardwareinfo/hardwareinfo.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/hardwareinfo/hardware-tabs/mrc/mrc.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="23" column="30" lean-forward="true" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/service/emitter.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="27" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/shared.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="31" column="25" lean-forward="true" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/hardwareinfo/hardware-tabs/mrc/mrc.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="8" lean-forward="true" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/Component/xio-md-dataTable/xio-md-rowContainer/xio-md-rowContainer.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/volume/volume-form/volume-form.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="96" column="35" lean-forward="false" selection-start-line="96" selection-start-column="32" selection-end-line="96" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/volume/volume.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="18" column="26" lean-forward="false" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/volume/volume.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="16" lean-forward="false" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/Component/xio-md-dataTable/xio-md-dataTable.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="97" column="17" lean-forward="false" selection-start-line="97" selection-start-column="2" selection-end-line="97" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#108#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/Component/xio-md-dataTable/xio-md-dataTable.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="57" column="36" lean-forward="true" selection-start-line="57" selection-start-column="36" selection-end-line="57" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/Component/xio-md-dataTable/xio-md-rowContainer/xio-md-rowContainer.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="19" column="15" lean-forward="false" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#113#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/volume/volume-form/volume-form.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="22" column="27" lean-forward="true" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/node_modules/angular2-websocket/src/angular2-websocket.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-128">
+          <caret line="45" column="4" lean-forward="false" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/Component/refresh-button/refresh-button.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="23" column="23" lean-forward="false" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#77#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/shared/Component/refresh-button/refresh-button.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="39" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-dashboard/ise-dashboard.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="435" column="9" lean-forward="false" selection-start-line="435" selection-start-column="8" selection-end-line="435" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#80#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance/ise-performance.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="20" lean-forward="false" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/app-setting.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-dashboard/ise-dashboard.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/charts/iops/iops.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="77" column="9" lean-forward="false" selection-start-line="77" selection-start-column="2" selection-end-line="77" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/charts/latency/latency.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-716">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/charts/data-rate/data-rate.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-747">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/charts/queue-depth/queue-depth.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-722">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance/ise-performance.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="39" column="36" lean-forward="false" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance-host/ise-performance-host.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="205" column="10" lean-forward="false" selection-start-line="205" selection-start-column="2" selection-end-line="205" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance-volume/ise-performance-volume.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/webapp/xio-monitor-app/src/app/ise/components/ise-performance/ise-performance.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="66" lean-forward="false" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

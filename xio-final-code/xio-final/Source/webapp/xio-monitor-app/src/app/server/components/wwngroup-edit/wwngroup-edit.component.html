@@ -1,0 +1,135 @@
+<div class="col-12">
+  <md-card class="mb-30">
+    <div>
+      <form novalidate [formGroup]="editWwnGroupForm" autocomplete="off">
+        <div class="row wwnedit-padding-left-2">
+          <div class="col-12 wwnedit-padding-left-0">
+            <md-input-container>
+              <input mdInput type="text" placeholder="WwnGroup Name" formControlName="wwngroup_name">
+            </md-input-container>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">
+            <label><h6>ISE Name:</h6></label>
+          </div>
+          <div *ngIf="this.selectedIseValue != undefined">
+            <label>{{this.selectedIseValue.ise_serialno}}</label>
+          </div>
+          <!--
+          Based on the client requirement need to work.
+            <md-select placeholder="Select ISE(s)" (change)="onEditISESelectChange($event)"
+                     formControlName="selectedIses" multiple>
+            <md-option *ngFor="let w of ise_list" value="{{w.ise_id}}">
+              {{w.ise_name}}
+            </md-option>
+          </md-select>-->
+        </div>
+        <div class="box-align wwnedit-padding-top-25">
+          <div class="box-border-align wwnedit-full-border">
+            <div class="box-bg">
+              <label class="label-align"><h6>Current WWN(s):</h6></label>
+            </div>
+            <div class="overlap-box">
+              <div class="row">
+                <div class="col-6">
+                </div>
+                <div class="col-6 pull-right wwnedit-align-right">
+                  <md-input-container floatPlaceholder="auto">
+                    <input mdInput type="text" placeholder="Search">
+                  </md-input-container>
+                </div>
+              </div>
+              <div class="form-box avail_sub wwnedit-margin-bottom-25">
+                  <span>
+                     <md-checkbox *ngFor="let curr_wwn  of current_wwns"
+                                  class="row col-12"
+                                  (change)="assignUnassignWWNGroup(curr_wwn,$event)"
+                                  checked="checked">
+                     {{curr_wwn.ise_serial_no}}-{{curr_wwn.wwn}}
+                     </md-checkbox>
+                  </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box-align wwnedit-padding-top-20">
+          <div class="box-border-align wwnedit-full-border">
+            <div class="box-bg">
+              <label class="label-align">Available WWN(s):</label>
+            </div>
+            <div class="overlap-box">
+              <div class="row">
+                <div class="col-6">
+                  <!--<label class="overlap-label"><h6> Overlapped WWN(s):</h6></label>-->
+                </div>
+                <div class="col-6 pull-right wwnedit-align-right">
+                  <div>
+                    <md-input-container floatPlaceholder="auto">
+                      <input mdInput type="text" placeholder="Search">
+                    </md-input-container>
+                  </div>
+                </div>
+              </div>
+              <div class="form-box avail_sub" *ngIf="over_lappedlist.length >0">
+                <span>
+                    <md-checkbox *ngFor="let overlap_wwn  of over_lappedlist"
+                             class="row col-12" (change)="assignOverLappedEndPoint(overlap_wwn,$event)">
+                      {{overlap_wwn.ise_serial_no}}-{{overlap_wwn.wwn}}
+                    </md-checkbox>
+                </span>
+              </div>
+              <div class="form-box avail_sub" *ngIf="over_lappedlist.length == 0"
+                   style="width:100%;text-align: center;padding-top:50px;padding-bottom: 50px;">
+                 <label>No Overlapped WWN found to display</label>
+              </div>
+            </div>
+            <div class="non-overlap-box">
+              <!--<div class="row">
+                <div class="col-6">
+                  <label class="non-overlap-label"><h6>Non Overlapped WWN(s):</h6></label>
+                </div>
+                <div class="col-6 pull-right" style="text-align: right">
+                  <md-input-container floatPlaceholder="auto">
+                    <input mdInput type="text" placeholder="Search">
+                  </md-input-container>
+                </div>
+              </div>-->
+             <!-- <div>
+                <div class="form-box avail_sub" *ngIf="non_over_lappedlist.length >0">
+                  <div>
+                    <span>
+                      <md-checkbox *ngFor="let non_over_lap_wwn  of non_over_lappedlist"
+                                   [disabled]="non_over_lappedlist.length > 0"
+                                   class="row col-12">
+                        {{non_over_lap_wwn.ise_serial_no}}-{{non_over_lap_wwn.wwn}}
+                      </md-checkbox>
+                    </span>
+                  </div>
+                </div>
+                <div class="form-box avail_sub" *ngIf="non_over_lappedlist.length == 0"
+                     style="width:100%;text-align: center;padding-top:50px;padding-bottom: 50px;">
+                  <label>No Non-Overlapped WWN found to display</label>
+                </div>
+              </div>-->
+            </div>
+          </div>
+        </div>
+        <div class="row wwnedit-padding-top-40">
+          <md-input-container>
+            <textarea mdInput placeholder="Comment" formControlName="comment">
+            </textarea>
+          </md-input-container>
+        </div>
+        <div class="btn-align">
+          <button md-raised-button class="col-sf button-left" color="warn" (click)="onCancel()">
+            Cancel
+          </button>
+          <button md-raised-button class="col-sf button-left" color="primary" (click)="updateWWNGroup()">
+            Update WWN Group
+          </button>
+        </div>
+      </form>
+    </div>
+  </md-card>
+</div>

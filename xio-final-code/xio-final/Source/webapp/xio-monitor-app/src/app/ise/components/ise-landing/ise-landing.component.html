@@ -1,0 +1,145 @@
+<div class="app-content">
+  <md-tab-group md-stretch-tabs="always" (focusChange)="changeTab($event)" [(selectedIndex)]="selectedIndex" #tabGroup>
+    <md-tab label="Dashboard">
+    </md-tab>
+    <md-tab label="Storage Pools">
+    </md-tab>
+    <md-tab label="Storage Volumes">
+    </md-tab>
+    <md-tab label="WWN Groups">
+    </md-tab>
+    <md-tab label="Performance">
+    </md-tab>
+    <md-tab label="Advanced Settings">
+    </md-tab>
+    <md-tab label="Hardware">
+    </md-tab>
+  </md-tab-group>
+</div>
+<div>
+  <div class="row ise-title" *ngIf="ise_card_details" [ngClass]="getBanner(ise_card_details)">
+    <div class="col-sm">
+      <div class="row">
+        <div class="col-12">
+          <div class="title-row">
+            <h1 class="h1-header">
+              <span class="ise-name ise_name_pointer " *ngIf="ise_card_details"
+                    (click)="goto('/dashboard',tabGroup.selectedIndex = 0)">
+                    {{type}}-ISE
+              </span>
+            </h1>
+            <span class="status ise_name_pointer" (click)="iseStatus()" *ngIf="ise_card_details['status']">
+              {{ise_card_details.status._attr.string}}
+            </span>
+            <span *ngIf="ise_card_details" class="ise_black">
+              ({{iseDetails}})
+            </span>
+            <div class="ise-serial mb-30" *ngIf="ise_card_details">
+              SN: {{ise_card_details.serial_no}} ({{type}})
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row title-ip ">
+        <div class="col-sm">
+          <span>MRC1: </span>
+          <i class="fa fa-arrow-up"></i>
+          <i class="fa fa-arrow-down"></i>
+          <div class="mrc1">
+            <span class="ip" *ngIf="ise_card_details">
+              IP: {{ise_card_details.ipaddress1}}
+            </span>
+            <div>
+              <span> FW: </span>
+              <span *ngIf="ise_card_details">
+                 {{ise_card_details.mrc1_fwversion}}
+              </span>
+             </div>
+           </div>
+       </div>
+       <div class="col-sm">
+          <span>MRC2: </span>
+          <i class="fa fa-arrow-up"></i>
+          <i class="fa fa-arrow-down"></i>
+          <div class="mrc2">
+             <span class="ip" *ngIf="ise_card_details">
+               IP: {{ise_card_details.ipaddress2}}
+             </span>
+             <div>
+                <span>FW: </span>
+                <span *ngIf="ise_card_details">{{ise_card_details.mrc2_fwversion}}</span>
+             </div>
+          </div>
+        </div>
+     </div>
+     <div class="row title-ip mb-30">
+        <div class="col-sm">
+          <span *ngIf="ise_card_details">
+                {{ise_card_details.date}}
+          </span>
+          <span class = "display-time" *ngIf="ise_card_details">
+            {{this.display_time}}
+            ({{this.total_time}})
+          </span>
+        </div>
+      </div>
+  </div>
+    <div class="col-sm ">
+      <div class="txt-center">
+        <div class="row">
+          <div class="col-sm">
+            <div class="capacity-data" (click)="goto('/volume',tabGroup.selectedIndex = 2)">
+              <div class="num">
+                <span *ngIf="ise_card_details">
+                  {{ise_card_details.volumes}}
+                </span>
+              </div>
+              <div class="lbl">
+                Volume
+              </div>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="capacity-data" (click)="goto('/host',tabGroup.selectedIndex = 3)">
+              <div class="num">
+                <span *ngIf="ise_card_details">
+                  {{ise_card_details.hosts}}
+                </span>
+              </div>
+              <div class="lbl ellipsis">
+                WWN Group
+              </div>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="capacity-data" (click)="goto('/pools', tabGroup.selectedIndex = 1)">
+              <div class="num">
+                <span *ngIf="ise_card_details">
+                  {{ise_card_details.pool}}
+                </span>
+              </div>
+              <div class="lbl">
+                Pool
+              </div>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="capacity-data" (click)="goto('/endpoints')">
+              <div class="num">
+                <span *ngIf="ise_card_details">
+                  {{ise_card_details.endpoints}}
+                </span>
+              </div>
+              <div class="lbl">
+                WWN
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>

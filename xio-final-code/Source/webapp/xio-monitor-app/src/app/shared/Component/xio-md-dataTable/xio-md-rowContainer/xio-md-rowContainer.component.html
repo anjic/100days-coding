@@ -1,0 +1,59 @@
+<div class="table-card-bg table-card-odd">
+  <div class="row">
+    <div class="expand-btn">
+            <span *ngIf="gridOptions.isSubGrouping" (click)="toggle($event)" [ngClass]="{'tbl-chckbx': true, 'hide': headerRow }">
+               <md-icon>expand_more</md-icon>
+            </span>
+    </div>
+
+    <div class="col-sm wrd-wrp" *ngFor="let cellInfo of data" [ngClass]="cellInfo.class">
+      <label *ngIf="headerRow" class="table-card">{{cellInfo.headerName}}</label>
+      <p class="tbl-cnt" *ngIf="!headerRow && cellInfo.field != 'toggle'" [ngClass]="applyStyle(cellInfo)">
+        {{cellInfo.value}}
+      </p>
+      <p class="tbl-h-cnt" *ngIf="!headerRow">
+        <span *ngIf="cellInfo.field == 'toggle'">
+            <md-slide-toggle color="primary"
+                             (change)="toggleLed($event,cellInfo)"
+                             [checked]="cellInfo.value">
+            </md-slide-toggle>
+        </span>
+      </p>
+    </div>
+    <div class="space-40"></div>
+
+
+    <div class="crudBtn" *ngIf="gridOptions.rowMenu && !isSubGroup && !headerRow">
+
+      <span *ngIf="gridOptions.rowMenu.length > 0">
+          <button md-icon-button [mdMenuTriggerFor]="menu2">
+            <md-icon>more_vert</md-icon>
+          </button>
+      </span>
+      <md-menu #menu2="mdMenu" class="xio-dataTable-RowMenu">
+        <button md-menu-item *ngFor="let m of gridOptions.rowMenu">
+          <xio-md-row-edit *ngIf="m.path == '/edit'" [path]="resolvePath(m.pathTemplate, rowObject)"
+                           [headerName]="m.headerName"></xio-md-row-edit>
+          <xio-md-row-delete *ngIf="m.path == '/delete'" [deleteCb]="gridOptions.deleteCb" [data]="rowObject"
+                             [headerName]="m.headerName"></xio-md-row-delete>
+          <xio-md-row-change-pwd *ngIf="m.path == '/changePwd'" [path]="resolvePath(m.pathTemplate, rowObject)"
+                                 [headerName]="m.headerName"></xio-md-row-change-pwd>
+          <app-ise-present-button *ngIf="m.path == '/present'" [path]="resolvePath(m.pathTemplate, rowObject)" [headerName]="m.headerName">       
+          </app-ise-present-button> 
+          <app-modify-button *ngIf="m.path == '/ip-update'" [path]="resolvePath(m.pathTemplate, rowObject)" [headerName]="m.headerName">
+          </app-modify-button>
+        </button>
+      </md-menu>
+
+    </div>
+
+
+
+  </div>
+  <div class="row" [collapse]="isCollapse" *ngIf="gridOptions.isSubGrouping && !headerRow">
+
+    <hr>
+    <xio-md-dataTable class="sub-tbls" *ngFor="let option of gridOptions.subGroupOptions"
+                      [subGroupData]="rowObject" [gridOptions]="option" [isSubGroup]="true"></xio-md-dataTable>
+  </div>
+</div>

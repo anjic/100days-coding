@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="sub-heading pull-left">
+      <h4>{{form_title}}</h4>
+    </div>
+  </div>
+</div>
+<form novalidate [formGroup]="subscriptionForm" autocomplete="off" class="">
+  <div class="col-12 col-sm-12">
+    <div class="row">
+      <div class="col-12">
+        <md-input-container>
+          <input mdInput placeholder="Storage System" formControlName="storage_system" disabled/>
+        </md-input-container>
+      </div>
+      <div class="col-12">
+        <md-input-container>
+          <input mdInput placeholder="IP Analyser/Host name"
+                 formControlName="id"/>
+          <md-hint align="end">
+            <div *ngIf="!subscriptionForm['controls']['id'].valid && subscriptionForm['controls']['id'].touched"
+                 class="text-danger text-right">IP Analyser/Host name is Required
+              <span *ngIf="subscriptionForm['controls']['id'].errors.pattern" class="text-danger text-right">
+                         Invalid IP Analyser/Host name
+                        </span>
+            </div>
+          </md-hint>
+        </md-input-container>
+      </div>
+
+      <div class="col-12 form-slider-group">
+        <md-select placeholder="Subscription Type" id="Subscription_type" formControlName="type"
+                   (change)="onTypechange()">
+          <md-option value="alert">Alert</md-option>
+          <md-option value="gupdate">General Update</md-option>
+          <md-option value="telemetry">Telemetry</md-option>
+        </md-select>
+        <md-hint>
+          <div *ngIf="!subscriptionForm['controls']['type'].valid  && subscriptionForm['controls']['type'].touched"
+               class="text-danger">
+            <div *ngIf="subscriptionForm['controls']['type'].errors.required">
+              Select the Subscription Type
+            </div>
+          </div>
+        </md-hint>
+      </div>
+      <div class="col-12">
+        <md-input-container>
+          <input mdInput formControlName="port_number" placeholder="Port Number"/>
+        </md-input-container>
+      </div>
+      <div class="col-12">
+        <md-checkbox class="addSubCheckBox" color="primary"
+                     id="setting" [checked]="!isEdit ? 'checked' : false" [disabled]="!isEdit ? 'disabled' : false"
+                     name="setting" formControlName="setting">Enable Subscription
+        </md-checkbox>
+       
+      </div>
+      <div class="col-12">
+        <md-input-container>
+          <input mdInput placeholder="Interval" type="Number" formControlName="interval"/>
+        </md-input-container>
+        minutes
+      </div>
+      <div class="col-12">
+        <p>Note:Range for General Update is 2-1440 and Telemetry is 15-1440 minutes.
+          All invalid ports are defaulted to 443.
+        </p>
+      </div>
+      <!--  <div class="col-12">
+           <md-checkbox color="primary" id="ssl" name="ssl" formControlName="ssl" >SSL</md-checkbox>
+       </div> -->
+      <div class="col-12">
+        <md-checkbox color="primary" id="proxy" name="proxy" formControlName="proxy" (change)="proxyChange()">Proxy
+        </md-checkbox>
+      </div>
+      <div class="col-12" *ngIf="getFormElementVal('proxy')">
+        <md-input-container>
+          <input mdInput placeholder="Proxy Address" formControlName="proxyaddress"/>
+        </md-input-container>
+      </div>
+      <div class="col-12" *ngIf="getFormElementVal('proxy')">
+        <md-input-container>
+          <input mdInput placeholder="Proxy User name" formControlName="proxyusername"/>
+        </md-input-container>
+      </div>
+      <div class="col-12" *ngIf="getFormElementVal('proxy')">
+        <md-input-container>
+          <input mdInput placeholder="Proxy Password" type="password" formControlName="proxypassword"/>
+        </md-input-container>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button md-raised-button color="warn"
+                  *ngIf="!id" (click)="oncancel()">
+            Cancel
+          </button>
+          <button md-raised-button color="warn"
+                  *ngIf="id" routerLink="/ise/{{ise_id}}/settings/">
+            Cancel
+          </button>
+          <button md-raised-button color="primary" *ngIf="!id" (click)="onSubmit()"
+                  [disabled]="subscriptionForm.invalid">
+            Add
+          </button>
+          <button color="primary" md-raised-button *ngIf="id"
+                  (click)="onUpdateSubmit()"
+                  [disabled]="subscriptionForm.invalid">
+            Update
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+

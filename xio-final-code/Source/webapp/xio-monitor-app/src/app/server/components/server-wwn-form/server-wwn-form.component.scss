@@ -1,0 +1,77 @@
+.btn-align{
+	margin-top: 17px;
+}
+
+.avail_sub{
+	max-height:275px;
+	height:275px;
+	overflow:auto;
+}
+.san-align{
+	border: 1px solid #ccc;
+    padding-left: 7px;
+    margin-top: 2px;
+    width: 100%;
+    height: 150px;
+    overflow-y: scroll;
+}
+.check-align{
+   padding-top: 10px;
+}
+
+.box-align{
+    padding-top: 15px;
+}
+.box-border-align{
+    border:1px solid #dcdcdc;
+    width:100%;
+    height:100%;
+}
+.box-bg{
+    width:100%;
+    background-color:grey;
+    height:40px;
+}
+.label-align{
+    padding-top:10px;
+    padding-left:5px;
+}
+.overlap-box{
+    width:95%;
+    padding-left:25px;
+}
+.overlap-label{
+    padding-top:24px;
+}
+.overlap-data{
+    width: 100%;
+    height: 100%;
+    padding-top: 115px;
+    padding-left: 300px;
+    color: #0a0a0a;
+}
+.non-overlap-box{
+    width:95%;
+    padding-left:25px;
+    margin-bottom:20px;
+}
+.non-overlap-label{
+    padding-top:24px;
+}
+.non-overlap-data{
+    width: 100%;
+    height: 100%;
+    padding-top: 115px;
+    padding-left: 300px;
+    color: #0a0a0a;
+}
+
+.no-data-found-to-display-msg{
+  width: 95%;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-left: 1px solid #dcdcdc;
+  border-right: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc
+}

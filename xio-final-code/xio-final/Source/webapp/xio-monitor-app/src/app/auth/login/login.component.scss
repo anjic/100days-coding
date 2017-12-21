@@ -1,0 +1,101 @@
+
+.div-body {
+    background: url('/assets/images/xio.jpg') no-repeat;
+    padding: 0;
+    margin: 0;
+    background-size: cover;
+    overflow: hidden;
+    width: 100%;
+    height:100vh;
+}
+
+
+
+form.login input
+{
+
+    
+    width: 100%;
+    padding: 5px 10px;
+    background: 0;
+    border: 0;
+    font-style: italic;
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+
+}
+
+*:focus {
+    outline: none;
+    border:0;
+}
+
+form.login .btn
+{
+    width: 100%;
+    font-size: 14px;
+    margin-top: 30px;
+    letter-spacing: 1px;
+    color: #000000;
+    background-color: #bed531;
+    border:none;
+    padding: 15px 0;
+}
+
+form.login .btn:hover
+    {
+        transition: background-color 0.5s ease;
+        background: #99ab2e;
+        color: white;
+        padding: 15px 0;
+    }
+
+
+form.login .forgot-pass-content
+{
+    min-height: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color:  #FFD700;
+    font-size: 10px;
+    text-align: center
+}
+
+
+
+.container-fluid.body-bg {
+    background: rgba(11, 57, 83,.7);
+    height: 100%;
+}
+
+.wrap {
+
+    margin-top: 150px;
+    /* background: #0b3953; */
+    height: 100%;
+    background: white;
+    padding:30px 15px 30px 15px;
+
+}
+
+.app-title{
+    margin-top: 150px;
+    color:white;
+    font-size: 28px;
+}
+
+.c-bg{
+    color:#cbd629;
+}
+.home-logo{
+    width: 52%;
+    margin-top: 7%;
+}
+.form-input-container {
+    width: 100%;
+}
+
+.height-100{
+    height:100%;
+}

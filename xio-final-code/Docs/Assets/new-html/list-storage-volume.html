@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>XIO</title>
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
+
+	<link rel="stylesheet" href="assets/css/style.css">	
+	<style>
+	.volume-table {
+    	background-color: #fff;
+    	font-family: sans-serif;
+	}	
+	.volume-table thead th{
+		color: #fff;
+		font-size: 14px;
+	}
+	.volume-table th, .volume-table td{
+		font-size: 13px;
+	}
+	</style>
+</head>
+<body>
+	<div class="container-fluid fixed-top header-top">
+		<nav class="navbar navbar-toggleable-md ">
+			<div class="col">		
+				<a class="navbar-brand" href="#">
+					<img src="assets/images/logo.png" alt="">
+				</a>		
+			</div>
+			<div class="col"></div>
+			<div class="col">
+				<div class="pull-right btn-group btn-group-sm  header-icons">
+					
+					<div class="btn-group" role="group">
+					<button type="button" class="btn" dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i></button>
+
+					<!-- <button id="btnGroupDrop1" type="button" class="btn btn-secondary 
+					dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      					<i class="fa fa-bell"></i>
+    				</button> -->
+						<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+					      <a class="dropdown-item" href="#">Dropdown link</a>
+					      <a class="dropdown-item" href="#">Dropdown link</a>
+					    </div>
+					</div>
+
+
+					<button type="button" class="btn"><i class="fa fa-plus"></i></button>
+					<button type="button" class="btn"><i class="fa fa-refresh"></i></button>
+					
+					<div class="btn-group" role="group">
+					<button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      					<i class="fa fa-bell"></i>
+    				</button>
+						<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+					      <a class="dropdown-item" href="#">Dropdown link</a>
+					      <a class="dropdown-item" href="#">Dropdown link</a>
+					    </div>
+					</div>
+					<button type="button" class="btn"><i class="fa fa-gear"></i></button>
+				</div>
+
+			</div>
+
+		</nav>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-lg-2 side-bar">
+				<div class="sg-title">SAN GROUPS</div>
+				<div class="list-group-head">
+					SAN Group 01 
+					<span class="pull-right">
+						<i class="fa fa-chevron-down"></i> 
+					</span>
+				</div>
+				<ul class="list-group">
+					<li class="list-group-item active">ISE01</li>
+					<li class="list-group-item">ISE02</li>
+					<li class="list-group-item">ISE03</li>
+					<li class="list-group-item">ISE04</li>
+				</ul>
+				<div class="list-group-head">
+					SAN Group 02
+					<span class="pull-right">
+						<i class="fa fa-chevron-right"></i> 
+					</span>
+				</div>
+			</div>
+			<div class="col-sm-9 col-lg-10 offset-sm-3 offset-lg-2">
+				<div class="row main-nav">
+
+					<div class="col">
+						<a href="index.html">
+							<button class="btn">ISE Dashboard</button>
+						</a>
+					</div>
+					<div class="col">
+						<a href="list-storage-volume.html">
+						<button class="btn active">Storage Volume</button>
+						</a>
+					</div>
+					<div class="col">
+						<a href="index.html">
+							<button class="btn">Performance</button>
+						</a>
+					</div>
+					<div class="col">
+						<a href="index.html">
+							<button class="btn">Hosts</button>
+						</a>
+					</div>
+					<div class="col">
+						<a href="index.html">
+							<button class="btn">Advance Settings</button>
+						</a>									
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<span class="pull-left">Storage Pool/ ISE 01/ Volume_01</span>
+						<span class="pull-right">
+							<div class="dropdown">
+							  <button class="btn btn-secondary dropdown-toggle xio-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    Pool Operations
+							  </button>
+							  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							    <a class="dropdown-item" href="new-storage-volume.html">Create</a>
+							    <a class="dropdown-item disabled" href="#">Edit</a>
+							    <a class="dropdown-item" href="#">Present</a>
+							    <a class="dropdown-item" href="#">Unpresent</a>
+							    <a class="dropdown-item" href="expand-storage-volume.html">Expand</a>
+							    <a class="dropdown-item" href="#">Shrink</a>
+							    <a class="dropdown-item" href="#">Delete</a>
+							    <a class="dropdown-item disabled" href="#">Edit Pool</a>
+							    <a class="dropdown-item disabled" href="#">Edit LUN</a>
+							  </div>
+							</div>
+						</span>
+					</div>
+				</div>				
+				<div class="row">
+					<div class="col-sm-12">
+						<table class="table volume-table">
+						  <thead>
+						    <tr class="bg-primary">
+						      <th>
+						      	<input type="checkbox" />
+						      	<!-- <form action="">
+							      	<label class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input">
+									<span class="custom-control-indicator"></span>
+									</label>	
+						      	</form> -->
+						      </th>
+						      <th>VOLUME</th>
+						      <th>SIZE(in GB)</th>
+						      <th>RAID</th>
+						      <th>LDID</th>
+						      <th>LUN</th>
+						      <th>HOST</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+						      <th scope="row"><input type="checkbox" name=""></th>
+						      <td>Volume 01</td>
+						      <td>8</td>
+						      <td>1</td>
+						      <td>16</td>
+						      <td></td>
+						      <td></td>
+						    </tr>
+						    <tr>
+						      <th scope="row"><input type="checkbox" name=""></th>
+						      <td>Volume 02</td>
+						      <td>8</td>
+						      <td>1</td>
+						      <td>15</td>
+						      <td></td>
+						      <td></td>
+						    </tr>
+						    <tr>
+						      <th scope="row"><input type="checkbox" name=""></th>
+						      <td>Volume 03</td>
+						      <td>10</td>
+						      <td>1</td>
+						      <td>14</td>
+						      <td></td>
+						      <td></td>
+						    </tr>
+						    <tr>
+						      <th scope="row"><input type="checkbox" name=""></th>
+						      <td>Volume 04</td>
+						      <td>8</td>
+						      <td>1</td>
+						      <td>19</td>
+						      <td></td>
+						      <td></td>
+						    </tr>
+						  </tbody>
+						</table>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
