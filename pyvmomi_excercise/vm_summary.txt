@@ -1,0 +1,221 @@
+(vim.vm.Summary) {
+   dynamicType = <unset>,
+   dynamicProperty = (vmodl.DynamicProperty) [],
+   vm = 'vim.VirtualMachine:47',
+   runtime = (vim.vm.RuntimeInfo) {
+      dynamicType = <unset>,
+      dynamicProperty = (vmodl.DynamicProperty) [],
+      device = (vim.vm.DeviceRuntimeInfo) [
+         (vim.vm.DeviceRuntimeInfo) {
+            dynamicType = <unset>,
+            dynamicProperty = (vmodl.DynamicProperty) [],
+            runtimeState = (vim.vm.DeviceRuntimeInfo.VirtualEthernetCardRuntimeState) {
+               dynamicType = <unset>,
+               dynamicProperty = (vmodl.DynamicProperty) [],
+               vmDirectPathGen2Active = false,
+               vmDirectPathGen2InactiveReasonVm = (str) [],
+               vmDirectPathGen2InactiveReasonOther = (str) [
+                  'vmNptIncompatibleNetwork'
+               ],
+               vmDirectPathGen2InactiveReasonExtended = <unset>,
+               reservationStatus = <unset>,
+               attachmentStatus = <unset>,
+               featureRequirement = (vim.vm.FeatureRequirement) []
+            },
+            key = 4000
+         }
+      ],
+      host = 'vim.HostSystem:ha-host',
+      connectionState = 'connected',
+      powerState = 'poweredOn',
+      faultToleranceState = 'notConfigured',
+      dasVmProtection = <unset>,
+      toolsInstallerMounted = false,
+      suspendTime = <unset>,
+      bootTime = 2018-05-09T10:48:33.852074Z,
+      suspendInterval = 0L,
+      question = <unset>,
+      memoryOverhead = <unset>,
+      maxCpuUsage = 5333,
+      maxMemoryUsage = 1024,
+      numMksConnections = 0,
+      recordReplayState = 'inactive',
+      cleanPowerOff = <unset>,
+      needSecondaryReason = <unset>,
+      onlineStandby = false,
+      minRequiredEVCModeKey = <unset>,
+      consolidationNeeded = false,
+      offlineFeatureRequirement = (vim.vm.FeatureRequirement) [],
+      featureRequirement = (vim.vm.FeatureRequirement) [
+         (vim.vm.FeatureRequirement) {
+            dynamicType = <unset>,
+            dynamicProperty = (vmodl.DynamicProperty) [],
+            key = 'cpuid.SSE3',
+            featureName = 'cpuid.SSE3',
+            value = 'Bool:Min:1'
+         },
+         (vim.vm.FeatureRequirement) {
+            dynamicType = <unset>,
+            dynamicProperty = (vmodl.DynamicProperty) [],
+            key = 'cpuid.SSSE3',
+            featureName = 'cpuid.SSSE3',
+            value = 'Bool:Min:1'
+         },
+         (vim.vm.FeatureRequirement) {
+            dynamicType = <unset>,
+            dynamicProperty = (vmodl.DynamicProperty) [],
+            key = 'cpuid.CMPXCHG16B',
+            featureName = 'cpuid.CMPXCHG16B',
+            value = 'Bool:Min:1'
+         },
+         (vim.vm.FeatureRequirement) {
+            dynamicType = <unset>,
+            dynamicProperty = (vmodl.DynamicProperty) [],
+            key = 'cpuid.SSE41',
+            featureName = 'cpuid.SSE41',
+            value = 'Bool:Min:1'
+         },
+         (vim.vm.FeatureRequirement) {
+            dynamicType = <unset>,
+            dynamicProperty = (vmodl.DynamicProperty) [],
+            key = 'cpuid.SSE42',
+            featureName = 'cpuid.SSE42',
+            value = 'Bool:Min:1'
+         },
+         (vim.vm.FeatureRequirement) {
+            dynamicType = <unset>,
+            dynamicProperty = (vmodl.DynamicProperty) [],
+            key = 'cpuid.POPCNT',
+            featureName = 'cpuid.POPCNT',
+            value = 'Bool:Min:1'
+         },
+         (vim.vm.FeatureRequirement) {
+            dynamicType = <unset>,
+            dynamicProperty = (vmodl.DynamicProperty) [],
+            key = 'cpuid.DS',
+            featureName = 'cpuid.DS',
+            value = 'Bool:Min:1'
+         },
+         (vim.vm.FeatureRequirement) {
+            dynamicType = <unset>,
+            dynamicProperty = (vmodl.DynamicProperty) [],
+            key = 'cpuid.SS',
+            featureName = 'cpuid.SS',
+            value = 'Bool:Min:1'
+         },
+         (vim.vm.FeatureRequirement) {
+            dynamicType = <unset>,
+            dynamicProperty = (vmodl.DynamicProperty) [],
+            key = 'cpuid.LAHF64',
+            featureName = 'cpuid.LAHF64',
+            value = 'Bool:Min:1'
+         },
+         (vim.vm.FeatureRequirement) {
+            dynamicType = <unset>,
+            dynamicProperty = (vmodl.DynamicProperty) [],
+            key = 'cpuid.NX',
+            featureName = 'cpuid.NX',
+            value = 'Bool:Min:1'
+         },
+         (vim.vm.FeatureRequirement) {
+            dynamicType = <unset>,
+            dynamicProperty = (vmodl.DynamicProperty) [],
+            key = 'cpuid.RDTSCP',
+            featureName = 'cpuid.RDTSCP',
+            value = 'Bool:Min:1'
+         },
+         (vim.vm.FeatureRequirement) {
+            dynamicType = <unset>,
+            dynamicProperty = (vmodl.DynamicProperty) [],
+            key = 'cpuid.LM',
+            featureName = 'cpuid.LM',
+            value = 'Bool:Min:1'
+         },
+         (vim.vm.FeatureRequirement) {
+            dynamicType = <unset>,
+            dynamicProperty = (vmodl.DynamicProperty) [],
+            key = 'cpuid.Intel',
+            featureName = 'cpuid.Intel',
+            value = 'Bool:Min:1'
+         }
+      ],
+      featureMask = (vim.host.FeatureMask) [],
+      vFlashCacheAllocation = <unset>,
+      paused = false,
+      snapshotInBackground = false,
+      quiescedForkParent = <unset>,
+      instantCloneFrozen = <unset>,
+      cryptoState = <unset>
+   },
+   guest = (vim.vm.Summary.GuestSummary) {
+      dynamicType = <unset>,
+      dynamicProperty = (vmodl.DynamicProperty) [],
+      guestId = 'debian8_64Guest',
+      guestFullName = 'Debian GNU/Linux 8 (64-bit)',
+      toolsStatus = 'toolsOk',
+      toolsVersionStatus = 'guestToolsUnmanaged',
+      toolsVersionStatus2 = 'guestToolsUnmanaged',
+      toolsRunningStatus = 'guestToolsRunning',
+      hostName = 'udsserver',
+      ipAddress = '172.30.36.110'
+   },
+   config = (vim.vm.Summary.ConfigSummary) {
+      dynamicType = <unset>,
+      dynamicProperty = (vmodl.DynamicProperty) [],
+      name = 'UDS Server',
+      template = false,
+      vmPathName = '[datastore1] UDS Server/UDS Server.vmx',
+      memorySizeMB = 1024,
+      cpuReservation = 0,
+      memoryReservation = 0,
+      numCpu = 2,
+      numEthernetCards = 1,
+      numVirtualDisks = 1,
+      uuid = '564d59d0-9161-de23-d30d-37bac6aa9070',
+      instanceUuid = '52b4c5ac-86c0-8456-152b-a61e69a0f35f',
+      guestId = 'ubuntu64Guest',
+      guestFullName = 'Ubuntu Linux (64-bit)',
+      annotation = '',
+      product = <unset>,
+      installBootRequired = <unset>,
+      ftInfo = <unset>,
+      managedBy = <unset>,
+      tpmPresent = <unset>,
+      numVmiopBackings = <unset>
+   },
+   storage = (vim.vm.Summary.StorageSummary) {
+      dynamicType = <unset>,
+      dynamicProperty = (vmodl.DynamicProperty) [],
+      committed = 4826605585L,
+      uncommitted = 2861564433L,
+      unshared = 4826605585L,
+      timestamp = 2018-05-09T10:48:33.890577Z
+   },
+   quickStats = (vim.vm.Summary.QuickStats) {
+      dynamicType = <unset>,
+      dynamicProperty = (vmodl.DynamicProperty) [],
+      overallCpuUsage = 30,
+      overallCpuDemand = <unset>,
+      guestMemoryUsage = 30,
+      hostMemoryUsage = 540,
+      guestHeartbeatStatus = 'green',
+      distributedCpuEntitlement = <unset>,
+      distributedMemoryEntitlement = <unset>,
+      staticCpuEntitlement = <unset>,
+      staticMemoryEntitlement = <unset>,
+      privateMemory = 450,
+      sharedMemory = 5,
+      swappedMemory = 0,
+      balloonedMemory = 0,
+      consumedOverheadMemory = 90,
+      ftLogBandwidth = <unset>,
+      ftSecondaryLatency = <unset>,
+      ftLatencyStatus = <unset>,
+      compressedMemory = 0L,
+      uptimeSeconds = 2826,
+      ssdSwappedMemory = <unset>
+   },
+   overallStatus = 'green',
+   customValue = (vim.CustomFieldsManager.Value) []
+}]
+}
