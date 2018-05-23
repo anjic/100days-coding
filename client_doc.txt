@@ -1,4 +1,4 @@
-[root@localhost ~]# ls
+﻿[root@localhost ~]# ls
 anaconda-ks.cfg  optimise-server
 [root@localhost ~]# service uwsgi status
 Redirecting to /bin/systemctl status  uwsgi.service
@@ -85,7 +85,8 @@ server {
     }
 }
 
-
++++++++++++++++++++++++++++++++++++++++++++++++
+added new line in last
 
 
 
