@@ -1,0 +1,179 @@
+pipeline {
+  agent { label 'pipeline-nodes' }
+  environment {
+  APPLICATION_WORKSPACE = sh(returnStdout: true, script: 'pwd').trim()
+  IMAGE_NAME = 'adoptopenjdk/openjdk11-jenkins:x86_64-alpine-jdk-11.0.4_11'
+  }
+  stages {
+    stage('Verify released') {
+      steps{
+        echo "Verify if the application version is already released"
+        script {
+          try {
+            echo sh (returnStdout: true, script: '''#!/bin/bash
+            set +e
+            LATEST_JAR_VERSION=$(cat gradle.properties| grep "version="|cut -d= -f2|cut -d- -f1)
+            if [[ $LATEST_JAR_VERSION == *'SNAPSHOT'* ]]; then
+              LATEST_JAR_VERSION=$(echo $LATEST_JAR_VERSION| sed 's/-SNAPSHOT//g')
+            fi
+            echo $LATEST_JAR_VERSION
+            #Before Stage build, Check if the pom version has been released already to Platform-released
+            python2 ${JENKINS_SCRIPTS_DIR}/verify_released.py -r 'middleware-released' -g 'com.b2s.service.routing' -a 'edge-routing-service' --version "$LATEST_JAR_VERSION"
+            rc=$?;
+            if [[ $rc != 0 ]]; then
+              exit $rc;
+            fi
+            ''')
+          } catch (exc) {
+            echo "Application version is already released"
+            currentBuild.result = 'FAILED'
+            sh 'exit 1'
+          }
+        }
+      }
+    }
+    stage('Create Build') {
+      agent {
+        docker {
+          image '${IMAGE_NAME}'
+          registryUrl 'http://nexus02.cp.bridge2solutions.net:8083'
+          registryCredentialsId '81f6a892-6c9f-4373-80a1-a9af1358d8a2'
+          label 'pipeline-nodes'
+          args '-v $HOME/.m2:/usr/share/jenkins/.m2'
+          reuseNode true
+        }
+      }
+      steps {
+        echo "Compiling code"
+        script {
+          try {
+            env.LATEST_JAR_VERSION = sh(returnStdout: true, script: 'cat gradle.properties| grep "version="|cut -d= -f2|cut -d- -f1').trim()
+            env.VERSION = "${LATEST_JAR_VERSION}-${BUILD_NUMBER}"
+            sh 'java -version'
+            sh 'chmod +x gradlew'
+            sh './gradlew compileJava -Pbranch=${GERRIT_BRANCH} -Pversion=$VERSION'
+          } catch (exc) {
+            echo "Create build stage failed with exceptions"
+            currentBuild.result = 'FAILED'
+            sh 'exit 1'
+          }
+        }
+      }
+    }
+    stage('Run Unit Test Cases') {
+      agent {
+        docker {
+          image '${IMAGE_NAME}'
+          registryUrl 'http://nexus02.cp.bridge2solutions.net:8083'
+          registryCredentialsId '81f6a892-6c9f-4373-80a1-a9af1358d8a2'
+          label 'pipeline-nodes'
+          args '-v $HOME/.m2:/usr/share/jenkins/.m2'
+          reuseNode true
+        }
+      }
+      steps {
+        script {
+          try {
+            echo "Running test cases"
+            sh 'set -e && ./gradlew test -PbranchName=${GERRIT_BRANCH}'
+          } catch (exc) {
+            echo "Unit test cases failed"
+            currentBuild.result = 'FAILED'
+            sh 'exit 1'
+          }
+        }
+      }
+    }
+    stage('Create Artifact Master') {
+      when { environment ignoreCase: true, name: 'GERRIT_EVENT_TYPE', value: 'change-merged' }
+      agent {
+        docker {
+          image '${IMAGE_NAME}'
+          registryUrl 'http://nexus02.cp.bridge2solutions.net:8083'
+          registryCredentialsId '81f6a892-6c9f-4373-80a1-a9af1358d8a2'
+          label 'pipeline-nodes'
+          args '-v $HOME/.m2:/usr/share/jenkins/.m2'
+          reuseNode true
+        }
+      }
+      steps{
+        script {
+          try {
+            echo "Artifact creation step"
+            env.LATEST_JAR_VERSION = sh(returnStdout: true, script: 'cat gradle.properties| grep "version="|cut -d= -f2|cut -d- -f1').trim()
+            env.VERSION = "${LATEST_JAR_VERSION}-${BUILD_NUMBER}"
+            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dca59b05-5632-46d6-a441-45b95aa09069',usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+              sh './gradlew -Pversion=$VERSION -PuploadRepoKey=releases -PmavenUser=$USERNAME -PmavenPassword=$PASSWORD build publish -x test'
+            }
+          } catch (exc) {
+            echo "Artifact creation step failed"
+            currentBuild.result = 'FAILED'
+            sh 'exit 1'
+          }
+        }
+      }
+    }
+    stage('Cookbook create and upload') {
+      when { environment ignoreCase: true, name: 'GERRIT_EVENT_TYPE', value: 'change-merged' }
+      steps {
+        script {
+          try {
+            echo "Cookbook tag creation and upload steps are running"
+            sh '${JENKINS_SCRIPTS_DIR}/cookbook_create_upload.sh vims ${LATEST_JAR_VERSION} ${APPLICATION_WORKSPACE}'
+            sh 'ruby ${JENKINS_SCRIPTS_DIR}/set_chef_dev_env.rb --environment_name apex-apexadev --cookbook_name vims --attribute_name vims.version --artifact_version "${VERSION}"'
+            } catch (exc) {
+            echo "Cookbook creation step failed"
+            currentBuild.result = 'FAILED'
+            sh 'exit 1'
+          }
+        }
+      }
+    }
+    stage('Deploy to Dev Environment') {
+      when { environment ignoreCase: true, name: 'GERRIT_EVENT_TYPE', value: 'change-merged' }
+      steps {
+        script {
+          try {
+            echo sh (returnStdout: true, script: '''#!/bin/bash
+
+            #### Get rundeck job execution ID ####
+
+            curl -o getExecID.xml --data-urlencode "argString=-VERSION ${VERSION}" -s -k -X POST https://rundeck.cp.bridge2solutions.net/api/23/job/c6c5f103-ffe5-4dd8-85a6-bf0a797675a8/run?authtoken=${RUNDECK_AUTH_TOKEN}
+            executionID=$(python -c "from xml.dom import minidom; xmldoc = minidom.parse('getExecID.xml'); execID = xmldoc.getElementsByTagName('execution')[0].getAttribute('id'); print execID")
+
+            ### Get Rundeck job execution state ###
+
+            while :
+            do
+              execState=$(python -c "import os,json; cmd='curl -s -k -X GET https://rundeck.cp.bridge2solutions.net/api/23/execution/' + str($executionID) + '/state?authtoken=${RUNDECK_AUTH_TOKEN}'; response = json.loads(os.popen(cmd).read()); print str(response['executionState'])")
+              if [ "$execState" == "SUCCEEDED" ];then
+                echo "Rundeck job succeeded"
+                break
+              elif [ "$execState" == "FAILED" ] || [ "$execState" == "ABORTED" ]; then
+                echo "Rundeck Job failed"
+                env.buildResult = "fail"
+                exit
+              else
+                continue
+              fi
+              sleep 5
+            done
+            ''')
+          } catch (exc) {
+            echo "Deployment to Dev Server failed"
+            currentBuild.result = 'FAILED'
+            sh 'exit 1'
+          }
+        }
+      }
+    }
+  }
+  post {
+    success {
+      cleanWs()
+    }
+    failure {
+      mail bcc: '', body: "<b>Var-Integration-Service Build Failure</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL of the build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "Var-Integration-Service Error CI: Project name -> ${env.JOB_NAME}", to: "apex-jenkins-notification@bridge2solutions.com"
+    }
+  }
+}

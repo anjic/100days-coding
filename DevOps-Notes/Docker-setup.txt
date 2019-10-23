@@ -1,0 +1,79 @@
+Docker setup:
+$ sudo yum install -y yum-utils device-mapperpersistent-data lvm2
+
+$ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+$ sudo yum install docker-ce
+
+$ sudo usermod -aG docker cloud_user----->adding a user to docker group
+exit the ssh session then login again
+$ id ----> see the docker group added to user
+
+$ sudo systemctl enable docker && sudo systemctl start docker && sudo systemctl status docker
+
+
+Swarm setup:
+----------------------------
+
+$ docker swarm init --advertise-addr <manager-node-ip>
+
+join node to manager:
+---------------------------
+
+$ docker swarm join-token worker------> it displays command to run in nodes
+
+then run the command in node
+
+$ docker swarm join-token manager---> it dispalys command to create/join another additional manager, it should run different node
+
+$ docker system info | more
+
+$ docker nodes ls
+
+backup & restore:
+---------------------------
+$ docker service create --name backupweb --publish 80:80 --replicas 2 httpd
+ stop docker serveice
+$cd /var/lib/docker take backup "swarm" direcory as tar
+
+start docker service
+
+$ docker service ls
+
+$ docker service ps backupweb 
+
+Restore
+-------------------------
+naviagate to backup.tar directory location.
+scp the tar file to new nodes(which act swarm manager, install docker-ce and swarm)
+systemctl start docker
+untar backupweb.tar and copy content with the direcoty to /var/lib/docker/swarm
+
+$ systemctl start docker
+$ docker swarm init --force-new-cluster
+
+
+Error response from daemon: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp 172.17.0.1:2377: connect: connection refused"
+
+
+
+kubernet setup in centos7:
+------------------------
+should install in all 3 nodes(master,node1,nodes2)
+1. docker ce installation.
+
+2. Add the kubernetes repository to the centos 7 system by running the following command.
+
+cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+        https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
+3. yum install -y kubelet kubeadm kubectl
+

@@ -1,0 +1,604 @@
+docker image Inspect and report
+-----------------------
+docker image Inspect centos:6 
+
+docker image Inspect centos:6 > centos.txt
+
+docker image Inspect centos:6 | grep ContainerConfig
+
+docker image Inspect centos:6 --format '{{.ContainerConfig.Hostname}}'
+
+#formatting the in json
+docker image Inspect centos:6 --format '{{json .ContainerConfig}}'
+
+docker image Inspect centos:6 --format '{{.RepoTags}}'
+
+Docker run:
+-----------------
+docker run -it 
+ i->interrative
+ t-> attach
+
+docker run -it --name testcontainer centos:6 /bin/bash
+
+clean images/contaioners not using:
+----------------------------------
+docker rm <contianer_name>
+
+#if you want to remove the containers which are running
+docker rm `docker ps -a -q`
+
+-a -> all
+-q -> quit
+
+#it removes the container when it is stopped
+docker run -it --rm --name testcontainer centos:6 /bin/bash
+
+#Create evironment variable in runing containers
+docker run -it --rm --env MYVAR=whatever --name 0testcontainer centos:6 /bin/bash
+
+#Run  container is deattached/backgroud mode
+docker run -d <continer_name>
+docker run -d httpd
+
+#executing command inside container
+docker exec -it anji_c /bin/bash
+
+
+DockerFile:
+-----------------------------------------
+
+1. create a "Dockerfile" file.
+2. inside Dockerfile,copy the nelow content
+
+FROM centos:latest
+LABEL maintainer="anji.c@gmail.com"
+
+RUN yum update -y
+
+#building a image
+3.docker build -t customimage:v1 <Dockerfie location>
+ 
+4.if you save Dockerfile as "Dockerfile2"
+
+FROM ubuntu:latest
+LABEL maintainer="anji.c@gmail.com"
+
+RUN apt-get update -y
+
+$ docker build -t customubuntu:v1 -f Dockerfile2 <Dockerfie2 location>
+
+#create image, build Dockerfile without using cache
+$docker build --pull --no-cache -t optimized:v1
+
+
+Dockerfile structure:
+--------------------------
+#variables in conatiners
+ARG TAGVERIOSN=6
+
+FROM centos:${TAGVERIOSN}
+
+LABEL maintainer="anjineyulu.c@gmail.com"
+# executing commnd during image built
+RUN yum update -y && yum install httpd net-tools 
+RUN mkdir -p /run/httpd
+RUN rm -f /run/http/*  /tmp/httpd*
+
+or
+RUN yum update -y && \
+    yum install httpd net-tools && \
+    mkdir -p /run/httpd && \
+    rm -f /run/http/*  /tmp/httpd*
+
+#to Download and add the file in docker image
+ADD http://web-server/some_file <destination_location in container>
+
+#only works with files,copy the in docker image
+COPY  <source location in local>index.html <destination_location in container>/var/www/html
+
+#command run when image starts
+CMD echo "Rememebr to checkur container IP Address" 
+
+ENV ENVIRONMENT="Production"
+
+#volume mount, underlaying in docker host
+VOLUME /mymount
+
+#port to expose for application
+EXPOSE 80 
+
+#It run as executable when container starts, but Entrypoint can't override
+ENTRYPOINT ls -la | wc -l && \
+           apachectl "-DFOREGROUND" 
+
+
+
+BUILDING IMAGE:
+---------------------------
+docker build -t mywebser:1.1 <dockerfile location>
+
+IMAGE in Deattch mode:
+----------------------------
+# it will run in deattach mode as background
+docker run -d --name testweb1 --rm mywebser:1.1
+
+#To get IP address of container
+docker inspect testweb1 | grep IPAdress
+
+# Stop running containers
+docker stop testweb1
+
+#List of imges
+docker images
+
+docker ps -a
+
+#history of docker file changes
+docker history <image name>mywebser:1.1 | wc -l
+
+#Details of commands used in image
+docker ps --no-trunc
+
+Docker image in single layer:
+---------------------------------
+docker run mywebser:1.1 
+
+docker export eloquent_thompson > mywebser_1.1.tar
+
+docker import mywebser_1.1.tar mywebser_1.1:import
+
+docker images
+
+docker history mywebser_1.1:import
+vs
+docker history mywebser:1.1
+
+
+Storage driver(look at docker deamon):
+----------------------------------------
+# Docker info gives storage adapter and more info
+docker info | grep Storage
+
+#config file
+cd /etc/docker
+vi deamon.json
+
+#insert below lines
+
+{
+	"storage-driver":"devicemapper"
+}
+
+#Looks at images
+docker images
+
+#stop docker service
+systemctl stop docker
+
+#start docker service
+systemctl start docker
+
+cd /var/lib/docker
+cd devicemapper
+
+docker pull centos:6
+
+docker images
+
+docker info | grep Storage
+
+---------------------------
+#Pull image from registry
+---------------------------
+docker pull <image_name>:<tag>
+$ docker pull centos:latest
+$ docker pull -a hello-world
+$ docker images
+$ docker images --all
+
+#image full id
+$ docker images --digests
+
+# trusted by repository
+$ docker pull --disable-content-trust <image_name>
+
+$ docker run <image_name>
+
+#filtering images
+$ docker images --filter "before=centos:6"
+
+# exspanded images id
+$ docker images --no-turnc
+
+#images quite id
+$ docker images -q
+
+
+# Docker Security
+-------------------------------------
+# Installed Openssl and Create directories "cert" and "auth" directory
+$mkdir certs
+$mkdir auth
+$ openssl req -newkey rsa:4096 -node -sha256 -keyout certs/dockerrepo.key -x509 -days 365 -out certs/dockerrepo.crt -subj /CN=myregistrydomain.com
+
+# Host IP address in Hosts file, ifconfig take ip of docker host and add it in /etc/hosts
+
+$ vi /etc/hosts
+
+<ip-address> <CN>myregistrydomain.com
+
+#creating certs.d and repo directories
+$mkdir -p /etc/docker/certs.d/myregistrydomain.com:5000
+
+#Copy dockerrepo.crt to ca.crt from
+cp /home/user/certs/dockerrepo.crt ca.crt
+
+$ docker pull registry:2
+
+$ docker images
+
+$ docker run --entrypoint htpasswd registry:2 -Bbn test password > auth/htpasswd
+
+# it is created htpasswd
+$cd auth
+
+$ docker run -d -p 5000:5000 -v `pwd`\certs:/certs -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/dockerrepo.crt -e REGIISTRY_HTTPS_TLS_KEY -v `pwd`/auth:/auth -E REGISTRY_AUTH=htpasswd -e REGISTRY_AUTH_HTPASSWD_REALM='Registry Realm'  -e REGISTRY_AUTH_HTPASSW_PATH=/AUTH/HTPASSWD registry:2
+
+#Pulling image from registry
+$ docker pull <registryserver:port>/<image_name>
+$ docker pull myregistrydomain:5000/my-busybox
+
+#manage images private repositry
+-------------------------
+$ curl --insecure -u "test:password" https://myregistrydomain.com:5000/v2/_catalog
+
+$docker image
+$ doker tag centos:6 myregistrydomain:5000/my-centos
+$ docker push myregistrydomain:5000/my-centos
+# Push fails since didn't login into myregistrydomain
+#loign to registry server
+$docker login myregistrydomain:5000
+
+#Container lifecyles -seting the restart policies
+$ docker image pull httpd
+$ docker run -d --name testweb httpd
+$ docker stop testweb
+$ docker start testweb
+$ docker ps
+#Once restart docker service, all contaioners are stop. 
+$ sudo systemctl restart docker 
+$ docker ps -a
+# whenever docker service is restarts, container is restarts
+$ docker container run -d --name testweb --restart always httpd
+
+$docker stop testweb
+$docekr rm testweb
+# container starts until it manul stop, when it is docker restart
+$ docker container run -d --name testweb --restart unless-stopped httpd
+$ docker ps
+$ sudo system restart dokcer
+
+$ docker ps
+
+
+Difference Between Running a Container and Running a Service
+----------------------------------------------
+service: HA,functionality is easily access by features by 'routing mesh'
+container: not HA, requires manual steps to expose outside of the host system(port,network)
+
+Steps to Lock (and Unlock) a Cluster(swarm)
+----------------------------------------------- 
+lock and unlock are protects the cluster when docker service stop/start. 
+#nodes list
+$ docker node ls
+
+#Ser1vice list
+$ docker service ls
+
+#Imgeas
+$ docker images
+
+#new docker swarm with lock
+$docker swarm init --auto-lock
+
+#docekr updated swarm lock
+$docker swarm update --auto-lock=update
+
+#copy the key into a file
+$ vi unlock.txt
+or 
+echo "<the locked key>" >unlock.txt
+
+$ sudo ssystemctl stop docker
+
+$ sudo systemctl start docker
+
+$ docker node ls
+#here swarm was locked, it asks the u have to pass key for unlock
+
+$ docker swarm unlock
+
+$ docker swarm unlock-key
+
+#disabling lock forever
+$ docker swarm updated --auto-lock=false
+
+#key rotaion for lock/unlock swarm
+$ docker swarm unlock-key --rotate
+
+echo "<the updated locked key>" >> unlock.txt
+
+Extend the Instructions to Run Individual Containers into Running Services Under Swarm and Manipulate a Running Stack of Services
+----------------------------------------------------
+$ docker pull httpd
+
+$ docker run -d --name testweb httpd
+
+$ docker container inspect testweb | grep IPAddr
+
+$ sudo systemctl restart docker
+$ docker node ls
+
+
+Orchestration:
+----------------------
+container vs service
+continers is : 
+- uses docker run command 
+- Encapsulated of application or functionality
+- run on a single host at time.
+- required manual steps to expose functionaity to outside host system like(netowrk,volume and ports...).
+- Not HA
+- Not Easily scalable
+
+service is: 
+- uses docker service (HA for swarm)
+- Encapsulated of application or functionality
+- Can run '1 to N' nodes at a time
+- functionality esily accessible using 'routing mesh' to outside worker nodes
+- Multiple instances are set to launch in a single command
+- HA
+- Easily scalable
+
+Lock and unlock:
+------------------
+# cluster nodes
+$ docker nodes ls
+$ docker service ls
+$ docker images ls
+# while time initialize the swarm with lock mode
+$ docker swarm --init --auto-lock
+# already running swarm to update lock mode    
+$ docker swarm update --auto-lock=true/false  
+
+#Stoping dokcer
+$ systemctl docker stop
+
+# if you locked swarm, Before docker start u must unlock  
+$ systemctl docker start
+
+$ docker swarm unlock # here you have to pass unlock key
+
+# Even if you forgetthe unlock key find here, when swarm is running
+$ docker swarm unlock-key
+
+# To generation random lock key 
+$ docker swarm unlock-key --rotation
+
+Running service in swarm:
+---------------------
+$ docker pull httpd
+$ docker run -d --name testweb httpd
+# finding ipaddr for running containers
+$ docker container inspect  testweb | grep IPAddr
+
+$ docker service create --name testweb --publish/-p 80:80 httpd
+$ docker node ls
+$ docker service ls
+$ docker service ps testweb
+$ docker service update --replicas 3 testweb
+$ docker service ps testweb
+$ docker service update --replicas 10 --detach==false testweb
+$ docker service ps testweb
+
+#CPU and memory management:
+$ docker service update --limit-cpu=.5 --reserve-cpu=.75 --limit-memory=128m --reserve-memory=256m testweb
+or 
+$ docker service update --limit-cpu=.5 --reserve-cpu=.75 --limit-memory=128m --reserve-memory=256m --detach==false testweb
+$ docker service ps testweb
+
+#Increase and Decrease the Number of Replicas in a Service
+$ docker service create --name testweb -p 80:80 httpd
+
+$ docker service ps testweb
+# increase
+$ docekr service update --replicas 3 --detach=false testweb
+
+$ docker service create --name testnginx -p 5901:80 nginx
+$ elinks http://<node/container name>:5901
+
+$docker service ls
+#Updating httpd and nginx service both at a time, since update service doesn't support update too many services at a time 
+$ docker servcie update --detach=false testnginx=4 testweb=2
+$ docker servcie scale --detach=false testnginx=4 testweb=2
+
+# U can update a single service with scale command
+$ docker servcie scale --detach=false testnginx=3
+
+#Running Replicated vs. Global Services
+--------------------------------------
+$ docker service create --name testweb -p 80:80 httpd
+
+$ docekr service ps testweb
+
+$ docker servcie scale/update testweb=3
+
+$ docekr service ps testweb
+
+$ docker service ls
+
+#Global service
+$ docker service create --name testnginx -p 5901:80 --mode global --detach=false nginx
+
+$ docker service ls
+$ docker service ps testnginx
+$ docker service  update --replicas 5 testnginx
+$ docker service scale testnginx=1
+
+note: cann't convert service with update, from global to replicate mode.
+
+#Usage of Templates(Environment variable) with 'docker service create'
+-----------------------------------------------
+$ docker service create --name myweb --hostname="{{.Node.ID}}-{{.Service.Name}}" --detach=false -p 80:80 httpd
+$ docker ps --no-trunc myweb
+$ docekr inspect --format="{{.Config.Hostname}}" myweb.1.<ID>
+$ docekr inspect myweb.1.<ID> > output.json
+
+#Apply Node Labels for Task Placement
+----------------------------------------
+$ docker nodes ls (in docker swarm/manager)
+$ docker nodes inspect --pretty <node id>
+#label controlls resources
+$ docker node update --label-add mynode=testnode <node id>
+$ docker nodes ls (output doesn't have inffect)
+$ docker node inspect --pretty <node id> | more
+
+Dockercompose:
+------------------
+dependenices for compose.
+- yum install epel-release
+- yum install python-pip
+- sudo pip installl --upgrade pip
+- sudo pip install docker-compose
+$ mkdir Dockerfile
+cd Dockerfile
+vim dockerfile
+FROM centos:latest
+LABEL maintauner ="anine@gai.com"
+RUN yum install -y httpd
+RUN echo "OUR container website" >> /var/www/html/index.html
+EXPOSE 80
+ENTRYPOINT apachectl -DFOREGOUND
+
+--save above file
+
+$ docker images
+$ docker build -t myhttd:v1 #image creation with docekrfile
+$ docekr run -d --name testweb -p 808:80 myhttpd:v1
+$ docker images
+$ docker rmi myhttpd:v1 #remove the running image
+
+docker-compose creation:
+------------------
+vi docker-compose.yml
+
+version: '3'
+services:
+  apiweb1:
+    image: myhttpd:v1 # it says image is exist 
+    build: .
+    ports:
+      - "81:80"
+  apiweb2:
+    image: myhttpd:v1
+    ports:
+      - "82:80"
+  load-balancer:
+    image: nginx:latest
+    ports: 
+      - "80:80"
+
+--save above file
+$ docker-compose up -d
+$ docekr ps -a
+$ docker-compose ps
+$ docker-compose down --volumes
+#Now deploy docker-compose in swarm
+$ docker stack deploy --compose-file docker-compose.yml mycustomstack
+$ docekr service ls
+$ docker service ps mycustomstack_apiweb1
+$ docker service ps mycustomstack_apiweb2
+$ docker service ps mycustomstack_load-balancer
+
+
+
+
+
+
+Storage drivers:
+--------------------
+- devicemapper(cento,Oracle liux,RHEL,ubuntu,fedora),overlay2(RHEL,ubuntu,fedora),btrfs(SUSE) ,aufs3 (ubuntu)and vfs(ubuntu,fedora).
+- devicemapper-mac and windows
+
+- aufs,overlay,overlay2: file level
+- devicemapper,btrfs,zfs: Block level
+- storage volumes are present in /var/lib/docker/volumes of host machine.
+$ docker volume create my_mount
+ note: 'my_mount' will present on host /var/lib/docker/volumes
+$ cd /var/lib/docker/my_mount/_data
+$ vim hostfile.txt
+$ docker volume ls
+# for full information
+$ docker volume inspect my_mount | more
+Note: Even the volume ccreated in manager,it wont replicate /share in node/agents.
+#In cluster the volume
+$ docker service create --name testweb -p 80:80 --mount source=my_mount ,target=/internal-mount --deatch=false --replicas 3 httpd
+
+Note: volume can't remove actively running sevrices, first stop service and then remove volume.
+$ docker service remove testweb
+$ dcoker volume rm my_mount
+
+Cleanup unused(docker continer/image/volume/network/cache ..etc)
+--------------------------------------
+
+$ docker system prune
+
+# Remove all volumes unused
+$ docker system prune --volume
+
+$ docker network ls
+
+# Remove all networks unused
+$ docker system prune --netwoork
+
+#Remove all unused images/volumes/networks
+
+$ docker system prune -a 
+$ docker system prune -a --volume
+
+Network:
+------------
+$ docker network ls
+
+# Bridge network
+$ docker network inspect bridge | more
+
+$ docker pull httpd # pulling image
+$ docker images
+$ docker network ls
+
+$ docker run -d --name testweb -p 80:80 httpd
+$ docker ps
+$ docker continer inspect testweb | grep IPAdd
+$ elinks http://<ip/hostname>
+$ sudo yum instll elinks
+
+#Create NETWORK:
+$ docker network create --driver=bridge --subnet=192.168.1.0/24 --opt "com.docker.network.driver.mtu"="1501" devel0s
+
+$ docker container inspect --format="{{.NetworkSetting.Networks.bridge.IPAddress}}"
+testweb
+# to change network of running container 
+$ docker network connect --ip=<new ipaddress> <network_name>
+$ docker container inspect --format="{{.NetworkSetting.Networks.devel0.IPAddress}}"
+testweb
+$ docker container inspect --format="{{.NetworkSetting.Networks.bridge.IPAddress}}"
+testweb
+$ elinks http://<new ip address>
+
+# disconnect network 
+$ docker network disconnect <Network name>
+$ docker network disconnect bridge
+
+

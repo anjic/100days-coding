@@ -1,0 +1,147 @@
+Ad-hoc Vs Playbook:
+----------------------
+ad-hoc: like similar to single bash command
+Playbook: similar bash script
+
+Ad-hoc ansible command:
+---------
+$ ansible httpd -i /ansible/inv.ini -b -m yum -a "name=httpd state=latest" -f 100
+
+# File module
+-------
+$ ansible <hostname/group-name in inventory file> -i inv.ini -m file -a "path=/home/user/newfile state=touch"
+
+# To get the properties of the file
+$ ansible <hostname/group-name in inventory file> -i inv.ini -m file -a "path=/home/user/newfile"
+
+# It gives 'error/absent' when you pass command without having 'state' for new file.
+$ ansible <hostname/group-name in inventory file> -i inv.ini -m file -a "path=/home/user/newfile2"
+
+# To change file mode of the file
+$ ansible <hostname/group-name in inventory file> -i inv.ini -m file -a "path=/home/user/newfile mode=0400"
+
+# To change owner mode of the file, todo this u have to use/pass become flag(-b)
+$ ansible <hostname/group-name in inventory file> -i inv.ini -b -m file -a "path=/home/user/newfile owner=root"
+
+#user Module:
+-------------
+# create user
+$ ansible <hostname/group-name in inventory file> -i inv.ini -b -m user -a "name=anji"
+
+# Create/adding secondary group
+$ ansible httpd -i inv.ini -b -m user -a "name=anji append=yes groups=wheel"
+
+Inventory supports both INI and YAML formats:
+-----------
+
+inventory.yaml:
+--------
+all:
+  hosts:
+    <host-names>
+  children:
+    httpd:
+      hosts:
+      <host-name>
+    labservers:
+      hosts:
+        <host-name>
+
+$ ansible -i inventory.yaml labservers -m setup
+
+Dynamic inventory:
+------
+- specificing an executable file as the inventory is considered a dynamic inventory
+- JSON o/p is executable to be returned to STDOUT from the executable.
+- The implementation(python,java,C,bash..etc)
+- the program/script must respond to two possible parameters(--list,--host)
+- The program script must return JSON in the format Ansible is expecting
+- Donot forget to make the file executable
+  -chmod +x dynamic.py
+-Using dynamic inventories, you can pull inventory information from
+  - cloud provider
+  - LDAP
+  - Cobbler
+  - CMDB software
+
+- $ cd /scripts
+  vi dynamic.py
+  $ chmod +x dynamic.py
+  $ ansible all -i dynamic.py -m ping
+
+
+Playbook:
+----------
+- Plays map a group of hosts to well-defined role
+- Playboooks are used to orchestrate more complex activities, such as system or application deployment
+
+example of Playbook:
+------------------
+$ vim demo.yml 
+
+---
+- hosts: webservers
+  become:yes # to become root user or
+  remote_user: root
+  tasks:
+    - name: install apache is at the latest version
+      yum: 
+        name: httpd
+        state: latest
+    - name: start apache service
+      service:
+        name: httpd
+        state: started
+        enable: yes
+    - name: create index.html
+      file:
+        path: /var/ww/html/index.html
+        state: touch
+    - name: add a line to index.html
+      lineinfile:
+        path: /var/ww/html/index.html
+        line: "Hello World"
+    - name: write the apache config file
+      template: src=/srv/httpd.j2 dest=/etc/httpd.conf
+
+- hosts: databases
+  remote_user: root
+
+  tasks:
+    - name: install postgresql is at latest version
+      yum: name=postgresql state=latest
+    - name: ensure postgresql is started
+      service: name=postgresql state=started
+
+$ ansible-playbook demo.yml
+
+$ ansible-playbook demo.yml --limit <host-name full name>
+
+variables in playbook:
+------------------
+$ vi reg.yml
+
+---
+- hosts: local/<host-name>/<group-name>
+  tasks:
+    - name: create a file
+      file: 
+        path: /tmp/newfile
+        state: touch
+      register: output
+    - debug: msg="Registry output is{{output}}"
+    - name: edit file
+      lineinfile:
+        path: /tmp/newfile
+        line: "{{output.uid}}"
+    - name: copy a file
+      copy:
+        src: testfile
+        dest: /home/user/test-registry
+        mode: 400
+      register: var
+    - name: output debug info
+      debug: msg="debug info is {{var}}"
+
+$ ansible-playbook reg.yml
+  

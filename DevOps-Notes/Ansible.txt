@@ -1,0 +1,129 @@
+ansible
+------------------
+
+-control nodes
+-managed nodes
+
+control node requires python
+
+communication
+==============
+win - winrm
+linux - ssh
+
+it was opensource - now redhat owns it
+
+gui - anisble tower(paid) and AWX(open source)
+
+idempotent - Test and Repair 
+
+Install ansible
+================
+yum install ansible
+
+to check version
+=================
+ansible --version
+
+
+----------------------------------------------------
+
+Ansibleconfiguration
+----------------------
+default config location:    /etc/ansible/ansible.cfg
+
+Inventory file = /etc/ansible/hosts
+
+we can have config and inventory file in local dir itself (where you run commands)
+
+usually under ansible user home directory -/home/ansible/
+
+
+
+Adding ansible user:
+
+# useradd ansile
+
+# visudoers 
+ansible ALL=(ALL) NOPASSWD: ALL
+
+
+
+switch to ansible ID
+====================
+
+creating inventory file
+------------------------
+
+$ vim inventory.txt
++++++++++++++++++++++++++++
+172.31.108.198 ansible_host=fqdn.example.com
+
++++++++++++++++++++++++++++
+
+
+create configfile
+-----------------
+$vim ansible.cfg
+
+++++++++++++++++++++++++++++
+[defaults]
+inventory = /home/ansible/inventory.txt
+remote_user = ansible
+
+[previlege-escalation]
+become = true
+++++++++++++++++++++++++++++
+
+ansible-documentation
+======================
+
+$ansible-doc yum
+
+ansible execution
+===================
+
+$ ansible -m ping all
+
+list hosts:
+-----------
+
+$ ansible --list-hosts all
+
+$ ansible --list-hosts china
+
+
+
+
+$ ansibe -m yum -a "name=httpd state=present" china
+
+yum states:-- present,absent,latest,installed
+
+
+=====================
+
+creating ansible playbook
+
+$ vim anyname.yml
+++++++++++++++++
+
+---
+  name: playbook to install a package
+  hosts: china
+  tasks:
+  - yum:
+      name: httpd
+      state: present
+  - service:
+      name: httpd
+      state: started
+
++++++++++++++++++++
+
+To Syntax Check: $ ansible-playbook anyname.yml --syntax-check
+
+Dry run: $ ansible-playbook anyname.yml --check or -C
+
+To Run: $ ansible-playbook anyname.yml
+
+

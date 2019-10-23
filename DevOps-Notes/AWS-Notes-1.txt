@@ -1,0 +1,100 @@
+Aws services:
+-------------------
+- compute(EC2 and EMR..etc)
+- Storage(S3,EBS..etc)
+- Database(RDS,DynamoDB)
+- Application service(SNS,SQS..)
+- Networking(VPC and Route53)
+- Deployment and Management(IAM,cloud Formation)
+  
+AWS interfaces:
+-------------
+--AWS web console
+- AWS API(Rest API and soap API)
+- SDk(supports java,ruby,python etc)
+
+
+EC2:
+-------
+instance ipadress
+- /0 = all address
+ex:
+0.0.0.0/0 (all address and access anywhere)
+
+- /16 = x.y.[0-255].[0-255]
+ex:
+172.20.34.4/16 = 172.20.[0-255].[0-255]
+
+- /24 = x.y.z.[0-255]
+ex:
+172.30.24.8/24 = 172.30.24.[0-255]
+
+-/32 = x.y.z.a (single ip address)
+ex:
+172.30.16.7/32 = 172.30.16.7
+
+instace types(divided by based on the memory/cpu/storege):
+-------------------------
+Micro(memory:0.80GB ,compute units:2, Storage:0 GB, Architecture:32/64 bit, API-name:t1.micro)
+M1 small(memory:1.70 GB ,compute units:1 (1 core X 1 unit), Storage:160GB, Architecture:32/64 bit, API-name:m1.small)
+M2 medium(memory:3.75GB ,compute units:2 (1 core X 2 unit), Storage:410 GB, Architecture:32/64 bit, API-name:m1.medium)
+High-cpu medium(memory:1.70GB ,compute units:5(2 core X 2.5 unit), Storage:350 GB, Architecture:32/64 bit, API-name:c1.medium)
+M1-large(memory:7.50GB,compute units:4 (2 core X 2 unit), Storage:850GB, Architecture:32/64 bit, API-name:m1.large)
+
+
+
+Autoscaling:
+- linera horizontal scale
+- HA across
+   . instances
+   . Availability Zones
+
+
+Autoscaling requires 3 pieces:
+- launch config
+ .AMI, type of instace to launch
+ ex: 
+   -imageID: my-web-ami
+   -InstanceType: m1.medium
+   -keyPair: production
+   -SecurityGroup: web-tier
+   -Name: web-m1-medium
+
+-Autoscaling group
+ .AZs,Max,min servers
+ex:
+  -launch configuaration: web-m1-medium
+  -AZs: AZa,AZb
+  - MinSize: 2
+  -MaxSize: 20
+  -DesiredCapacity:4
+  -Name: web-tier-asg
+  -ELB:webtier-elb
+ 
+-Autoscaling policy
+ ."Buttons" that actors can push
+   - Actor can be API,scheduled,Cloudwatch 
+ - Autoscaling policy 3 types:
+   .Fixed size
+   .Demand based
+   .Schedule based
+Demannd based policy Ex:
+	-Adjustment
+
+Cloudwatch:
+
+- Monitoring and alerting for resource
+- Alarms can fire:
+   . Autoscaling polices
+   . SNS notifications
+-Cloudwatch, terms
+  - Namespaces
+  - Metrics(to see the metrice need to install Cloudwatch aggent all ec2 instance)
+  - Statistics
+  - Units
+  - Periods
+  - Alarms
+
+-Triangle service(ELB,Autoscaling,cloudwatch)
+ 
+-CloudFormation(0601)

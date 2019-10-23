@@ -14,9 +14,11 @@ AWS interfaces:
 - SDk(supports java,ruby,python etc)
 
 
-EC2:
--------
-instance ipadress
+EC2(Elastic compute cloud):
+-----------------
+- Instance access is based on private and public key pair.
+
+Instance ipadress
 - /0 = all address
 ex:
 0.0.0.0/0 (all address and access anywhere)
@@ -33,7 +35,7 @@ ex:
 ex:
 172.30.16.7/32 = 172.30.16.7
 
-instace types(divided by based on the memory/cpu/storege):
+instace 16 types(divided by based on the memory/cpu/storege):
 -------------------------
 Micro(memory:0.80GB ,compute units:2, Storage:0 GB, Architecture:32/64 bit, API-name:t1.micro)
 M1 small(memory:1.70 GB ,compute units:1 (1 core X 1 unit), Storage:160GB, Architecture:32/64 bit, API-name:m1.small)
@@ -41,14 +43,112 @@ M2 medium(memory:3.75GB ,compute units:2 (1 core X 2 unit), Storage:410 GB, Arch
 High-cpu medium(memory:1.70GB ,compute units:5(2 core X 2.5 unit), Storage:350 GB, Architecture:32/64 bit, API-name:c1.medium)
 M1-large(memory:7.50GB,compute units:4 (2 core X 2 unit), Storage:850GB, Architecture:32/64 bit, API-name:m1.large)
 
+...etc
 
+Instance at commandline:
+--------------------------
+#user data of instance
+curl http://<instance -ip>/latest/user-data/
+
+#Instance information
+curl http://<instance-ip>/latest/meta-data/
+
+Instance initial boot with "cfn-init":
+----------------------------------
+- cfn-init is used for initial bootstraping instace with some script
+- cfn-init is cloud-init for AWS
+- cloud-init is a cannonical package which allow bootstraping of cloud servers/instance
+- if user data starts with "hash-bang(#!)", then it is execute as a script.
+Ex:
+#!/bin/bash
+yum update -y aws-cfn-bootstrap
+#set hostname
+hostname web-app01
+#Install apache
+yum install -y httpd
+# Start webservcie
+chkconfig httpd on /etc/init.d/httpd start
+.....etc
+- only once on instace/server first boot executes
+- Can install packages and etc..
+- Can "wget" codebase, more scripts from remote servers like S3 & execute them as well.
+lo
+EC2 Disks options:
+--------------
+1. Ephemeral or instance disk:
+local to EC2
+static size
+lifetime tied to instance
+Best for sequentials IO
+User must provisoned
+canot share
+cant stop
+
+2. EBS Disk(Network attached storage): 
+remote rack
+user-adjustable size
+lifetime independent of i
+Best for random I/O
+Extra cost (storage/IO)
+user must provision
+snapshots(hourly,daily,weekly) stores in S3
+can start/stop
+
+AMIs(Amazon machine image):
+--------------
+AWS-provided:
+ - Raw linux /win os
+ - Truted
+ - 32/64 bit
+
+community:
+ -anyone can provide
+
+AWS marketplace:
+ - pre-packaged application
+ - Trusted?
+ - May have addtional costs
+
+"My AMI":
+ - can create own images
+
+Create AMIs:
+--------------
+- base os and software footprint
+- AMI acutally stores in S3
+- Single AMI to create multiple
+
+-----------------
+ELB(elastic load balancer)
+----------
+-HA
+- Auto Scaling(adds more IPs with increase traffic)
+-can terminate SSL
+-Can SSL encrypt backend
+
+Simple algorithms
+-------------
+- Sticky Session
+- Round robin
+
+
+---------------
+Auto-scaling and cloudwatch
+--------------------
+Setup:
+- Create ELB
+- Create instance
+- Create auto scaling group
+- Create cloudWatch alarm(can fire policies on veriety of alarm)
+  -EC2 CPU,I/O but not RAM
+  -ELB thresholds(latency,I/O, RequestCount)
+  -Custom(Application metrics, threads,open files..etc)
 
 Autoscaling:
 - linera horizontal scale
 - HA across
    . instances
    . Availability Zones
-
 
 Autoscaling requires 3 pieces:
 - launch config
@@ -96,5 +196,99 @@ Cloudwatch:
   - Alarms
 
 -Triangle service(ELB,Autoscaling,cloudwatch)
- 
--CloudFormation(0601)
+
+CloudFormtion(CF):
+---------------------
+Infrastructure as code(Codefies creation of stack resource)
+  -ELB
+  -Autoscaling group
+  -EC2
+  -RDS(Database)
+- Can be verion controlled
+- No More Guessing "who did what when"
+- Modularization(template)
+  - Templates can contain other template
+- Enforce "One way to deploy"
+- Tools CHEF,PUppet or CEF engine used for configuration management
+Creation setups:
+ - Create template from running stack
+ - Requires you spin up EC2 instace with "CloudFormation" running on it
+ - Template in json format
+    - Version of CF
+    - Description(detailed info oftemplate)
+    - Parameters(run-time override)
+    - Mappings(enumerations)
+    - Resource(AWS resource to create)
+    - Properies(Resource specifics)
+    - Output(final output of template)
+
+CF(pros and cons):
+------------
+- Great for initial deploy
+- Not so great for updating stack
+	- Rules of what gets "bounced" are complicated
+	- Not a good idea for production
+	- This could chnage
+- For stack updates, use the API & Command Line tools
+- Tools CHEF,Puppet or CEF engine are better all-around
+
+Storage in AWS(S3,RDS,DynamoDB):
+---------------------
+S3:
+  - Object storage
+  - Greate for static assets
+  pros:
+    - "Swiss Army knife" of static storage
+    - cheapest option to both store(GB/month)& serve data
+    - No limits on of objects
+    - Extremely durable
+    - Extremely scalable
+    - All objects natively web-accessible
+    - Can host static websites
+  Limitations:
+    - Latency 
+    - WORM(write once read many)
+    - Cannot serve dynamic content(PHP,ruby)
+    - 100 buckets,5TB max size on object
+    - Bare bones(write,read,delete)
+
+RDS:
+  - Hands-off RDBMS(Mysql,Orcle,Sqlserver)
+  - Manually scalable like EC2
+  pros:
+    - Managed Mysql(most feature and rich read replicas),Orcle,Sql server
+    - HA baked in multi-AZ master/slave
+    - DR baked in
+      - Automated backups
+      - Real-time snapshots
+    - Cost Effective
+      - Lower cost than "rool ur own" EC2+ database
+      - can BYOL with orcle,sqlserver
+    - Scalable
+      - Instance types like EC2
+      - provisioned IOPS like EBS
+  Limitations:
+    - Upper limit on vertical scale
+    - 3 TB max DB size
+    - "SQl client" interface
+      - No direct SSH or hardware control
+      - If you need direct control,must use EC2+ RDBMS
+
+DynamoDB:
+  - Deals awesome with the "3 Vs(variety,velocity,volume)" in big data
+  - Hands-off & dead simple to scale
+  Prons:
+  - Greate at 3 Vs
+  - Key-value store
+    -strongly consistent
+  - Managed
+  - HA baked in
+  - Scaling baked in
+    - Tuned via (independent) read& write throughput
+  - Cost effective
+
+  Limitation:
+    - 64K rows limit size
+    - Complicated (but reasonable) pricing model
+    -No limit on throughput
+      -provisioned by user
