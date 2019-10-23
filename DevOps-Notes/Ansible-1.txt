@@ -117,8 +117,10 @@ $ ansible-playbook demo.yml
 
 $ ansible-playbook demo.yml --limit <host-name full name>
 
-variables in playbook:
+Variables in playbook, Use variables to Retrieve the Results of Running Commands:
 ------------------
+# used "register" keyword for declared variables
+# debug module, is print the logs/entire playbook executed logs
 $ vi reg.yml
 
 ---
@@ -144,4 +146,96 @@ $ vi reg.yml
       debug: msg="debug info is {{var}}"
 
 $ ansible-playbook reg.yml
-  
+
+# Conditionals to Control Play Execution
+-------------
+# handlers, here restating apache service when config file changes occurs
+
+$ vi  handler.yml
+
+---
+- hosts: <host name>
+  become: yes
+  handler:
+    - name: restart apache
+      service: name="httpd" state="restarted"
+      listen: "restart apache"
+  tasks:
+    - name: change config
+      replace:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: "^DocumentRoot.*$"
+        replace: "DocumentRoot '/opt/www'"
+        backup: yes
+      notify: "restart apache"
+
+# When, it is used like 'if' condition
+ex: $ vi when.yml
+
+---
+- hosts: local/<host-name>/<group-name as inventory>
+  become: yes
+  tasks:
+    - name: edit index
+      lineinfile:
+        path: /var/www/html/index.html
+        line: "I'm Anjaneyulu"
+      when:
+        - ansible_hostname == "<some-value>"
+
+# with_items, it is loop
+ex: $ vi user.yml
+
+---
+- hosts: local
+  become: yes
+  tasks:
+    - name: create users
+      user: "{{item}}"
+    with_items:
+      - sam
+      - gopi
+      - karthi
+
+# with_files, is also loop through files
+
+ex: $ vi user.yml
+
+---
+- hosts: local
+  become: yes
+  tasks:
+    - name: copy files
+      copy:
+        src: "{{file}}"
+        dest: "/home/user/{{file}}"
+        mode: 400
+    with_files:
+      - text.txt
+      - text.py
+      - test.java
+
+#Error Handling
+----------------
+1. Ignore acceptable errors
+2. Define failure condition
+3. Define "Changed"
+4. handling blocks
+
+Ex:  $ vi error.yml
+
+---
+- hosts: local
+  tasks:
+  - name: get files
+    get_url:
+      url: "http://{{item}}/index.html"
+      dest: "/tmp/{{item}}"
+    ignore_errors: yes
+    with_items:
+      - hostname1
+      - hostname2
+      - hostname3
+
+Note: before running the above playbook, stop apache servcie atleast in a server. Just for validation ignore
+
