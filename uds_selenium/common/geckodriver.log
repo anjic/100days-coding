@@ -1,0 +1,34 @@
+1525787221152	geckodriver	INFO	geckodriver 0.19.0
+1525787221155	geckodriver	INFO	Listening on 127.0.0.1:52293
+1525787222236	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.WALSzEZkFHYd"
+1525787222740	Marionette	INFO	Enabled via --marionette
+1525787225012	Marionette	INFO	Listening on port 38112
+1525787225044	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://172.30.36.110/static/js/jquery-1.10.2.min.js, line 1: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+1525787272110	geckodriver	INFO	geckodriver 0.19.0
+1525787272113	geckodriver	INFO	Listening on 127.0.0.1:40752
+1525787272257	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.1RRv4oKnuEM5"
+1525787273922	Marionette	INFO	Enabled via --marionette
+1525787276214	Marionette	INFO	Listening on port 45503
+1525787276408	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://172.30.36.110/static/js/jquery-1.10.2.min.js, line 1: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+1525787321838	geckodriver	INFO	geckodriver 0.19.0
+1525787321847	geckodriver	INFO	Listening on 127.0.0.1:34636
+1525787322925	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.nSoqJkoUrAqS"
+1525787323500	Marionette	INFO	Enabled via --marionette
+1525787326866	Marionette	INFO	Listening on port 35516
+1525787326882	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://172.30.36.110/static/js/jquery-1.10.2.min.js, line 1: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 10911, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /builds/worker/workspace/build/src/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[Child 10853, Chrome_ChildThread] WARNING: pipe error (35): Connection reset by peer: file /builds/worker/workspace/build/src/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[Child 10853, Chrome_ChildThread] WARNING: pipe error (18): Connection reset by peer: file /builds/worker/workspace/build/src/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[Child 10853, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /builds/worker/workspace/build/src/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1525787341810	geckodriver	INFO	geckodriver 0.19.0
+1525787341813	geckodriver	INFO	Listening on 127.0.0.1:53403
+1525787341957	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.DxsZhSly4KBD"
+1525787342926	Marionette	INFO	Enabled via --marionette
+1525787344992	Marionette	INFO	Listening on port 40207
+1525787345066	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://172.30.36.110/static/js/jquery-1.10.2.min.js, line 1: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
