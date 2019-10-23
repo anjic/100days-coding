@@ -1,0 +1,124 @@
+Introduction of YAML:
+--------------------
+YAML file start with (---) and end with(...)
+ex: 
+
+
+Ansible 2.7:
+--------------
+Ansible modules for system Administration tasks,
+-- Inventories
+-- Module
+-- Variable
+-- Facts
+-- Plays
+-- Playbooks
+-- Configuaration Files
+
+Inventories:
+-------------
+- Inventories as list of hosts
+- Inventories are how ansible can locate and run against multiple systems.
+- By default Ansile uses /etc/ansible/hosts as its inventory but it is configuarable.
+- Inventory support both in INI and yaml file formats.
+
+Ex:
+save the Inventory file as hosts.ini under /etc/ansible/hosts
+
+testhost1.linuxacademy.com
+
+[httpd]
+testhost2.linuxacademy.com
+testhost3.linuxacademy.com
+
+[labservers]
+testhost[1:6].linuxacademy.com
+
+#Ansible command to run.
+$ ansible <hostname/ip/group name in the inventory> -m ping
+# Here -m means module name
+
+$ ansible all -m ping 
+# Here all means, To run ansible command all hosts
+
+$ ansible -i hosts.ini httpd -m ping
+# -i means inventory file name and group name
+
+
+Modules:
+----------------
+- Module are essentially tools for particualr tasks
+- Module can take parameters
+- they return JSON
+- Can run from the command line or within a playbook
+- There are a significant number of modules for many kinds of work(AWS,azure,security..etc)
+- Custom modules can be written
+
+
+Variable:
+---------
+- variables names should be letters,numbers and underscores
+- varibale should always start with a letter
+- can be scoped by group,hosts and even playbook
+
+$ ansible -i hosts.ini labservers -m setup
+
+Play and Playbook:
+-----------------------
+- A goal od play is to map a group of hosts to some well defined roles
+- A play may use one or more modules to achieve a desired end state on a group of hosts
+- A playbook is series of plays
+- Deploy the application,config,making some changes application playbooks
+
+Ansible Conifiguaration file:
+------------------
+#location of configuaration file
+
+- ANSIBEL_CONFIG(environment variable)
+- ansible.cfg(in the current directory)
+- .ansible.cfg(in the home directory)
+- /etc/ansible/ansible.cfg
+
+$ vi /etc/ansible/ansible.cfg
+
+#user creation for control node and slave nodes
+--------------------------
+$ sudo adduser ansible
+$ sudo passwd ansible
+$ sudo usermod -a -G cloud_user ansible
+#Copy the public key of control host to both node1 and node2.
+$ scp the public key of control host to slave nodes
+$ ssh-copy-id node1 (accept the host key if prompted, authenticate as ansible user)
+
+# In slave nodes 
+$ sudo vi /etc/sudoers
+#insert the below line
+ansible    ALL=(ALL)       NOPASSWD: ALL
+
+$ echo "maniissuriya5c.mylabserver.com" >> /home/ansible/inventory
+
+ansible    ALL=(ALL)       NOPASSWD: ALL
+
+Ad-Hoc
+-----------
+- Check log content
+- Daemon control
+- Process management
+- Check installed software
+- Check system properties
+- Gather system performance(cpu,disk space,memory uses)
+- Work with unfamiliar modules on test system
+
+
+Inventory Management:
+-------------
+Locations:
+- Deafult :/etc/ansible/hosts
+- specifed by: ansible -i <inventory-file location>
+- can be set in ansible.cfg
+Inventory file may contain hosts,pattern,groups and varibales.
+file supports in INI or YAML formats
+Static(INI and yml) vs Dynamic(bash,python script)
+
+# To call variables in Ad-hoc
+$ ansible <inventory group-name> -i <inventory file> -b -a "ll {{vatiable-name}}"
