@@ -35,7 +35,7 @@ docker rm `docker ps -a -q`
 docker run -it --rm --name testcontainer centos:6 /bin/bash
 
 #Create evironment variable in runing containers
-docker run -it --rm --env MYVAR=whatever --name 0testcontainer centos:6 /bin/bash
+docker run -it --rm --env MYVAR=whatever --name testcontainer centos:6 /bin/bash
 
 #Run  container is deattached/backgroud mode
 docker run -d <continer_name>
@@ -253,12 +253,12 @@ $ docker pull myregistrydomain:5000/my-busybox
 -------------------------
 $ curl --insecure -u "test:password" https://myregistrydomain.com:5000/v2/_catalog
 
-$docker image
+$ docker image
 $ doker tag centos:6 myregistrydomain:5000/my-centos
 $ docker push myregistrydomain:5000/my-centos
 # Push fails since didn't login into myregistrydomain
 #loign to registry server
-$docker login myregistrydomain:5000
+$ docker login myregistrydomain:5000
 
 #Container lifecyles -seting the restart policies
 $ docker image pull httpd

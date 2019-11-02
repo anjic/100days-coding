@@ -227,15 +227,61 @@ Ex:  $ vi error.yml
 ---
 - hosts: local
   tasks:
-  - name: get files
-    get_url:
-      url: "http://{{item}}/index.html"
-      dest: "/tmp/{{item}}"
+   - name: get files
+     get_url:
+       url: "http://{{item}}/index.html"
+       dest: "/tmp/{{item}}"
     ignore_errors: yes
     with_items:
       - hostname1
       - hostname2
       - hostname3
 
+Ex: $ block.yml
+
+---
+- hosts: local
+  tasks:
+    - name: get files
+      block:
+        - get_url:
+            url: "http://scoldam6/index.html"
+            dest: "/tmp/idex_file"
+      resuce: 
+        - debug: msg="The file doesn't exists"
+      always:
+        - debug: msg="playbooks run success"
+
 Note: before running the above playbook, stop apache servcie atleast in a server. Just for validation ignore
 
+#playbook tags/versioning:
+--------------------------
+$ vi deploy.yml
+
+---
+- hosts: web
+  become: yes
+  tasks:
+  - name: deploy app binary
+    copy:
+      src: /home/user/apps/hello
+      dest: /var/www/html/hello
+    tags:
+      - webdeploy
+- hosts: db
+  become: yes
+  tasks:
+  - name: deploy db script
+    copy:
+      src: /home/user/app/script.sql
+      dest: /opt/db/scripts/script.sql
+    tags:
+    - dbdeploy
+
+# running /executing entire playbook
+$ ansible-playbook deploy.yml
+
+# running /executing entire playbook tags
+$ ansible-playbook <playbook-name> --tags <name of tags>
+$ ansible-playbook deploy.yml --tags dbdeploy
+$ ansible-playbook deploy.yml --tags webdeploy
