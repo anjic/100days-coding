@@ -11,7 +11,7 @@ influxdb==4.0.0
 lxml==3.6.4
 packaging==16.8
 psycopg2==2.7.3.1
-py==1.4.33
+py==1.10.0
 pycrypto==2.6.1
 PyJWT==1.4.2
 pyparsing==2.2.0
